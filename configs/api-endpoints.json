@@ -1,0 +1,9 @@
+{   
+    "endpoints": {
+      "login": "/auth/login",
+      "getUsers": "/api/users",
+      "createUser": "/api/users",
+      "updateUser": "/api/users/{userId}",
+      "deleteUser": "/api/users/{userId}"
+    }
+  }

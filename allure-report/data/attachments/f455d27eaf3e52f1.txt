@@ -1,0 +1,40 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: test
+- Location: /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/sportsbeach-oversizedCTA.test.ts:3:5
+
+# Error details
+
+```
+Error: locator.hover: Test timeout of 30000ms exceeded.
+Call log:
+  - waiting for getByRole('link', { name: 'View Roster View Roster View' })
+
+    at /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/sportsbeach-oversizedCTA.test.ts:8:74
+```
+
+# Test source
+
+```ts
+   1 | import { test, expect } from '@playwright/test';
+   2 |
+   3 | test('test', async ({ page }) => {
+   4 |   await page.goto('https://sportbeach-dev.vercel.app/');
+   5 |   await expect(page.getByRole('heading', { name: 'Download the App 🚨' })).toBeVisible();
+   6 |   await page.getByRole('button', { name: 'Close Alert Pop Up' }).click();
+   7 |   await expect(page.locator('#main-content')).toContainText('View Roster');
+>  8 |   await page.getByRole('link', { name: 'View Roster View Roster View' }).hover();
+     |                                                                          ^ Error: locator.hover: Test timeout of 30000ms exceeded.
+   9 |   await page.getByRole('link', { name: 'View Roster View Roster View' }).click();
+  10 |   await expect(page.getByRole('heading', { name: 'Roster', exact: true })).toBeVisible();
+  11 |   await page.goto('https://sportbeach-dev.vercel.app/');
+  12 | //   await expect(page.getByRole('link', { name: 'View Roster View Roster View' })).toBeVisible();
+  13 |   await expect(page.locator('#main-content')).toContainText('Our Partners 2');
+  14 | });
+```

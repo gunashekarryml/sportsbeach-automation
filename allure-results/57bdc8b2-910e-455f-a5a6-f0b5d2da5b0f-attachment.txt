@@ -1,0 +1,3 @@
+Captured words: [ '' ]
+Word "" is not in allowed words.
+All words match: false

@@ -1,0 +1,16 @@
+Initial text-decoration for "Schedule": none solid rgb(0, 82, 125)
+text-decoration after hover for "Schedule": underline solid rgb(0, 82, 125)
+Is the "Schedule" link underlined on hover? Yes
+Initial text-decoration for "Roster": none solid rgb(0, 82, 125)
+text-decoration after hover for "Roster": underline solid rgb(0, 82, 125)
+Is the "Roster" link underlined on hover? Yes
+Initial text-decoration for "Partners": none solid rgb(0, 82, 125)
+text-decoration after hover for "Partners": underline solid rgb(0, 82, 125)
+Is the "Partners" link underlined on hover? Yes
+Initial text-decoration for "FAQ": none solid rgb(0, 82, 125)
+text-decoration after hover for "FAQ": underline solid rgb(0, 82, 125)
+Is the "FAQ" link underlined on hover? Yes
+Initial text-decoration for "Login": none solid rgb(0, 82, 125)
+text-decoration after hover for "Login": underline solid rgb(0, 82, 125)
+Is the "Login" link underlined on hover? Yes
+Execution Status : passed

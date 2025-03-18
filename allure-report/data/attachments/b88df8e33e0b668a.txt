@@ -1,0 +1,175 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Validate social media icon hovering and navigation1111111
+- Location: /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/demorunner.test.ts:210:5
+
+# Error details
+
+```
+Error: locator.hover: Test timeout of 30000ms exceeded.
+Call log:
+  - waiting for locator('a[aria-label="Visit Instagram"]')
+
+    at /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/demorunner.test.ts:237:23
+```
+
+# Test source
+
+```ts
+  137 |     { name: 'Visit LinkedIn', selector: 'a[aria-label="Visit LinkedIn"]', expectedURL: 'https://www.linkedin.com' }
+  138 |   ];
+  139 |
+  140 |   // Create an array to hold the popup pages
+  141 |   let popups: any[] = [];
+  142 |
+  143 |   // Listen for the popups (new tabs)
+  144 |   page.on('popup', (popup) => {
+  145 |     console.log(`Popup opened: ${popup.url()}`); // Log popup URL for debugging
+  146 |     popups.push(popup); // Add the new popup to the array
+  147 |   });
+  148 |
+  149 |   // Iterate over each social media link to perform the hover and validate the circle appearance
+  150 |   for (const { name, selector } of socialLinks) {
+  151 |     // Get the social network icon element
+  152 |     const iconLocator = page.locator(selector);
+  153 |
+  154 |     // 1. Wait for the element to be visible and interactable
+  155 |     await iconLocator.waitFor({ state: 'visible', timeout: 5000 }); // Wait for 5 seconds to make sure it's visible
+  156 |
+  157 |     // 2. Hover over the social network icon
+  158 |     await iconLocator.hover({ timeout: 5000 });  // Increase timeout for hover if necessary
+  159 |
+  160 |     // 3. Wait for the hover effect to be fully applied (adjust timeout if needed)
+  161 |     await page.waitForTimeout(1000); // Wait for 1 second to allow animation to finish
+  162 |
+  163 |     // 4. Check for the CSS changes after hover (border-radius and border)
+  164 |     const borderRadius = await iconLocator.evaluate((el: HTMLElement) => {
+  165 |       return window.getComputedStyle(el).getPropertyValue('border-radius');
+  166 |     });
+  167 |
+  168 |     const borderColor = await iconLocator.evaluate((el: HTMLElement) => {
+  169 |       return window.getComputedStyle(el).getPropertyValue('border-color');
+  170 |     });
+  171 |
+  172 |     console.log(`CSS after hover for "${name}": border-radius: ${borderRadius}, border-color: ${borderColor}`);
+  173 |
+  174 |     // 5. Assert that the border-radius is a large value (i.e., circular shape) and the border is visible (not transparent)
+  175 |     expect(borderRadius).toBe('9999px'); // Checking for large value that indicates a circular shape
+  176 |     expect(borderColor).not.toBe('transparent'); // Ensure the border has changed to something visible
+  177 |
+  178 |     // 6. Log success message
+  179 |     console.log(`Circle appears on hover for "${name}": Border radius is ${borderRadius} and border color is ${borderColor}`);
+  180 |   }
+  181 |
+  182 |   // Now, click the social media links to open the new tabs
+  183 |   await page.getByRole('link', { name: 'Visit Instagram' }).click();
+  184 |   await page.getByRole('link', { name: 'Visit X Profile' }).click();
+  185 |   await page.getByRole('link', { name: 'Visit LinkedIn' }).click();
+  186 |
+  187 |   // Wait a bit to ensure the popups open (you can increase the timeout if necessary)
+  188 |   await page.waitForTimeout(2000); // Wait for 2 seconds to ensure popups have time to open
+  189 |
+  190 |   // Ensure the popups have been captured by checking the number of popups in the array
+  191 |   expect(popups.length).toBe(3); // Ensure that 3 popups have been captured
+  192 |
+  193 |   // Optionally, you can log the URLs of the popups to debug
+  194 |   console.log('Captured popups:', popups.map(popup => popup.url()));
+  195 |
+  196 |   // Ensure the URLs of the popups are correct before proceeding with the assertions
+  197 |   for (let i = 0; i < popups.length; i++) {
+  198 |     const popupURL = popups[i].url();
+  199 |     console.log(`Popup URL at index ${i}: ${popupURL}`);
+  200 |
+  201 |     // Validate URL using the full expected URL (including https:// and www if necessary)
+  202 |     await expect(popupURL).toMatch(new RegExp(socialLinks[i].expectedURL));
+  203 |   }
+  204 |
+  205 |   // Optionally, you can also check if the popups have finished loading
+  206 |   await Promise.all(popups.map(popup => popup.waitForLoadState('load')));
+  207 | });
+  208 |
+  209 |
+  210 | test('Validate social media icon hovering and navigation1111111', async ({ page }) => {
+  211 |   // Navigate to the page where the global footer with social network icons exists
+  212 |   // await page.goto('https://sportbeach-dev.vercel.app/');
+  213 |   // await page.getByRole('button', { name: 'Accept cookies' }).click();
+  214 |
+  215 |   // List of social media links with their corresponding names and selector
+  216 |   const socialLinks = [
+  217 |     { name: 'Visit Instagram', selector: 'a[aria-label="Visit Instagram"]' },
+  218 |     { name: 'Visit X Profile', selector: 'a[aria-label="Visit X Profile"]' },
+  219 |     { name: 'Visit LinkedIn', selector: 'a[aria-label="Visit LinkedIn"]' }
+  220 |   ];
+  221 |
+  222 |   // Create an array to hold the popup pages
+  223 |   let popups: any[] = [];
+  224 |
+  225 |   // Listen for the popups (new tabs)
+  226 |   page.on('popup', (popup) => {
+  227 |     console.log(`Popup opened: ${popup.url()}`); // Log popup URL for debugging
+  228 |     popups.push(popup); // Add the new popup to the array
+  229 |   });
+  230 |
+  231 |   // Iterate over each social media link to perform the hover and validate the circle appearance
+  232 |   for (const { name, selector } of socialLinks) {
+  233 |     // Get the social network icon element
+  234 |     const iconLocator = page.locator(selector);
+  235 |
+  236 |     // 1. Hover over the social network icon
+> 237 |     await iconLocator.hover();
+      |                       ^ Error: locator.hover: Test timeout of 30000ms exceeded.
+  238 |
+  239 |     // 2. Wait for the hover effect to be fully applied (adjust timeout if needed)
+  240 |     await page.waitForTimeout(1000);  // Wait for 1 second to allow animation to finish
+  241 |
+  242 |     // 3. Check for the CSS changes after hover (border-radius and border)
+  243 |     const borderRadius = await iconLocator.evaluate((el: HTMLElement) => {
+  244 |       return window.getComputedStyle(el).getPropertyValue('border-radius');
+  245 |     });
+  246 |
+  247 |     const borderColor = await iconLocator.evaluate((el: HTMLElement) => {
+  248 |       return window.getComputedStyle(el).getPropertyValue('border-color');
+  249 |     });
+  250 |
+  251 |     console.log(`CSS after hover for "${name}": border-radius: ${borderRadius}, border-color: ${borderColor}`);
+  252 |
+  253 |     // 4. Assert that the border-radius is a large value (i.e., circular shape) and the border is visible (not transparent)
+  254 |     expect(borderRadius).toBe('9999px'); // Checking for large value that indicates a circular shape
+  255 |     expect(borderColor).not.toBe('transparent'); // Ensure the border has changed to something visible
+  256 |
+  257 |     // 5. Log success message
+  258 |     console.log(`Circle appears on hover for "${name}": Border radius is ${borderRadius} and border color is ${borderColor}`);
+  259 |   }
+  260 |
+  261 |   // Now, click the social media links to open the new tabs
+  262 |   await page.getByRole('link', { name: 'Visit Instagram' }).click();
+  263 |   await page.getByRole('link', { name: 'Visit X Profile' }).click();
+  264 |   await page.getByRole('link', { name: 'Visit LinkedIn' }).click();
+  265 |
+  266 |   // Wait a bit to ensure the popups open (you can increase the timeout if necessary)
+  267 |   await page.waitForTimeout(2000); // Wait for 2 seconds to ensure popups have time to open
+  268 |
+  269 |   // Ensure the popups have been captured by checking the number of popups in the array
+  270 |   expect(popups.length).toBe(3); // Ensure that 3 popups have been captured
+  271 |
+  272 |   // Optionally, you can log the URLs of the popups to debug
+  273 |   console.log('Captured popups:', popups.map(popup => popup.url()));
+  274 |
+  275 |   // Ensure the URLs of the popups are correct before proceeding with the assertions
+  276 |   for (let i = 0; i < popups.length; i++) {
+  277 |     console.log(`Popup URL at index ${i}: ${popups[i].url()}`);
+  278 |     await expect(popups[i]).toHaveURL(new RegExp(`${socialLinks[i].name.split(' ')[1].toLowerCase()}.com`)); // Validate URL (e.g., instagram.com, twitter.com, linkedin.com)
+  279 |   }
+  280 |
+  281 |   // Optionally, you can also check if the popups have finished loading
+  282 |   await Promise.all(popups.map(popup => popup.waitForLoadState('load')));
+  283 | });
+  284 |
+  285 |
+```

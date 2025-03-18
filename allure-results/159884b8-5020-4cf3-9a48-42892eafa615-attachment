@@ -1,0 +1,62 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Validate the logo wall
+- Location: /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/sportsbeach-logoWall.test.ts:11:5
+
+# Error details
+
+```
+Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: true
+Received: false
+    at /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/sportsbeach-logoWall.test.ts:30:23
+```
+
+# Test source
+
+```ts
+   1 | import { test, expect, Page, APIRequestContext } from '@playwright/test';
+   2 |
+   3 | async function checkLinkStatus(request: APIRequestContext, url: string): Promise<boolean> {
+   4 |   // Send a GET request to the URL and get the status
+   5 |   const response = await request.get(url);
+   6 |   
+   7 |   // Check if the response status is 200
+   8 |   return response.status() === 200;
+   9 | }
+  10 |
+  11 | test('Validate the logo wall', async ({ page, request }) => {
+  12 |  
+  13 |   await page.goto('https://sportbeach-dev.vercel.app/');
+  14 |   const partnerstLocatorsRow1 = page.locator('//*[@id="main-content"]/section[1]/div/div[2]/div[1]/div[1]/div/div/div/a[*]');
+  15 |   const partnersCountRow1 = await partnerstLocatorsRow1.count();
+  16 |
+  17 |   // Loop through all links and check if they are valid
+  18 |   for (let i = 0; i < partnersCountRow1; i++) {
+  19 |     const partner = partnerstLocatorsRow1.nth(i); // Get the partner at index i
+  20 |     
+  21 |     // Capture the 'href' attribute (link) of the partner
+  22 |     const link = await partner.getAttribute('href');
+  23 |     console.log(link);
+  24 |     
+  25 |     if (link) {
+  26 |       // If the href is not null or undefined, check the link status using the API request
+  27 |       const isValid = await checkLinkStatus(request, link);
+  28 |       
+  29 |       // Assert that the link is valid (status 200)
+> 30 |       expect(isValid).toBe(true);
+     |                       ^ Error: expect(received).toBe(expected) // Object.is equality
+  31 |       console.log(`Link ${link} is valid.`);
+  32 |     }
+  33 |   }
+  34 |   
+  35 |
+  36 | });
+```

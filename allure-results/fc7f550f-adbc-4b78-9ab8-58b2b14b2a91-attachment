@@ -1,0 +1,130 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Validate text and background color is not same after user hovers
+- Location: /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/sportsbeach-demo.test.ts:107:5
+
+# Error details
+
+```
+Error: expect(received).not.toBe(expected) // Object.is equality
+
+Expected: not "rgb(0, 82, 125)"
+    at /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/sportsbeach-demo.test.ts:144:35
+```
+
+# Test source
+
+```ts
+   44 |     console.log(`Is the "${name}" link underlined on hover? ${isUnderlined ? 'Yes' : 'No'}`);
+   45 |   }
+   46 | });
+   47 |
+   48 | test('Validate text and background color on hover for a single locator', async ({ page }) => {
+   49 |   // Navigate to the test page
+   50 |   await page.goto('https://sportbeach-dev.vercel.app/'); // Replace with your actual URL
+   51 |
+   52 |   // Define the locator for the element (e.g., Schedule link)
+   53 |   const elementLocator = page.locator('role=link[name="Schedule"]'); // Replace with your actual locator
+   54 |
+   55 |   // Define the expected colors (adjust these according to your actual values)
+   56 |   const expectedTextColorBeforeHover = 'rgb(0, 82, 125)'; // Example: black text color
+   57 |   const expectedBackgroundColorBeforeHover = 'rgba(0, 0, 0, 0)'; // Example: white background
+   58 |
+   59 |   const expectedTextColorAfterHover = 'rgb(0, 82, 125)'; // Example: red text color
+   60 |   const expectedBackgroundColorAfterHover = 'rgba(0, 0, 0, 0)'; // Example: green background
+   61 |
+   62 |   // 1. Check the initial state of the element (before hover)
+   63 |   const initialTextColor = await elementLocator.evaluate((el: HTMLElement) => {
+   64 |     const computedStyle = window.getComputedStyle(el);
+   65 |     return computedStyle.getPropertyValue('color');
+   66 |   });
+   67 |   const initialBackgroundColor = await elementLocator.evaluate((el: HTMLElement) => {
+   68 |     const computedStyle = window.getComputedStyle(el);
+   69 |     return computedStyle.getPropertyValue('background-color');
+   70 |   });
+   71 |
+   72 |   console.log(`Initial text color: ${initialTextColor}`);
+   73 |   console.log(`Initial background color: ${initialBackgroundColor}`);
+   74 |
+   75 |   // Assert the initial colors
+   76 |   expect(initialTextColor).toBe(expectedTextColorBeforeHover);
+   77 |   expect(initialBackgroundColor).toBe(expectedBackgroundColorBeforeHover);
+   78 |
+   79 |   // 2. Hover over the element
+   80 |   await elementLocator.hover();
+   81 |
+   82 |   // 3. Check the text color and background color after hover
+   83 |   const textColorAfterHover = await elementLocator.evaluate((el: HTMLElement) => {
+   84 |     const computedStyle = window.getComputedStyle(el);
+   85 |     return computedStyle.getPropertyValue('color');
+   86 |   });
+   87 |   const backgroundColorAfterHover = await elementLocator.evaluate((el: HTMLElement) => {
+   88 |     const computedStyle = window.getComputedStyle(el);
+   89 |     return computedStyle.getPropertyValue('background-color');
+   90 |   });
+   91 |
+   92 |   console.log(`Text color after hover: ${textColorAfterHover}`);
+   93 |   console.log(`Background color after hover: ${backgroundColorAfterHover}`);
+   94 |
+   95 |   // 4. Assert that the text color and background color have changed after hover
+   96 |   // expect(textColorAfterHover).not.toBe(initialTextColor); // Assert text color has changed
+   97 |   // expect(backgroundColorAfterHover).not.toBe(initialBackgroundColor); // Assert background color has changed
+   98 |
+   99 |   // 5. Assert the exact expected text and background colors after hover
+  100 |   expect(textColorAfterHover).toBe(expectedTextColorAfterHover); // Assert text color is the expected one
+  101 |   expect(backgroundColorAfterHover).toBe(expectedBackgroundColorAfterHover); // Assert background color is the expected one
+  102 |
+  103 |   console.log(`Text color and background color changed and are as expected after hover`);
+  104 | });
+  105 |
+  106 |
+  107 | test('Validate text and background color is not same after user hovers', async ({ page }) => {
+  108 |   // Navigate to the test page
+  109 |   await page.goto('https://sportbeach-dev.vercel.app/'); // Replace with your actual URL
+  110 |
+  111 |   // Define the locator for the element (e.g., Schedule link)
+  112 |   const elementLocator = page.locator('role=link[name="Schedule"]'); // Replace with your actual locator
+  113 |
+  114 |   // 1. Check the initial state of the element (before hover)
+  115 |   const initialTextColor = await elementLocator.evaluate((el: HTMLElement) => {
+  116 |     const computedStyle = window.getComputedStyle(el);
+  117 |     return computedStyle.getPropertyValue('color');
+  118 |   });
+  119 |   const initialBackgroundColor = await elementLocator.evaluate((el: HTMLElement) => {
+  120 |     const computedStyle = window.getComputedStyle(el);
+  121 |     return computedStyle.getPropertyValue('background-color');
+  122 |   });
+  123 |
+  124 |   console.log(`Initial text color: ${initialTextColor}`);
+  125 |   console.log(`Initial background color: ${initialBackgroundColor}`);
+  126 |
+  127 |   // 2. Hover over the element
+  128 |   await elementLocator.hover();
+  129 |
+  130 |   // 3. Check the text color and background color after hover
+  131 |   const textColorAfterHover = await elementLocator.evaluate((el: HTMLElement) => {
+  132 |     const computedStyle = window.getComputedStyle(el);
+  133 |     return computedStyle.getPropertyValue('color');
+  134 |   });
+  135 |   const backgroundColorAfterHover = await elementLocator.evaluate((el: HTMLElement) => {
+  136 |     const computedStyle = window.getComputedStyle(el);
+  137 |     return computedStyle.getPropertyValue('background-color');
+  138 |   });
+  139 |
+  140 |   console.log(`Text color after hover: ${textColorAfterHover}`);
+  141 |   console.log(`Background color after hover: ${backgroundColorAfterHover}`);
+  142 |
+  143 |   // 4. Assert that the text color and background color have changed after hover
+> 144 |   expect(textColorAfterHover).not.toBe(initialTextColor); // Assert text color is not the same after hover
+      |                                   ^ Error: expect(received).not.toBe(expected) // Object.is equality
+  145 |   expect(backgroundColorAfterHover).not.toBe(initialBackgroundColor); // Assert background color is not the same after hover
+  146 |
+  147 |   console.log(`Text color and background color changed successfully after hover`);
+  148 | });
+```

@@ -1,0 +1,83 @@
+{
+    "dev": {
+      "baseURL": "https://sportbeach-dev.vercel.app/",
+      "apiKey": "dev-api-key",
+      "timeout": 20000,
+      "backendHostingUrl":"https://dev.in"
+    },
+    "qa": {
+      "baseURL": "https://sportbeach-dev.vercel.app/",
+      "apiKey": "qa-api-key",
+      "timeout": 30000,
+      "backendHostingUrl":"https://qa.in"
+    },
+    "prod": {
+      "baseURL": "https://sportbeach.vercel.app/",
+      "backendHostingUrl":"https://prod.in"
+    },
+    "headless":false,
+    "testAllBrowsers":[
+      {
+        "name": "chromium",
+        "use": { "browserName": "chromium" },
+        "testMatch": ["**/sportsbeach-globalNavigation.test.ts"]
+      },
+      {
+        "name": "firefox",
+        "use": { "browserName": "firefox" },
+        "testMatch": ["**/sportsbeach-logoWall.test.ts"]
+      },
+      {
+        "name": "webkit",
+        "use": { "browserName": "webkit" },
+        "testMatch": ["**/sportsbeach-globalFooter.test.ts"]
+      },
+      {
+        "name": "Microsoft Edge",
+        "use": {
+          "device": "Desktop Edge",
+          "channel": "msedge"
+        },
+        "testMatch": ["**/sportsbeach-hero.test.ts"]
+      }
+    ] ,
+    "testChrome":[
+      {
+        "name": "chromium",
+        "use": { "browserName": "chromium" },
+        "testMatch": ["**/*.test.ts"],
+        "testIgnore": "**/api.test.ts"
+      }
+    ],
+    "testSafari":[
+      {
+        "name": "webkit",
+        "use": { "browserName": "webkit" },
+        "testMatch": ["**/*.test.ts"]
+      }
+    ],
+    "testFirefox":[
+      {
+        "name": "firefox",
+        "use": { "browserName": "firefox" },
+        "testMatch": ["**/*.test.ts"]
+      }
+    ],
+    "testEdge":[
+      {
+        "name": "Microsoft Edge",
+        "use": {
+          "device": "Desktop Edge",
+          "channel": "msedge"
+        },
+        "testMatch": ["**/*.test.ts"]
+      }
+    ],
+    "testApi":[
+      {
+         "name": "API Tests",
+         "testMatch": ["**/*.test.ts"]
+      }
+    ]
+  }
+  

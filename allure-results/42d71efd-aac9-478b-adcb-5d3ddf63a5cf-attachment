@@ -1,0 +1,158 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Global Navigation - Validate page URL after clicking each link
+- Location: /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/sportsbeach-globalNavigation.test.ts:112:5
+
+# Error details
+
+```
+Error: page.goto: net::ERR_TIMED_OUT at https://sportbeach-dev.vercel.app/
+Call log:
+  - navigating to "https://sportbeach-dev.vercel.app/", waiting until "load"
+
+    at /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/sportsbeach-globalNavigation.test.ts:114:14
+```
+
+# Test source
+
+```ts
+   14 |     { role: 'link', name: 'Login' },   // Add more links here
+   15 |   ];
+   16 |
+   17 |   // Iterate over each link and perform the validation
+   18 |   for (const { role, name } of links) {
+   19 |     // Get the element using the role and name (accessible selectors)
+   20 |     const elementLocator = page.locator(`role=${role}[name=${name}]`);
+   21 |
+   22 |     // 1. Check the initial state of the element (before hover)
+   23 |     const initialTextDecoration = await elementLocator.evaluate((el: HTMLElement) => {
+   24 |       const computedStyle = window.getComputedStyle(el);
+   25 |       return computedStyle.getPropertyValue('text-decoration');
+   26 |     });
+   27 |     console.log(`Initial text-decoration for "${name}": ${initialTextDecoration}`);
+   28 |
+   29 |     // 2. Hover over the element
+   30 |     await elementLocator.hover();
+   31 |
+   32 |     // 3. Check the text-decoration after hover
+   33 |     const textDecorationAfterHover = await elementLocator.evaluate((el: HTMLElement) => {
+   34 |       const computedStyle = window.getComputedStyle(el);
+   35 |       return computedStyle.getPropertyValue('text-decoration');
+   36 |     });
+   37 |     console.log(`text-decoration after hover for "${name}": ${textDecorationAfterHover}`);
+   38 |
+   39 |     // 4. Validate if the element is underlined (check if 'underline' is in the 'text-decoration' value)
+   40 |     const isUnderlined = textDecorationAfterHover.includes('underline');
+   41 |
+   42 |     // Expect the element to be underlined after hover
+   43 |     expect(isUnderlined).toBe(true); // This will fail the test if not underlined
+   44 |
+   45 |     console.log(`Is the "${name}" link underlined on hover? ${isUnderlined ? 'Yes' : 'No'}`);
+   46 |   }
+   47 | });
+   48 |
+   49 | test('Global Navigation - Validate text and background color for lets partner tab', async ({ page }) => {
+   50 |   // Navigate to the test page
+   51 |   await page.goto('https://sportbeach-dev.vercel.app/'); // Replace with your actual URL
+   52 |
+   53 |   //Create objects to access the page objects
+   54 |   const poManager = new POManager(page);
+   55 |   const basePage = poManager.getBasePage();
+   56 |
+   57 |   // Define the locator for the element (e.g., Schedule link)
+   58 |   // const elementLocator = page.locator('role=link[name="Let’s partner!"]'); // Replace with your actual locator
+   59 |   const elementLocator = basePage.letsPartnerLink;
+   60 |
+   61 |   // Define the expected colors (adjust these according to your actual values)
+   62 |   const expectedTextColorBeforeHover = 'rgb(0, 82, 125)'; // Example: black text color
+   63 |   const expectedBackgroundColorBeforeHover = 'rgb(163, 238, 255)'; // Example: white background
+   64 |
+   65 |   const expectedTextColorAfterHover = 'rgb(255, 255, 255)'; // Example: red text color
+   66 |   const expectedBackgroundColorAfterHover = 'rgb(0, 82, 125)'; // Example: green background
+   67 |
+   68 |   // 1. Check the initial state of the element (before hover)
+   69 |   const initialTextColor = await elementLocator.evaluate((el: HTMLElement) => {
+   70 |     const computedStyle = window.getComputedStyle(el);
+   71 |     return computedStyle.getPropertyValue('color');
+   72 |   });
+   73 |   const initialBackgroundColor = await elementLocator.evaluate((el: HTMLElement) => {
+   74 |     const computedStyle = window.getComputedStyle(el);
+   75 |     return computedStyle.getPropertyValue('background-color');
+   76 |   });
+   77 |
+   78 |   console.log(`Initial text color: ${initialTextColor}`);
+   79 |   console.log(`Initial background color: ${initialBackgroundColor}`);
+   80 |
+   81 |   // Assert the initial colors
+   82 |   expect(initialTextColor).toBe(expectedTextColorBeforeHover);
+   83 |   expect(initialBackgroundColor).toBe(expectedBackgroundColorBeforeHover);
+   84 |
+   85 |   // 2. Hover over the element
+   86 |   await elementLocator.hover();
+   87 |
+   88 |   // 3. Check the text color and background color after hover
+   89 |   const textColorAfterHover = await elementLocator.evaluate((el: HTMLElement) => {
+   90 |     const computedStyle = window.getComputedStyle(el);
+   91 |     return computedStyle.getPropertyValue('color');
+   92 |   });
+   93 |   const backgroundColorAfterHover = await elementLocator.evaluate((el: HTMLElement) => {
+   94 |     const computedStyle = window.getComputedStyle(el);
+   95 |     return computedStyle.getPropertyValue('background-color');
+   96 |   });
+   97 |
+   98 |   console.log(`Text color after hover: ${textColorAfterHover}`);
+   99 |   console.log(`Background color after hover: ${backgroundColorAfterHover}`);
+  100 |
+  101 |   // 4. Assert that the text color and background color have changed after hover
+  102 |   expect(textColorAfterHover).not.toBe(initialTextColor); // Assert text color has changed
+  103 |   expect(backgroundColorAfterHover).not.toBe(initialBackgroundColor); // Assert background color has changed
+  104 |
+  105 |   // 5. Assert the exact expected text and background colors after hover
+  106 |   expect(textColorAfterHover).toBe(expectedTextColorAfterHover); // Assert text color is the expected one
+  107 |   expect(backgroundColorAfterHover).toBe(expectedBackgroundColorAfterHover); // Assert background color is the expected one
+  108 |
+  109 |   console.log(`Text color and background color changed and are as expected after hover`);
+  110 | });
+  111 |
+  112 | test('Global Navigation - Validate page URL after clicking each link', async ({ page }) => {
+  113 |   // Navigate to the test page
+> 114 |   await page.goto('https://sportbeach-dev.vercel.app/'); // Replace with your actual URL
+      |              ^ Error: page.goto: net::ERR_TIMED_OUT at https://sportbeach-dev.vercel.app/
+  115 |
+  116 |   // List of links to test with role and name, along with the expected URLs
+  117 |   const links = [
+  118 |     { role: 'link', name: 'Schedule', expectedUrl: 'https://sportbeach-dev.vercel.app/schedule' },
+  119 |     { role: 'link', name: 'Roster', expectedUrl: 'https://sportbeach-dev.vercel.app/roster' },
+  120 |     { role: 'link', name: 'Partners', expectedUrl: 'https://sportbeach-dev.vercel.app/partners' },
+  121 |     { role: 'link', name: 'FAQ', expectedUrl: 'https://sportbeach-dev.vercel.app/faq' },
+  122 |     { role: 'link', name: 'Login', expectedUrl: 'https://sportbeach-dev.vercel.app/signin' },  // Add more links with expected URLs
+  123 |   ];
+  124 |
+  125 |   // Iterate over each link and perform the click and URL verification
+  126 |   for (const { role, name, expectedUrl } of links) {
+  127 |     // Get the element using the role and name (accessible selectors)
+  128 |     const elementLocator = page.locator(`role=${role}[name=${name}]`);
+  129 |
+  130 |     // 1. Click the link and wait for navigation
+  131 |     const [response] = await Promise.all([
+  132 |       page.waitForNavigation(), // Wait for navigation to finish
+  133 |       elementLocator.click(),   // Click the link
+  134 |     ]);
+  135 |
+  136 |     // 2. Verify the navigated URL
+  137 |     const currentUrl = page.url(); // Get the current URL after navigation
+  138 |     console.log(`Navigated to: ${currentUrl}`);
+  139 |
+  140 |     // Assert that the current URL matches the expected URL (Optional)
+  141 |     expect(currentUrl).toBe(expectedUrl);
+  142 |     console.log(`Verified the URL for "${name}" link: ${currentUrl} matches the expected URL: ${expectedUrl}`);
+  143 |   }
+  144 | });
+  145 |
+```

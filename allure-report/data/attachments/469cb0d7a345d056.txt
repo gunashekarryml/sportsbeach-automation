@@ -1,0 +1,62 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Validate that the locator text value contains only specific words
+- Location: /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/sportsbeach-demo.test.ts:3:5
+
+# Error details
+
+```
+Error: locator.textContent: Error: strict mode violation: locator('//*[@id="main-content"]/div[1]/div[*]/div/div[1]/div/div/div//div[position() = 2 or position() = 4 or position() = 6 or position() = 8]') resolved to 12 elements:
+    1) <div class="relative flex h-full w-[180px] shrink-0 items-start justify-center lg:w-[200px]">…</div> aka locator('.rfm-child > div > div:nth-child(2)').first()
+    2) <div class="relative flex h-full w-[180px] shrink-0 items-start justify-center lg:w-[200px]">…</div> aka locator('div:nth-child(4)').first()
+    3) <div class="relative flex h-full w-[180px] shrink-0 items-start justify-center lg:w-[200px]">…</div> aka locator('div:nth-child(6)').first()
+    4) <div class="relative flex h-full w-[180px] shrink-0 items-start justify-center lg:w-[200px]">…</div> aka locator('div:nth-child(8)').first()
+    5) <div data-tc="#fff" class="shrink-0 whitespace-nowrap mobile-rigid-square-h1 dt:large-desktop-rigid-square-headers-h2">CANNES</div> aka getByText('CANNES', { exact: true }).first()
+    6) <div data-tc="#fff" class="shrink-0 whitespace-nowrap mobile-rigid-square-h1 dt:large-desktop-rigid-square-headers-h2">2024</div> aka getByText('2024', { exact: true }).first()
+    7) <div data-tc="#fff" class="shrink-0 whitespace-nowrap mobile-rigid-square-h1 dt:large-desktop-rigid-square-headers-h2">CANNES</div> aka getByText('CANNES', { exact: true }).nth(1)
+    8) <div data-tc="#fff" class="shrink-0 whitespace-nowrap mobile-rigid-square-h1 dt:large-desktop-rigid-square-headers-h2">2024</div> aka getByText('2024', { exact: true }).nth(1)
+    9) <div data-tc="#fff" class="shrink-0 whitespace-nowrap mobile-rigid-square-h1 dt:large-desktop-rigid-square-headers-h2">SPORT</div> aka locator('div:nth-child(3) > .rfm-marquee-container > div > .rfm-initial-child-container > .rfm-child > div > div:nth-child(2)')
+    10) <div data-tc="#fff" class="shrink-0 whitespace-nowrap mobile-rigid-square-h1 dt:large-desktop-rigid-square-headers-h2">BEACH</div> aka locator('div:nth-child(3) > .rfm-marquee-container > div > .rfm-initial-child-container > .rfm-child > div > div:nth-child(4)')
+    ...
+
+Call log:
+  - waiting for locator('//*[@id="main-content"]/div[1]/div[*]/div/div[1]/div/div/div//div[position() = 2 or position() = 4 or position() = 6 or position() = 8]')
+
+    at /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/sportsbeach-demo.test.ts:11:37
+```
+
+# Test source
+
+```ts
+   1 | import { test, expect } from '@playwright/test';
+   2 |
+   3 | test('Validate that the locator text value contains only specific words', async ({ page }) => {
+   4 |   // Navigate to the page or component where the locator exists
+   5 |   await page.goto('https://sportbeach-dev.vercel.app/');
+   6 |
+   7 |   // Define the locator (for example, a span or div element)
+   8 |   const locator = page.locator('//*[@id="main-content"]/div[1]/div[*]/div/div[1]/div/div/div//div[position() = 2 or position() = 4 or position() = 6 or position() = 8]');
+   9 |
+  10 |   // Get the text content from the locator
+> 11 |   const textContent = await locator.textContent();
+     |                                     ^ Error: locator.textContent: Error: strict mode violation: locator('//*[@id="main-content"]/div[1]/div[*]/div/div[1]/div/div/div//div[position() = 2 or position() = 4 or position() = 6 or position() = 8]') resolved to 12 elements:
+  12 |
+  13 |   // Define the allowed words (you can modify the set of words as per your requirement)
+  14 |   const allowedWords = ['BEACH', 'SPORT', 'CANNES', '2024']; 
+  15 |
+  16 |   // Split the text content into an array of words
+  17 |   const textWords = textContent?.split(' ').map(word => word.trim());
+  18 |
+  19 |   // Validate that every word in the text content exists in the allowed words set
+  20 |   textWords?.forEach(word => {
+  21 |     expect(allowedWords).toContain(word); // Check if each word is in the allowed list
+  22 |   });
+  23 | });
+  24 |
+```

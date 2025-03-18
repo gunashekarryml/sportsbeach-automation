@@ -1,0 +1,92 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Validate the logo wall
+- Location: /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/sportsbeach-logoWall.test.ts:17:5
+
+# Error details
+
+```
+Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: 0
+Received: 5
+    at /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/sportsbeach-logoWall.test.ts:64:31
+```
+
+# Test source
+
+```ts
+   1 | import { test, expect, Page, APIRequestContext } from '@playwright/test';
+   2 |
+   3 | async function checkLinkStatus(request: APIRequestContext, url: string): Promise<boolean> {
+   4 |   try {
+   5 |     // Send a GET request to check if the link is valid (status 200)
+   6 |     const response = await request.get(url);
+   7 |
+   8 |     // If the status is 200, the link is valid
+   9 |     return response.status() === 200;
+  10 |   } catch (error) {
+  11 |     // If there is an error with the request (e.g., network issue), return false
+  12 |     console.error(`Error checking link: ${url}`, error);
+  13 |     return false;
+  14 |   }
+  15 | }
+  16 |
+  17 | test('Validate the logo wall', async ({ page, request }) => {
+  18 |   // Go to the page
+  19 |   await page.goto('https://sportbeach-dev.vercel.app/');
+  20 |   const partnerstLocators = page.locator('//*[@id="main-content"]/section[1]/div/div[2]/div[*]/div[1]/div/div/div/a[*]');
+  21 |   const partnersCount = await partnerstLocators.count();
+  22 |   console.log("Total partner count: " + partnersCount);
+  23 |
+  24 |   // Initialize arrays to store valid and invalid links
+  25 |   const validLinks: string[] = [];
+  26 |   const invalidLinks: string[] = [];
+  27 |
+  28 |   // Loop through all links and check if they are valid
+  29 |   for (let i = 0; i < partnersCount; i++) {
+  30 |     const partner = partnerstLocators.nth(i); // Get the partner at index i
+  31 |
+  32 |     // Capture the 'href' attribute (link) of the partner
+  33 |     const link = await partner.getAttribute('href');
+  34 |     console.log(`Checking link: ${link}`);
+  35 |
+  36 |     if (link) {
+  37 |       // If the href is not null or undefined, check the link status using the API request
+  38 |       const isValid = await checkLinkStatus(request, link);
+  39 |
+  40 |       // Store valid or invalid links based on status
+  41 |       if (isValid) {
+  42 |         validLinks.push(link);
+  43 |         console.log(`Link ${link} is valid.`);
+  44 |       } else {
+  45 |         invalidLinks.push(link);
+  46 |         console.error(`Link ${link} is broken or not reachable.`);
+  47 |       }
+  48 |     }
+  49 |   }
+  50 |
+  51 |   // Print the results for valid and invalid links
+  52 |   console.log("\n--- Summary ---");
+  53 |   console.log(`Total Valid Links: ${validLinks.length}`);
+  54 |   validLinks.forEach((link, index) => {
+  55 |     console.log(`Valid Link ${index + 1}: ${link}`);
+  56 |   });
+  57 |
+  58 |   console.log(`\nTotal Invalid Links: ${invalidLinks.length}`);
+  59 |   invalidLinks.forEach((link, index) => {
+  60 |     console.error(`Invalid Link ${index + 1}: ${link}`);
+  61 |   });
+  62 |
+  63 |   // Optionally, assert that no links are invalid (to ensure the page is fully working)
+> 64 |   expect(invalidLinks.length).toBe(0);  // This will fail the test if there are invalid links
+     |                               ^ Error: expect(received).toBe(expected) // Object.is equality
+  65 | });
+  66 |
+```

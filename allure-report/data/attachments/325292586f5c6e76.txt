@@ -1,0 +1,3 @@
+Initial text-decoration: none solid rgb(0, 82, 125)
+text-decoration after hover: underline solid rgb(0, 82, 125)
+Is the element underlined on hover? Yes

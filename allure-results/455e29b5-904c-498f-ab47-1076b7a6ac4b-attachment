@@ -1,0 +1,54 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Validate that all the captured words from locator match any of the allowed words
+- Location: /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/sportsbeach-demo.test.ts:3:5
+
+# Error details
+
+```
+Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: true
+Received: false
+    at /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/sportsbeach-demo.test.ts:26:25
+```
+
+# Test source
+
+```ts
+   1 | import { test, expect } from '@playwright/test';
+   2 |
+   3 | test('Validate that all the captured words from locator match any of the allowed words', async ({ page }) => {
+   4 |   // Navigate to the page or component where the locator exists
+   5 |   await page.goto('https://sportbeach-dev.vercel.app/');
+   6 |
+   7 |   // Define the XPath locator with specific positions (2, 4, 6, 8)
+   8 |   const locator = page.locator('//*[@id="main-content"]/div[1]/div[*]/div/div[1]/div/div/div//div[position() = 2 or position() = 4 or position() = 6 or position() = 8]');
+   9 |
+  10 |   // Get all the text content from the matching elements
+  11 |   const textContentArray = await locator.allTextContents();
+  12 |
+  13 |   // Define the allowed words as a Set for fast lookups
+  14 |   const allowedWords = new Set(['BEACH', 'SPORT', 'CANNES', '2024']);
+  15 |
+  16 |   // Check if all words in each text content match the allowed words
+  17 |   const allWordsMatch = textContentArray.every((textContent) => {
+  18 |     // Trim and split the text content into words, then convert each word to uppercase
+  19 |     const textWords = textContent.trim().split(/\s+/).map(word => word.trim().toUpperCase());
+  20 |
+  21 |     // Ensure every word in textWords is in the allowedWords Set
+  22 |     return textWords.every(word => allowedWords.has(word));
+  23 |   });
+  24 |
+  25 |   // Assert that all words in the captured text match the allowed list
+> 26 |   expect(allWordsMatch).toBe(true);
+     |                         ^ Error: expect(received).toBe(expected) // Object.is equality
+  27 | });
+  28 |
+```

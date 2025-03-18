@@ -1,0 +1,62 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Validate the logo wall
+- Location: /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/sportsbeach-logoWall.test.ts:11:5
+
+# Error details
+
+```
+Error: locator.getAttribute: Test timeout of 30000ms exceeded.
+Call log:
+  - waiting for locator('//*[@id="main-content"]/section[1]/div/div[2]/div[1]/div[1]/div/div/div/a[*]').nth(1)
+
+    at /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/sportsbeach-logoWall.test.ts:21:32
+```
+
+# Test source
+
+```ts
+   1 | import { test, expect, Page } from '@playwright/test';
+   2 |
+   3 | async function checkLinkStatus(page: Page, url: string): Promise<boolean> {
+   4 |   // Send a request to check if the link is valid (status 200)
+   5 |   const response = await page.goto(url);
+   6 |   
+   7 |   // Check if the response is successful (status 200)
+   8 |   return response?.status() === 200;
+   9 | }
+  10 |
+  11 | test('Validate the logo wall', async ({ page }) => {
+  12 |  
+  13 |   await page.goto('https://sportbeach-dev.vercel.app/');
+  14 |   const productLocatorsRow1 = page.locator('//*[@id="main-content"]/section[1]/div/div[2]/div[1]/div[1]/div/div/div/a[*]');
+  15 |   const productCountRow1 = await productLocatorsRow1.count();
+  16 |
+  17 |   for (let i = 0; i < productCountRow1; i++) {
+  18 |     const product = productLocatorsRow1.nth(i); // Get the product at index i
+  19 |     
+  20 |     // Capture the value of a specific attribute (e.g., 'data-id')
+> 21 |     const link = await product.getAttribute('href');
+     |                                ^ Error: locator.getAttribute: Test timeout of 30000ms exceeded.
+  22 |     console.log(link);
+  23 |     
+  24 |     
+  25 |     if (link) {
+  26 |       // If the href is not null or undefined, check the link status
+  27 |       const isValid = await checkLinkStatus(page, link);
+  28 |       
+  29 |       // Assert that the link is valid (status 200)
+  30 |       expect(isValid).toBe(true);
+  31 |       console.log(`Link ${link} is valid.`);
+  32 |     }
+  33 |   }
+  34 |   
+  35 |
+  36 | });
+```

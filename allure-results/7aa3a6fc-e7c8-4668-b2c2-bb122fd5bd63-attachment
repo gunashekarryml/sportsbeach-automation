@@ -1,0 +1,41 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: test
+- Location: /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/sportsbeach-oversizedCTA.test.ts:3:5
+
+# Error details
+
+```
+Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: "https://sportbeach-dev.vercel.app/roster"
+Received: "Sport Beach 2024"
+    at /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/sportsbeach-oversizedCTA.test.ts:10:30
+```
+
+# Test source
+
+```ts
+   1 | import { test, expect } from '@playwright/test';
+   2 |
+   3 | test('test', async ({ page }) => {
+   4 |   await page.goto('https://sportbeach-dev.vercel.app/');
+   5 |   await expect(page.getByRole('heading', { name: 'Download the App 🚨' })).toBeVisible();
+   6 |   await page.getByRole('button', { name: 'Close Alert Pop Up' }).click();
+   7 |   await expect(page.locator('#main-content')).toContainText('View Roster');
+   8 |   await page.getByRole('link', { name: 'View Roster' }).hover();
+   9 |   await page.getByRole('link', { name: 'View Roster View Roster View' }).click();
+> 10 |   expect(await page.title()).toBe('https://sportbeach-dev.vercel.app/roster');
+     |                              ^ Error: expect(received).toBe(expected) // Object.is equality
+  11 |   await expect(page.getByRole('heading', { name: 'Roster', exact: true })).toBeVisible();
+  12 |   await page.goBack();
+  13 |   expect(await page.title()).toBe('https://sportbeach-dev.vercel.app/');
+  14 |   
+  15 | });
+```

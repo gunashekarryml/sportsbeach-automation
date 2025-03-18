@@ -1,0 +1,4 @@
+Initial text-decoration for "Privacy Policy": none solid rgb(255, 255, 255)
+Text-decoration after hover for "Privacy Policy": underline solid rgb(255, 255, 255)
+Is the "Privacy Policy" link underlined on hover? Yes
+URL after clicking "Privacy Policy": https://sportbeach-dev.vercel.app/privacy

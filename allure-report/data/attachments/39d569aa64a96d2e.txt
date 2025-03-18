@@ -1,0 +1,166 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Validate captured links against expected links
+- Location: /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/sportsbeach-logoWall.test.ts:75:5
+
+# Error details
+
+```
+Error: expect(received).toEqual(expected) // deep equality
+
+- Expected  -  5
++ Received  + 21
+
+  Array [
+-   "https://example.com/link1",
+-   "https://example.com/link2",
+-   "https://example.com/link3",
+-   "https://example.com/link4",
+-   "https://example.com/link5",
++   "https://www.72andsunny.com/",
++   "https://www.allisonworldwide.com/",
++   "https://google.com",
++   "https://apollojets.com/",
++   "https://sportbeach-int.vercel.app/",
++   "https://sportbeach-int.vercel.app/",
++   "https://www.codeandtheory.com/",
++   "https://example.com/",
++   "https://sportbeach-int.vercel.app/",
++   "https://www.gatorade.com",
++   "https://example.com/",
++   "https://google.com",
++   "https://example.com/",
++   "https://example.com/",
++   "https://google.com",
++   "https://camp.reachtv.com/",
++   "https://google.com",
++   "https://sportbeach-int.vercel.app/",
++   "https://sportbeach-int.vercel.app/",
++   "https://example.com/",
++   "https://example.com/",
+  ]
+    at /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/sportsbeach-logoWall.test.ts:98:25
+```
+
+# Test source
+
+```ts
+   1 | import { test, expect, Page, APIRequestContext } from '@playwright/test';
+   2 | import * as fs from 'fs';
+   3 |
+   4 | async function checkLinkStatus(request: APIRequestContext, url: string): Promise<boolean> {
+   5 |   try {
+   6 |     // Send a GET request to check if the link is valid (status 200)
+   7 |     const response = await request.get(url);
+   8 |
+   9 |     // If the status is 200, the link is valid
+   10 |     return response.status() === 200;
+   11 |   } catch (error) {
+   12 |     // If there is an error with the request (e.g., network issue), return false
+   13 |     console.error(`Error checking link: ${url}`, error);
+   14 |     return false;
+   15 |   }
+   16 | }
+   17 |
+   18 | // Load the expected links from the JSON file
+   19 | function loadExpectedLinks(): string[] {
+   20 |   const data = fs.readFileSync('./playwright/testdata/expectedLinks.json', 'utf-8');
+   21 |   return JSON.parse(data);
+   22 | }
+   23 |
+   24 | test('Validate the logo wall', async ({ page, request }) => {
+   25 |   // Go to the page
+   26 |   await page.goto('https://sportbeach-dev.vercel.app/');
+   27 |   const partnerstLocators = page.locator('//*[@id="main-content"]/section[1]/div/div[2]/div[*]/div[1]/div/div/div/a[*]');
+   28 |   const partnersCount = await partnerstLocators.count();
+   29 |   console.log("Total partner count: " + partnersCount);
+   30 |
+   31 |   // Initialize arrays to store valid and invalid links
+   32 |   const validLinks: string[] = [];
+   33 |   const invalidLinks: string[] = [];
+   34 |
+   35 |   // Loop through all links and check if they are valid
+   36 |   for (let i = 0; i < partnersCount; i++) {
+   37 |     const partner = partnerstLocators.nth(i); // Get the partner at index i
+   38 |
+   39 |     // Capture the 'href' attribute (link) of the partner
+   40 |     const link = await partner.getAttribute('href');
+   41 |     console.log(`Checking link: ${link}`);
+   42 |
+   43 |     if (link) {
+   44 |       // If the href is not null or undefined, check the link status using the API request
+   45 |       const isValid = await checkLinkStatus(request, link);
+   46 |
+   47 |       // Store valid or invalid links based on status
+   48 |       if (isValid) {
+   49 |         validLinks.push(link);
+   50 |         console.log(`Link ${link} is valid.`);
+   51 |       } else {
+   52 |         invalidLinks.push(link);
+   53 |         console.error(`Link ${link} is broken or not reachable.`);
+   54 |       }
+   55 |     }
+   56 |   }
+   57 |
+   58 |   // Print the results for valid and invalid links
+   59 |   console.log("\n--- Summary ---");
+   60 |   console.log(`Total Valid Links: ${validLinks.length}`);
+   61 |   validLinks.forEach((link, index) => {
+   62 |     console.log(`Valid Link ${index + 1}: ${link}`);
+   63 |   });
+   64 |
+   65 |   console.log(`\nTotal Invalid Links: ${invalidLinks.length}`);
+   66 |   invalidLinks.forEach((link, index) => {
+   67 |     console.error(`Invalid Link ${index + 1}: ${link}`);
+   68 |   });
+   69 |
+   70 |   // Optionally, assert that no links are invalid (to ensure the page is fully working)
+   71 |   expect(invalidLinks.length).toBe(0);  // This will fail the test if there are invalid links
+   72 | });
+   73 |
+   74 |
+   75 | test('Validate captured links against expected links', async ({ page }) => {
+   76 |   // Load the expected links from the JSON file
+   77 |   const expectedLinks = loadExpectedLinks();
+   78 |
+   79 |   // Go to the page
+   80 |   await page.goto('https://sportbeach-dev.vercel.app/');
+   81 |
+   82 |   // Capture all the links on the page
+   83 |   const partnerstLocators = page.locator('//*[@id="main-content"]/section[1]/div/div[2]/div[*]/div[1]/div/div/div/a[*]');
+   84 |   const partnersCount = await partnerstLocators.count();
+   85 |   console.log("Total partner count: " + partnersCount);
+   86 |
+   87 |   // Capture all the links as an array of strings
+   88 |   const capturedLinks: string[] = [];
+   89 |   for (let i = 0; i < partnersCount; i++) {
+   90 |     const partner = partnerstLocators.nth(i); // Get the partner at index i
+   91 |     const link = await partner.getAttribute('href');
+   92 |     if (link) {
+   93 |       capturedLinks.push(link);
+   94 |     }
+   95 |   }
+   96 |
+   97 |   // Assert that the captured links match the expected links
+>  98 |   expect(capturedLinks).toEqual(expectedLinks);
+      |                         ^ Error: expect(received).toEqual(expected) // deep equality
+   99 |
+  100 |   // Print the results
+  101 |   console.log("\nCaptured Links:");
+  102 |   capturedLinks.forEach((link, index) => {
+  103 |     console.log(`Captured Link ${index + 1}: ${link}`);
+  104 |   });
+  105 |
+  106 |   console.log("\nExpected Links:");
+  107 |   expectedLinks.forEach((link, index) => {
+  108 |     console.log(`Expected Link ${index + 1}: ${link}`);
+  109 |   });
+  110 | });
+  111 |
+```

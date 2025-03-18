@@ -1,0 +1,85 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Validate circle appears on hover over social media icons in global footer
+- Location: /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/sportsbeach-demo.test.ts:3:5
+
+# Error details
+
+```
+Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: true
+Received: false
+    at /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/sportsbeach-demo.test.ts:37:29
+```
+
+# Test source
+
+```ts
+   1 | import { test, expect } from '@playwright/test';
+   2 |
+   3 | test('Validate circle appears on hover over social media icons in global footer', async ({ page }) => {
+   4 |   // Navigate to the page where the global footer with social network icons exists
+   5 |   await page.goto('https://sportbeach-dev.vercel.app/'); // Use the provided URL
+   6 |   await page.getByRole('button', { name: 'Accept cookies' }).click(); // If needed, click the cookie consent button
+   7 |
+   8 |   // List of social media links with their corresponding names and selector
+   9 |   const socialLinks = [
+  10 |     { name: 'Visit Instagram', selector: 'a[aria-label="Visit Instagram"]' },
+  11 |     { name: 'Visit X Profile', selector: 'a[aria-label="Visit X Profile"]' },
+  12 |     { name: 'Visit LinkedIn', selector: 'a[aria-label="Visit LinkedIn"]' }
+  13 |   ];
+  14 |
+  15 |   // Iterate over each social media link to perform the hover and validate the circle appearance
+  16 |   for (const { name, selector } of socialLinks) {
+  17 |     // Get the social network icon element
+  18 |     const iconLocator = page.locator(selector);
+  19 |
+  20 |     // 1. Hover over the social network icon
+  21 |     await iconLocator.hover();
+  22 |
+  23 |     // 2. Wait a moment to ensure hover effect is applied (animations/transitions)
+  24 |     await page.waitForTimeout(500);  // Wait for 500ms
+  25 |
+  26 |     // 3. Log the computed styles for debugging
+  27 |     const computedStyle = await iconLocator.evaluate((el: HTMLElement) => {
+  28 |       return window.getComputedStyle(el);
+  29 |     });
+  30 |
+  31 |     // console.log(`Computed styles for "${name}" after hover:`, computedStyle);
+  32 |
+  33 |     // 4. Check if the circle appears (border-radius and border)
+  34 |     const isCircleVisible = computedStyle['border-radius'] === '50%' && computedStyle['border'] !== 'transparent';
+  35 |
+  36 |     // 5. Assert that the circle is visible after hover
+> 37 |     expect(isCircleVisible).toBe(true); // Test will fail if the circle is not visible after hover
+     |                             ^ Error: expect(received).toBe(expected) // Object.is equality
+  38 |
+  39 |     console.log(`Circle appears on hover for "${name}": ${isCircleVisible ? 'Yes' : 'No'}`);
+  40 |   }
+  41 |
+  42 |   // Handle the opening of the new tabs for the social media profiles
+  43 |   const [page1, page2, page3] = await Promise.all([
+  44 |     page.waitForEvent('popup'),
+  45 |     page.waitForEvent('popup'),
+  46 |     page.waitForEvent('popup')
+  47 |   ]);
+  48 |
+  49 |   // Clicking on the social media links to open new tabs
+  50 |   await page.getByRole('link', { name: 'Visit Instagram' }).click();
+  51 |   await page.getByRole('link', { name: 'Visit X Profile' }).click();
+  52 |   await page.getByRole('link', { name: 'Visit LinkedIn' }).click();
+  53 |
+  54 |   // Example validation on the newly opened pages
+  55 |   expect(page1).toHaveURL(/instagram.com/);
+  56 |   expect(page2).toHaveURL(/twitter.com/); // Assuming X Profile is Twitter
+  57 |   expect(page3).toHaveURL(/linkedin.com/);
+  58 | });
+  59 |
+```

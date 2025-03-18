@@ -1,0 +1,73 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Validate links are underlined on hover
+- Location: /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/sportsbeach-demo.test.ts:3:5
+
+# Error details
+
+```
+Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: true
+Received: false
+    at /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/sportsbeach-demo.test.ts:42:26
+```
+
+# Test source
+
+```ts
+   1 | import { test, expect } from '@playwright/test';
+   2 |
+   3 | test('Validate links are underlined on hover', async ({ page }) => {
+   4 |   // Navigate to the test page
+   5 |   await page.goto('https://sportbeach-dev.vercel.app/'); // Replace with your actual URL
+   6 |
+   7 |   // List of links to test with role and name
+   8 |   const links = [
+   9 |     { role: 'link', name: 'Schedule' },
+  10 |     { role: 'link', name: 'Roster' },  
+  11 |     { role: 'link', name: 'Partners' },
+  12 |     { role: 'link', name: 'FAQ' }, 
+  13 |     { role: 'link', name: 'Login' },   // Add more links here
+  14 |   ];
+  15 |
+  16 |   // Iterate over each link and perform the validation
+  17 |   for (const { role, name } of links) {
+  18 |     // Get the element using the role and name (accessible selectors)
+  19 |     const elementLocator = page.locator(`role=${role}[name=${name}]`);
+  20 |
+  21 |     // 1. Check the initial state of the element (before hover)
+  22 |     const initialTextDecoration = await elementLocator.evaluate((el: HTMLElement) => {
+  23 |       const computedStyle = window.getComputedStyle(el);
+  24 |       return computedStyle.getPropertyValue('text-decoration');
+  25 |     });
+  26 |     console.log(`Initial text-decoration for "${name}": ${initialTextDecoration}`);
+  27 |
+  28 |     // 2. Hover over the element
+  29 |     await elementLocator.hover();
+  30 |
+  31 |     // 3. Check the text-decoration after hover
+  32 |     const textDecorationAfterHover = await elementLocator.evaluate((el: HTMLElement) => {
+  33 |       const computedStyle = window.getComputedStyle(el);
+  34 |       return computedStyle.getPropertyValue('text-decoration');
+  35 |     });
+  36 |     console.log(`text-decoration after hover for "${name}": ${textDecorationAfterHover}`);
+  37 |
+  38 |     // 4. Validate if the element is underlined (check if 'underline' is in the 'text-decoration' value)
+  39 |     const isUnderlined = textDecorationAfterHover.includes('underline');
+  40 |
+  41 |     // Expect the element to be underlined after hover
+> 42 |     expect(isUnderlined).toBe(true); // This will fail the test if not underlined
+     |                          ^ Error: expect(received).toBe(expected) // Object.is equality
+  43 |
+  44 |     console.log(`Is the "${name}" link underlined on hover? ${isUnderlined ? 'Yes' : 'No'}`);
+  45 |   }
+  46 | });
+  47 |
+```

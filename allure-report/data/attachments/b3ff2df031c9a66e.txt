@@ -1,0 +1,49 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Validate the oversized CTA in Base page
+- Location: /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/sportsbeach-oversizedCTA.test.ts:3:5
+
+# Error details
+
+```
+Error: locator.click: Test timeout of 30000ms exceeded.
+Call log:
+  - waiting for getByRole('link', { name: 'Request a pass View' })
+
+    at /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/sportsbeach-oversizedCTA.test.ts:18:65
+```
+
+# Test source
+
+```ts
+   1 | import { test, expect } from '@playwright/test';
+   2 |
+   3 | test('Validate the oversized CTA in Base page', async ({ page }) => {
+   4 |   // View Roster  
+   5 |   await page.goto('https://sportbeach-dev.vercel.app/');
+   6 |   await expect(page.getByRole('heading', { name: 'Download the App 🚨' })).toBeVisible();
+   7 |   await page.getByRole('button', { name: 'Close Alert Pop Up' }).click();
+   8 |   await expect(page.locator('#main-content')).toContainText('View Roster');
+   9 |   await page.getByRole('link', { name: 'View Roster' }).hover();
+  10 |   await page.getByRole('link', { name: 'View Roster View Roster View' }).click();
+  11 |   expect(page.url()).toBe('https://sportbeach-dev.vercel.app/roster');
+  12 |   await expect(page.getByRole('heading', { name: 'Roster', exact: true })).toBeVisible();
+  13 |   await page.goBack();
+  14 |   expect(page.url()).toBe('https://sportbeach-dev.vercel.app/');
+  15 |   // Request a Pass
+  16 |   await expect(page.locator('#main-content')).toContainText('Request a pass');
+  17 |   await page.getByRole('link', { name: 'Request a pass' }).hover();
+> 18 |   await page.getByRole('link', { name: 'Request a pass View' }).click();
+     |                                                                 ^ Error: locator.click: Test timeout of 30000ms exceeded.
+  19 |   expect(page.url()).toBe('https://sportbeach-dev.vercel.app/register');
+  20 |   // Add a page object assertion, currently 404
+  21 |   await page.goBack();
+  22 |   expect(page.url()).toBe('https://sportbeach-dev.vercel.app/');
+  23 | });
+```

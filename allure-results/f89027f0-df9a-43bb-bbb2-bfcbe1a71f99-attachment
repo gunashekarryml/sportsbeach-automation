@@ -1,0 +1,181 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Validate social media icon hovering and navigation
+- Location: /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/demorunner.test.ts:137:5
+
+# Error details
+
+```
+TimeoutError: locator.waitFor: Timeout 5000ms exceeded.
+Call log:
+  - waiting for locator('a[aria-label="Visit Instagram"]') to be visible
+
+    at /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/demorunner.test.ts:160:23
+```
+
+# Test source
+
+```ts
+   60 |     console.log(`Status code for "${name}" before click: ${response.status()}`);
+   61 |     expect(response.status()).toBe(200); // Ensure the status code is 200 (OK)
+   62 |
+   63 |     // 6. Click on the link to navigate to the corresponding page (same tab)
+   64 |     await elementLocator.click();
+   65 |
+   66 |     // 7. Wait for the page to load and validate the URL
+   67 |     await page.waitForURL(expectedUrl, { timeout: 10000 }); // Ensures we wait for the full URL to load
+   68 |     const currentUrl = page.url();
+   69 |     console.log(`URL after clicking "${name}": ${currentUrl}`);
+   70 |
+   71 |     // 8. Validate the complete URL
+   72 |     expect(currentUrl).toBe(expectedUrl); // Ensure the full URL matches the expected URL
+   73 |
+   74 |     // 9. Navigate back to the original page (since the link opened in the same tab)
+   75 |     await page.goBack();
+   76 |     await page.waitForLoadState('domcontentloaded'); // Ensure the page is loaded again
+   77 |
+   78 |     console.log(`Navigated back to the main page after clicking on "${name}".`);
+   79 |   }
+   80 | });
+   81 |
+   82 | test('Validate text and background color for lets partner tab on hovering', async () => {
+   83 |   // Define the locator for the element (e.g., Schedule link)
+   84 |   const elementLocator = page.getByRole('link', { name: 'Let\'s Partner' }); // Replace with your actual locator
+   85 |
+   86 |   const expectedTextColorBeforeHover = 'rgb(255, 255, 255)'; // Example: black text color
+   87 |   const expectedBackgroundColorBeforeHover = 'rgba(0, 0, 0, 0)'; // Example: white background
+   88 |
+   89 |   const expectedTextColorAfterHover = 'rgb(0, 82, 125)'; // Example: red text color
+   90 |   const expectedBackgroundColorAfterHover = 'rgb(163, 238, 255)'; // Example: green background
+   91 |
+   92 |   // 1. Check the initial state of the element (before hover)
+   93 |   const initialTextColor = await elementLocator.evaluate((el: HTMLElement) => {
+   94 |     const computedStyle = window.getComputedStyle(el);
+   95 |     return computedStyle.getPropertyValue('color');
+   96 |   });
+   97 |   const initialBackgroundColor = await elementLocator.evaluate((el: HTMLElement) => {
+   98 |     const computedStyle = window.getComputedStyle(el);
+   99 |     return computedStyle.getPropertyValue('background-color');
+  100 |   });
+  101 |
+  102 |   console.log(`Initial text color: ${initialTextColor}`);
+  103 |   console.log(`Initial background color: ${initialBackgroundColor}`);
+  104 |
+  105 |   // Assert the initial colors
+  106 |   expect(initialTextColor).toBe(expectedTextColorBeforeHover);
+  107 |   expect(initialBackgroundColor).toBe(expectedBackgroundColorBeforeHover);
+  108 |
+  109 |   // 2. Hover over the element
+  110 |   await elementLocator.hover();
+  111 |
+  112 |   // 3. Check the text color and background color after hover
+  113 |   const textColorAfterHover = await elementLocator.evaluate((el: HTMLElement) => {
+  114 |     const computedStyle = window.getComputedStyle(el);
+  115 |     return computedStyle.getPropertyValue('color');
+  116 |   });
+  117 |   const backgroundColorAfterHover = await elementLocator.evaluate((el: HTMLElement) => {
+  118 |     const computedStyle = window.getComputedStyle(el);
+  119 |     return computedStyle.getPropertyValue('background-color');
+  120 |   });
+  121 |
+  122 |   console.log(`Text color after hover: ${textColorAfterHover}`);
+  123 |   console.log(`Background color after hover: ${backgroundColorAfterHover}`);
+  124 |
+  125 |   // 4. Assert that the text color and background color have changed after hover
+  126 |   expect(textColorAfterHover).not.toBe(initialTextColor); // Assert text color has changed
+  127 |   expect(backgroundColorAfterHover).not.toBe(initialBackgroundColor); // Assert background color has changed
+  128 |
+  129 |   // 5. Assert the exact expected text and background colors after hover
+  130 |   expect(textColorAfterHover).toBe(expectedTextColorAfterHover); // Assert text color is the expected one
+  131 |   expect(backgroundColorAfterHover).toBe(expectedBackgroundColorAfterHover); // Assert background color is the expected one
+  132 |
+  133 |   console.log(`Text color and background color changed and are as expected after hover`);
+  134 | });
+  135 |
+  136 |
+  137 | test('Validate social media icon hovering and navigation', async ({ page }) => {
+  138 |   // List of social media links with their corresponding names and selector
+  139 |   const socialLinks = [
+  140 |     { name: 'Visit Instagram', selector: 'a[aria-label="Visit Instagram"]', expectedURL: 'https://www.instagram.com' },
+  141 |     { name: 'Visit X Profile', selector: 'a[aria-label="Visit X Profile"]', expectedURL: 'https://x.com' },
+  142 |     { name: 'Visit LinkedIn', selector: 'a[aria-label="Visit LinkedIn"]', expectedURL: 'https://www.linkedin.com' }
+  143 |   ];
+  144 |
+  145 |   // Create an array to hold the popup pages
+  146 |   let popups: any[] = [];
+  147 |
+  148 |   // Listen for the popups (new tabs)
+  149 |   page.on('popup', (popup) => {
+  150 |     console.log(`Popup opened: ${popup.url()}`); // Log popup URL for debugging
+  151 |     popups.push(popup); // Add the new popup to the array
+  152 |   });
+  153 |
+  154 |   // Iterate over each social media link to perform the hover and validate the circle appearance
+  155 |   for (const { name, selector } of socialLinks) {
+  156 |     // Get the social network icon element
+  157 |     const iconLocator = page.locator(selector);
+  158 |
+  159 |     // 1. Wait for the element to be visible and interactable
+> 160 |     await iconLocator.waitFor({ state: 'visible', timeout: 5000 }); // Wait for 5 seconds to make sure it's visible
+      |                       ^ TimeoutError: locator.waitFor: Timeout 5000ms exceeded.
+  161 |
+  162 |     // 2. Hover over the social network icon
+  163 |     await iconLocator.hover({ timeout: 5000 });  // Increase timeout for hover if necessary
+  164 |
+  165 |     // 3. Wait for the hover effect to be fully applied (adjust timeout if needed)
+  166 |     await page.waitForTimeout(1000); // Wait for 1 second to allow animation to finish
+  167 |
+  168 |     // 4. Check for the CSS changes after hover (border-radius and border)
+  169 |     const borderRadius = await iconLocator.evaluate((el: HTMLElement) => {
+  170 |       return window.getComputedStyle(el).getPropertyValue('border-radius');
+  171 |     });
+  172 |
+  173 |     const borderColor = await iconLocator.evaluate((el: HTMLElement) => {
+  174 |       return window.getComputedStyle(el).getPropertyValue('border-color');
+  175 |     });
+  176 |
+  177 |     console.log(`CSS after hover for "${name}": border-radius: ${borderRadius}, border-color: ${borderColor}`);
+  178 |
+  179 |     // 5. Assert that the border-radius is a large value (i.e., circular shape) and the border is visible (not transparent)
+  180 |     expect(borderRadius).toBe('9999px'); // Checking for large value that indicates a circular shape
+  181 |     expect(borderColor).not.toBe('transparent'); // Ensure the border has changed to something visible
+  182 |
+  183 |     // 6. Log success message
+  184 |     console.log(`Circle appears on hover for "${name}": Border radius is ${borderRadius} and border color is ${borderColor}`);
+  185 |   }
+  186 |
+  187 |   // Now, click the social media links to open the new tabs
+  188 |   await page.getByRole('link', { name: 'Visit Instagram' }).click();
+  189 |   await page.getByRole('link', { name: 'Visit X Profile' }).click();
+  190 |   await page.getByRole('link', { name: 'Visit LinkedIn' }).click();
+  191 |
+  192 |   // Wait a bit to ensure the popups open (you can increase the timeout if necessary)
+  193 |   await page.waitForTimeout(2000); // Wait for 2 seconds to ensure popups have time to open
+  194 |
+  195 |   // Ensure the popups have been captured by checking the number of popups in the array
+  196 |   expect(popups.length).toBe(3); // Ensure that 3 popups have been captured
+  197 |
+  198 |   // Optionally, you can log the URLs of the popups to debug
+  199 |   console.log('Captured popups:', popups.map(popup => popup.url()));
+  200 |
+  201 |   // Ensure the URLs of the popups are correct before proceeding with the assertions
+  202 |   for (let i = 0; i < popups.length; i++) {
+  203 |     const popupURL = popups[i].url();
+  204 |     console.log(`Popup URL at index ${i}: ${popupURL}`);
+  205 |
+  206 |     // Validate URL using the full expected URL (including https:// and www if necessary)
+  207 |     await expect(popupURL).toMatch(new RegExp(socialLinks[i].expectedURL));
+  208 |   }
+  209 |
+  210 |   // Optionally, you can also check if the popups have finished loading
+  211 |   await Promise.all(popups.map(popup => popup.waitForLoadState('load')));
+  212 | });
+  213 |
+  214 |
+```

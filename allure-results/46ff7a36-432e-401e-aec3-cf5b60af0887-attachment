@@ -1,0 +1,134 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Featured 1 UP Test Suite >> Validate CSS transform change after scrolling to the bottom
+- Location: /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/demo.test.ts:56:8
+
+# Error details
+
+```
+Error: page.goto: net::ERR_NAME_NOT_RESOLVED at https://your-page-url.com/
+Call log:
+  - navigating to "https://your-page-url.com/", waiting until "load"
+
+    at /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/demo.test.ts:58:16
+```
+
+# Page snapshot
+
+```yaml
+- heading "This site can’t be reached" [level=1]
+- paragraph: Check if there is a typo in your-page-url.com.
+- text: DNS_PROBE_FINISHED_NXDOMAIN
+- button "Reload"
+```
+
+# Test source
+
+```ts
+   1 | import { test, expect } from '@playwright/test';
+   2 | import { readFileSync } from 'fs';  // Import Node.js fs module
+   3 |
+   4 | // Load the test data from the JSON file
+   5 | const testData = JSON.parse(readFileSync('./playwright/testdata/testdataAll.json', 'utf-8'));  // Replace with the correct path to your test data file
+   6 |
+   7 | // Helper function to validate main content text
+   8 | async function validateMainContent(page, text) {
+   9 |   await expect(page.locator('#main-content')).toContainText(text);
+  10 | }
+  11 |
+  12 | // Helper function to validate article content
+  13 | async function validateArticleContent(page, title, text1, text2) {
+  14 |   await page.getByText(title).first().click();
+  15 |   await expect(page.locator('#main-content')).toContainText(text1);
+  16 |   await expect(page.locator('#main-content')).toContainText(text2);
+  17 | }
+  18 | test.describe('Featured 1 UP Test Suite', () => {
+  19 |
+  20 |   // allure.suite('Sauce Lab Login Feature Testcases');
+  21 |   // This will run before each test to open the base URL
+  22 |   test.beforeEach(async ({ page, baseURL }) => {
+  23 |
+  24 |     if (typeof baseURL === 'string') {
+  25 |       await page.goto(baseURL);
+  26 |       //allure.
+  27 |       //  allure.label('Base URL', baseURL);
+  28 |     } else {
+  29 |       // allure.severity('baseURL is not defined or not a string');
+  30 |       throw new Error('baseURL is not defined or not a string');
+  31 |     }
+  32 |   });
+  33 |
+  34 |   test.afterEach(async ({ page }, testInfo) => {
+  35 |     console.log('Execution Status : ' + testInfo.status);
+  36 |   });
+  37 |
+  38 |   test('Featured1UP - Validate Title, Dynamic Eyebrow, Page Title, Page Subtitle, Image, Graphics', async ({ page }) => {
+  39 |     // Load the Featured1UP data from the testData
+  40 |     const featured1UPData = testData.featured1UP[0]; // Get the first item from the 'featured1UP' array
+  41 |
+  42 |     // Navigate to the URL and close the alert pop-up
+  43 |     // await page.goto('https://sportbeach-dev.vercel.app/');
+  44 |     await page.getByRole('button', { name: 'Close Alert Pop Up' }).click();
+  45 |
+  46 |     // Validate the main content text from the test data
+  47 |     await validateMainContent(page, featured1UPData.mainContentText);
+  48 |
+  49 |     // Validate the article content
+  50 |     await validateArticleContent(page, featured1UPData.articleTitle, featured1UPData.articleText1, featured1UPData.articleText2);
+  51 |
+  52 |     // Validate that the 'The Latest' link is visible
+  53 |     await expect(page.getByRole('link', { name: featured1UPData.latestLinkName })).toBeVisible();
+  54 |   });
+  55 |
+  56 |   test.only('Validate CSS transform change after scrolling to the bottom', async ({ page }) => {
+  57 |     // Go to the page
+> 58 |     await page.goto('https://your-page-url.com');  // Replace with the actual URL
+     |                ^ Error: page.goto: net::ERR_NAME_NOT_RESOLVED at https://your-page-url.com/
+  59 |   
+  60 |     // Define the locator for the element you want to track the animation on
+  61 |     const locator = page.locator('//*[@id="main-content"]/div[4]/div[4]/div[1]/a/div');
+  62 |   
+  63 |     // Get the initial CSS transform value (this includes translateX)
+  64 |     const initialTransform = await locator.evaluate((element) => {
+  65 |       return window.getComputedStyle(element).transform;
+  66 |     });
+  67 |   
+  68 |     // Log the initial transform value for debugging
+  69 |     console.log('Initial Transform (Before Animation):', initialTransform);
+  70 |   
+  71 |     // Scroll to the bottom of the page to trigger the animation
+  72 |     await page.evaluate(() => {
+  73 |       window.scrollTo(0, document.body.scrollHeight);  // Scroll to the bottom
+  74 |     });
+  75 |   
+  76 |     // Wait for the animation to complete (adjust time based on your animation speed)
+  77 |     await page.waitForTimeout(500);  // Wait for 500ms or adjust according to your animation's duration
+  78 |   
+  79 |     // Get the new CSS transform value after scrolling (this will be after the animation)
+  80 |     const newTransform = await locator.evaluate((element) => {
+  81 |       return window.getComputedStyle(element).transform;
+  82 |     });
+  83 |   
+  84 |     // Log the new transform value for debugging
+  85 |     console.log('New Transform (After Animation):', newTransform);
+  86 |   
+  87 |     // Extract translateX values from the transform matrix for both initial and new transforms
+  88 |     const initialTranslateX = initialTransform.match(/matrix.*\((.*),\s*(.*),\s*(.*),\s*(.*),\s*(.*),\s*(.*)\)/)?.[5]; // 5th value is translateX
+  89 |     const newTranslateX = newTransform.match(/matrix.*\((.*),\s*(.*),\s*(.*),\s*(.*),\s*(.*),\s*(.*)\)/)?.[5];  // 5th value is translateX
+  90 |   
+  91 |     // Log translateX values for debugging
+  92 |     console.log('Initial translateX:', initialTranslateX);
+  93 |     console.log('New translateX:', newTranslateX);
+  94 |   
+  95 |     // Assert that translateX has changed after the scroll (indicating animation happened)
+  96 |     expect(initialTranslateX).not.toEqual(newTranslateX);  // Ensure translateX changed
+  97 |   });
+  98 |
+  99 | });
+```
