@@ -1,27 +1,56 @@
 {
-    "globalNavigation": [
-      { "role": "link", "name": "Schedule", "expectedUrl": "https://sportbeach-dev.vercel.app/schedule" },
-      { "role": "link", "name": "Roster", "expectedUrl": "https://sportbeach-dev.vercel.app/roster" },
-      { "role": "link", "name": "Partners", "expectedUrl": "https://sportbeach-dev.vercel.app/partners" },
-      { "role": "link", "name": "FAQ", "expectedUrl": "https://sportbeach-dev.vercel.app/faq" },
-      { "role": "link", "name": "Login", "expectedUrl": "https://sportbeach-dev.vercel.app/signin" },
-      { "role": "link", "name": "Schedule", "expectedUrl": "https://sportbeach-dev.vercel.app/schedule" }
-    ],
-    "featured1UP": [
-      {
+  "globalNavigation": [
+    {
+      "role": "link",
+      "name": "Schedule",
+      "expectedUrl": "https://sportbeach-dev.vercel.app/schedule"
+    },
+    {
+      "role": "link",
+      "name": "Roster",
+      "expectedUrl": "https://sportbeach-dev.vercel.app/roster"
+    },
+    {
+      "role": "link",
+      "name": "Partners",
+      "expectedUrl": "https://sportbeach-dev.vercel.app/partners"
+    },
+    {
+      "role": "link",
+      "name": "FAQ",
+      "expectedUrl": "https://sportbeach-dev.vercel.app/faq"
+    },
+    {
+      "role": "link",
+      "name": "Login",
+      "expectedUrl": "https://sportbeach-dev.vercel.app/signin"
+    },
+    {
+      "role": "link",
+      "name": "Schedule",
+      "expectedUrl": "https://sportbeach-dev.vercel.app/schedule"
+    }
+  ],
+  "featured1UP": [
+    {
       "mainContentText": "The Latest",
       "articleTitle": "Ad Age",
       "articleText1": "Inside Stagwell’s Sport Beach at Cannes and how it helped athletes connect with brands Lorem amet viver ra mi nunc adipiscing Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
       "articleText2": "Blandit donec pellentesque vel at amet viver ra mi nunc adipiscing. Ullamcorper nulla nisl aliquam bibendum at felis ipsum volutpat.",
       "latestLinkName": "The Latest"
-      }
-      
-    ],
-    "standaloneCarousel": [
-      {
-        "Heading": "What People are saying",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo."
-      }
-    ]
-  }
-  
+    }
+  ],
+  "standaloneCarousel": [
+    {
+      "Heading": "What People are saying",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo."
+    }
+  ],
+  "fullColorPartnerCard": [
+    {
+      "mainPartnerName": "ALLISON",
+      "mainPartnerHeader": "SAMPLE HEADER TEXT",
+      "mainPartnerDescription": "Sample Body Copy c: Lorem ipsum dolor sit amet consectetur. Purus nullam dui ante posuere mattis nulla. Sapien enim vitae sed adipiscing sit."
+    }
+  ]
+}
