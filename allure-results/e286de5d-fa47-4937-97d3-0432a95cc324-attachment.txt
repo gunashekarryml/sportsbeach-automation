@@ -1,0 +1,22 @@
+elementCount==>21
+text==>72ANDSUNNY
+text==>ALLISON
+text==>ALLISON LARGER
+text==>APOLLO JETS
+text==>BRAND PERFORMANCE
+text==>CLIO
+text==>CODE AND THEORY
+text==>COLLE MCVOY
+text==>DONER
+text==>GATORADE
+text==>GENIUS
+text==>INSTRUMENT
+text==>LOGO 1
+text==>NBC UNIVERSAL
+text==>ON DISCOURSE
+text==>ONE OF NONE - WHITE
+text==>REACHTV
+text==>SIEGELMAN STABLE - WHITE
+text==>THE NORTH FACE
+text==>VII(N)
+text==>VII(N) - WHITE

@@ -1,0 +1,304 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Partner Card Test Suite >> Validate social media icon hovering and navigation
+- Location: /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/demo.test.ts:90:8
+
+# Error details
+
+```
+Error: Timed out 5000ms waiting for expect(locator).toHaveURL(expected)
+
+Locator: locator(':root')
+Expected pattern: /xprofile.com/
+Received string:  "https://x.com/"
+Call log:
+  - expect.toHaveURL with timeout 5000ms
+  - waiting for locator(':root')
+    8 × locator resolved to <html dir="ltr" lang="en">…</html>
+      - unexpected value "https://x.com/"
+
+    at /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/demo.test.ts:152:31
+```
+
+# Page snapshot
+
+```yaml
+- main:
+  - article:
+    - img "Instagram"
+    - text: Phone number, username, or email
+    - textbox "Phone number, username, or email"
+    - text: Password
+    - textbox "Password"
+    - button "Log in" [disabled]
+    - text: or
+    - button "Log in with Facebook Log in with Facebook":
+      - img "Log in with Facebook"
+      - text: Log in with Facebook
+    - link "Forgot password?"
+    - paragraph:
+      - text: Don't have an account?
+      - link "Sign up"
+    - text: Get the app.
+    - link "Download on the App Store":
+      - img "Download on the App Store"
+    - link "Get it on Google Play":
+      - img "Get it on Google Play"
+- contentinfo:
+  - link "Meta"
+  - link "About"
+  - link "Blog"
+  - link "Jobs"
+  - link "Help"
+  - link "API"
+  - link "Privacy"
+  - link "Terms"
+  - link "Locations"
+  - link "Instagram Lite"
+  - link "Threads"
+  - link "Contact Uploading & Non-Users"
+  - link "Meta Verified"
+  - text: English
+  - img "Down chevron icon"
+  - combobox "Switch Display Language":
+    - option "Afrikaans"
+    - option "العربية"
+    - option "Čeština"
+    - option "Dansk"
+    - option "Deutsch"
+    - option "Ελληνικά"
+    - option "English" [selected]
+    - option "English (UK)"
+    - option "Español (España)"
+    - option "Español"
+    - option "فارسی"
+    - option "Suomi"
+    - option "Français"
+    - option "עברית"
+    - option "Bahasa Indonesia"
+    - option "Italiano"
+    - option "日本語"
+    - option "한국어"
+    - option "Bahasa Melayu"
+    - option "Norsk"
+    - option "Nederlands"
+    - option "Polski"
+    - option "Português (Brasil)"
+    - option "Português (Portugal)"
+    - option "Русский"
+    - option "Svenska"
+    - option "ภาษาไทย"
+    - option "Filipino"
+    - option "Türkçe"
+    - option "中文(简体)"
+    - option "中文(台灣)"
+    - option "বাংলা"
+    - option "ગુજરાતી"
+    - option "हिन्दी"
+    - option "Hrvatski"
+    - option "Magyar"
+    - option "ಕನ್ನಡ"
+    - option "മലയാളം"
+    - option "मराठी"
+    - option "नेपाली"
+    - option "ਪੰਜਾਬੀ"
+    - option "සිංහල"
+    - option "Slovenčina"
+    - option "தமிழ்"
+    - option "తెలుగు"
+    - option "اردو"
+    - option "Tiếng Việt"
+    - option "中文(香港)"
+    - option "Български"
+    - option "Français (Canada)"
+    - option "Română"
+    - option "Српски"
+    - option "Українська"
+  - text: © 2025 Instagram from Meta
+- button "Close":
+  - img "Close"
+- text: By continuing, you agree to Instagram's
+- link "Terms of Use"
+- text: and
+- link "Privacy Policy"
+- text: .
+```
+
+# Test source
+
+```ts
+   52 |       await elementLocator.hover();
+   53 |
+   54 |       // 3. Check the text-decoration after hover
+   55 |       const textDecorationAfterHover = await elementLocator.evaluate((el: HTMLElement) => {
+   56 |         const computedStyle = window.getComputedStyle(el);
+   57 |         return computedStyle.getPropertyValue('text-decoration');
+   58 |       });
+   59 |       console.log(`Text-decoration after hover for "${name}": ${textDecorationAfterHover}`);
+   60 |
+   61 |       // 4. Validate if the element is underlined (check if 'underline' is in the 'text-decoration' value)
+   62 |       const isUnderlined = textDecorationAfterHover.includes('underline');
+   63 |       expect(isUnderlined).toBe(true); // This will fail the test if not underlined
+   64 |       console.log(`Is the "${name}" link underlined on hover? ${isUnderlined ? 'Yes' : 'No'}`);
+   65 |
+   66 |       // 5. Make an API request to check the status code before clicking the link
+   67 |       const response = await request.get(expectedUrl);
+   68 |       console.log(`Status code for "${name}" before click: ${response.status()}`);
+   69 |       expect(response.status()).toBe(200); // Ensure the status code is 200 (OK)
+   70 |
+   71 |       // 6. Click on the link to navigate to the corresponding page (same tab)
+   72 |       await elementLocator.click();
+   73 |
+   74 |       // 7. Wait for the page to load and validate the URL
+   75 |       await page.waitForURL(expectedUrl, { timeout: 10000 }); // Ensures we wait for the full URL to load
+   76 |       const currentUrl = page.url();
+   77 |       console.log(`URL after clicking "${name}": ${currentUrl}`);
+   78 |
+   79 |       // 8. Validate the complete URL
+   80 |       expect(currentUrl).toBe(expectedUrl); // Ensure the full URL matches the expected URL
+   81 |
+   82 |       // 9. Navigate back to the original page (since the link opened in the same tab)
+   83 |       await page.goBack();
+   84 |       await page.waitForLoadState('domcontentloaded'); // Ensure the page is loaded again
+   85 |
+   86 |       console.log(`Navigated back to the main page after clicking on "${name}".`);
+   87 |     }
+   88 |   });
+   89 |
+   90 |   test.only('Validate social media icon hovering and navigation', async ({ page }) => {
+   91 |     // Load the data from the partnersList.json file
+   92 |     const data = JSON.parse(fs.readFileSync('./playwright/testdata/partnersList.json', 'utf-8')).data;
+   93 |
+   94 |     // Accept cookies
+   95 |     await basePage.acceptCookiesClick();
+   96 |
+   97 |     // Create an array to hold the popup pages
+   98 |     let popups: any[] = [];
+   99 |
+  100 |     // Listen for the popups (new tabs)
+  101 |     page.on('popup', (popup) => {
+  102 |       console.log(`Popup opened: ${popup.url()}`); // Log popup URL for debugging
+  103 |       popups.push(popup); // Add the new popup to the array
+  104 |     });
+  105 |
+  106 |     // List of social media links with their corresponding names
+  107 |     const socialLinks = ['Instagram', 'XProfile', 'LinkedIn'];
+  108 |
+  109 |     // Iterate over each social media link to perform hover and validate circle appearance
+  110 |     for (const linkName of socialLinks) {
+  111 |       // Hover on the social media icon
+  112 |       await basePage.hoverOnSocialLink(linkName);
+  113 |
+  114 |       // Get the social network icon element for the hover
+  115 |       const iconLocator = basePage.socialMediaLinks[linkName];
+  116 |
+  117 |       // Check for the CSS changes after hover (border-radius and border)
+  118 |       const borderRadius = await iconLocator.evaluate((el: HTMLElement) => {
+  119 |         return window.getComputedStyle(el).getPropertyValue('border-radius');
+  120 |       });
+  121 |
+  122 |       const borderColor = await iconLocator.evaluate((el: HTMLElement) => {
+  123 |         return window.getComputedStyle(el).getPropertyValue('border-color');
+  124 |       });
+  125 |
+  126 |       console.log(`CSS after hover for "${linkName}": border-radius: ${borderRadius}, border-color: ${borderColor}`);
+  127 |
+  128 |       // Assert that the border-radius is a large value (i.e., circular shape) and the border is visible (not transparent)
+  129 |       expect(borderRadius).toBe('9999px'); // Checking for large value that indicates a circular shape
+  130 |       expect(borderColor).not.toBe('transparent'); // Ensure the border has changed to something visible
+  131 |
+  132 |       console.log(`Circle appears on hover for "${linkName}": Border radius is ${borderRadius} and border color is ${borderColor}`);
+  133 |     }
+  134 |
+  135 |     // Now, click the social media links to open the new tabs
+  136 |     await basePage.openSocialMediaLink('Instagram');
+  137 |     await basePage.openSocialMediaLink('XProfile');
+  138 |     await basePage.openSocialMediaLink('LinkedIn');
+  139 |
+  140 |     // Wait a bit to ensure the popups open (you can increase the timeout if necessary)
+  141 |     await page.waitForTimeout(2000); // Wait for 2 seconds to ensure popups have time to open
+  142 |
+  143 |     // Ensure the popups have been captured by checking the number of popups in the array
+  144 |     expect(popups.length).toBe(3); // Ensure that 3 popups have been captured
+  145 |
+  146 |     // Optionally, you can log the URLs of the popups to debug
+  147 |     console.log('Captured popups:', popups.map(popup => popup.url()));
+  148 |
+  149 |     // Ensure the URLs of the popups are correct before proceeding with the assertions
+  150 |     for (let i = 0; i < popups.length; i++) {
+  151 |       console.log(`Popup URL at index ${i}: ${popups[i].url()}`);
+> 152 |       await expect(popups[i]).toHaveURL(new RegExp(`${socialLinks[i].toLowerCase()}.com`)); // Validate URL (e.g., instagram.com, twitter.com, linkedin.com)
+      |                               ^ Error: Timed out 5000ms waiting for expect(locator).toHaveURL(expected)
+  153 |     }
+  154 |
+  155 |     // Optionally, you can also check if the popups have finished loading
+  156 |     await Promise.all(popups.map(popup => popup.waitForLoadState('load')));
+  157 |   });
+  158 |
+  159 |   test('Validate text and background color for lets partner tab on hovering', async ({ page }) => {
+  160 |     // Navigate to the test page
+  161 |     await page.goto('https://sportbeach-dev.vercel.app/'); // Replace with your actual URL
+  162 |
+  163 |     // Define the locator for the element (e.g., Schedule link)
+  164 |     const elementLocator = page.getByRole('link', { name: 'Let\'s Partner' }); // Replace with your actual locator
+  165 |
+  166 |     // Define the expected colors (adjust these according to your actual values)
+  167 |     const expectedTextColorBeforeHover = 'rgb(255, 255, 255)'; // Example: black text color
+  168 |     const expectedBackgroundColorBeforeHover = 'rgba(0, 0, 0, 0)'; // Example: white background
+  169 |
+  170 |     const expectedTextColorAfterHover = 'rgb(0, 82, 125)'; // Example: red text color
+  171 |     const expectedBackgroundColorAfterHover = 'rgb(163, 238, 255)'; // Example: green background
+  172 |
+  173 |     // 1. Check the initial state of the element (before hover)
+  174 |     const initialTextColor = await elementLocator.evaluate((el: HTMLElement) => {
+  175 |       const computedStyle = window.getComputedStyle(el);
+  176 |       return computedStyle.getPropertyValue('color');
+  177 |     });
+  178 |     const initialBackgroundColor = await elementLocator.evaluate((el: HTMLElement) => {
+  179 |       const computedStyle = window.getComputedStyle(el);
+  180 |       return computedStyle.getPropertyValue('background-color');
+  181 |     });
+  182 |
+  183 |     console.log(`Initial text color: ${initialTextColor}`);
+  184 |     console.log(`Initial background color: ${initialBackgroundColor}`);
+  185 |
+  186 |     // Assert the initial colors
+  187 |     expect(initialTextColor).toBe(expectedTextColorBeforeHover);
+  188 |     expect(initialBackgroundColor).toBe(expectedBackgroundColorBeforeHover);
+  189 |
+  190 |     // 2. Hover over the element
+  191 |     await elementLocator.hover();
+  192 |
+  193 |     // 3. Check the text color and background color after hover
+  194 |     const textColorAfterHover = await elementLocator.evaluate((el: HTMLElement) => {
+  195 |       const computedStyle = window.getComputedStyle(el);
+  196 |       return computedStyle.getPropertyValue('color');
+  197 |     });
+  198 |     const backgroundColorAfterHover = await elementLocator.evaluate((el: HTMLElement) => {
+  199 |       const computedStyle = window.getComputedStyle(el);
+  200 |       return computedStyle.getPropertyValue('background-color');
+  201 |     });
+  202 |
+  203 |     console.log(`Text color after hover: ${textColorAfterHover}`);
+  204 |     console.log(`Background color after hover: ${backgroundColorAfterHover}`);
+  205 |
+  206 |     // 4. Assert that the text color and background color have changed after hover
+  207 |     expect(textColorAfterHover).not.toBe(initialTextColor); // Assert text color has changed
+  208 |     expect(backgroundColorAfterHover).not.toBe(initialBackgroundColor); // Assert background color has changed
+  209 |
+  210 |     // 5. Assert the exact expected text and background colors after hover
+  211 |     expect(textColorAfterHover).toBe(expectedTextColorAfterHover); // Assert text color is the expected one
+  212 |     expect(backgroundColorAfterHover).toBe(expectedBackgroundColorAfterHover); // Assert background color is the expected one
+  213 |
+  214 |     console.log(`Text color and background color changed and are as expected after hover`);
+  215 |   });
+  216 |
+  217 | });
+  218 |
+```

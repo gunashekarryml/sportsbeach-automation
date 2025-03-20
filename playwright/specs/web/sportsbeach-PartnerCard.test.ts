@@ -25,14 +25,14 @@ test.describe('Partner Card Test Suite', () => {
     // Step 2 : Create objects to access the page objects
     const poManager = new POManager(page);
     const basePage = poManager.getBasePage();
+    const partnersPagePage = poManager.getPartnersPage();
 
     basePage.partnersLink.click();
 
     // Step 2: Define the XPath locator
-    const locator = '//*[@id="main-content"]/div[2]/div[4]/div/a/span';
+    const elements = partnersPagePage.partnerName;
 
     // Step 3: Wait for the elements to be visible and located
-    const elements = page.locator(locator);
     await elements.first().waitFor({ state: 'visible' }); // Wait for at least the first element to be visible
 
     // Step 4: Get the element count (number of matches)

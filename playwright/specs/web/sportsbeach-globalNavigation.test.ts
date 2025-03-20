@@ -1,9 +1,28 @@
 import { test, expect } from '@playwright/test';
 import { POManager } from '../../pageobjects/POManager';
+import { BasePage } from '../../pageobjects/BasePage';
+
+test.describe('Global Navigation - Test Suite', () => {
+  
+  let basePage: BasePage;
+
+  test.beforeEach(async ({ page, baseURL }) => {
+    // Initialize the POManager and BasePage object
+    const poManager = new POManager(page);
+    basePage = poManager.getBasePage();
+
+    if (typeof baseURL === 'string') {
+      await page.goto(baseURL);
+    } else {
+      throw new Error('baseURL is not defined or not a string');
+    }
+  });
+
+  test.afterEach(async ({ page }) => {
+    await page.close();
+  });
 
 test('Global Navigation - Validate links are underlined on hover', async ({ page }) => {
-  // Navigate to the test page
-  await page.goto('https://sportbeach-dev.vercel.app/');
 
   // List of links to test with role and name
   const links = [
@@ -46,13 +65,7 @@ test('Global Navigation - Validate links are underlined on hover', async ({ page
   }
 });
 
-test('Global Navigation - Validate text and background color for lets partner tab', async ({ page }) => {
-  // Navigate to the test page
-  await page.goto('https://sportbeach-dev.vercel.app/'); // Replace with your actual URL
-
-  //Create objects to access the page objects
-  const poManager = new POManager(page);
-  const basePage = poManager.getBasePage();
+test.only('Global Navigation - Validate text and background color for lets partner tab', async ({ page }) => {
 
   // Define the locator for the element (e.g., Schedule link)
   // const elementLocator = page.locator('role=link[name="Let’s partner!"]'); // Replace with your actual locator
@@ -110,8 +123,6 @@ test('Global Navigation - Validate text and background color for lets partner ta
 });
 
 test('Global Navigation - Validate page URL after clicking each link', async ({ page }) => {
-  // Navigate to the test page
-  await page.goto('https://sportbeach-dev.vercel.app/'); // Replace with your actual URL
 
   // List of links to test with role and name, along with the expected URLs
   const links = [
@@ -141,4 +152,6 @@ test('Global Navigation - Validate page URL after clicking each link', async ({ 
     expect(currentUrl).toBe(expectedUrl);
     console.log(`Verified the URL for "${name}" link: ${currentUrl} matches the expected URL: ${expectedUrl}`);
   }
+});
+
 });

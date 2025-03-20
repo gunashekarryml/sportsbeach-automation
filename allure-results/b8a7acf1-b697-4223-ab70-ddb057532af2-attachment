@@ -1,0 +1,116 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Full Color Partner Card Test Suite >> verify shadow effect on hover
+- Location: /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/sportsbeach-fullColorPartnerCard.test.ts:50:8
+
+# Error details
+
+```
+Error: locator.evaluate: Unexpected token ".875rem\]" while parsing css selector "a.p-6.flex.flex-col.border-2.bg-white.h-\[29.875rem\].border-brand-indigo.rounded-xl.shadow-featured-card". Did you mean to CSS.escape it?
+Call log:
+  - waiting for a.p-6.flex.flex-col.border-2.bg-white.h-\[29.875rem\].border-brand-indigo.rounded-xl.shadow-featured-card
+
+    at /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/sportsbeach-fullColorPartnerCard.test.ts:70:44
+```
+
+# Test source
+
+```ts
+   1 | import { test, expect } from '@playwright/test';
+   2 | import { POManager } from '../../pageobjects/POManager';
+   3 | import { readFileSync } from 'fs';
+   4 |
+   5 | const testData = JSON.parse(readFileSync('./playwright/testdata/testdataAll.json', 'utf-8'));  // Replace with the correct path to your test data file
+   6 |
+   7 | test.describe('Full Color Partner Card Test Suite', () => {
+   8 |
+   9 |   test.beforeEach(async ({ page, baseURL }) => {
+  10 |     if (typeof baseURL === 'string') {
+  11 |       await page.goto(baseURL);
+  12 |       // allure.label('Base URL', baseURL);
+  13 |     } else {
+  14 |       // allure.severity('baseURL is not defined or not a string');
+  15 |       throw new Error('baseURL is not defined or not a string');
+  16 |     }
+  17 |   });
+  18 |
+  19 |   test.afterEach(async ({ page }) => {
+  20 |     await page.close();
+  21 |   });
+  22 |
+  23 |   test('Full Color Partner Card - Content Validation', async ({ page }) => {
+  24 |     const fullColorPartnerCardData = testData.fullColorPartnerCard[0]; // Extracting the first item in the standaloneCarousel array
+  25 |     
+  26 |     // Create objects to access the page objects
+  27 |     const poManager = new POManager(page);
+  28 |     const basePage = poManager.getBasePage();
+  29 |     const partnersPage = poManager.getPartnersPage();
+  30 |
+  31 |     // Navigate to the partners page
+  32 |     basePage.partnersLink.click();
+  33 |
+  34 |     // Use innerText() to extract the text content from the elements
+  35 |     const mainPartnerName = await partnersPage.mainPartnerName.innerText();
+  36 |     const mainPartnerHeader = await partnersPage.mainPartnerHeader.innerText();
+  37 |     const mainPartnerDescription = await partnersPage.mainPartnerDescription.innerText();
+  38 |
+  39 |     // Validate the mainPartnerName text
+  40 |     expect(mainPartnerName.trim()).toBe(fullColorPartnerCardData.mainPartnerName); // Comparing with the expected name from JSON
+  41 |
+  42 |     // Validate the mainPartnerHeader text
+  43 |     expect(mainPartnerHeader.trim()).toBe(fullColorPartnerCardData.mainPartnerHeader); // Comparing with the expected Heading from JSON
+  44 |   
+  45 |     // Validate the mainPartnerDescription text
+  46 |     expect(mainPartnerDescription.trim()).toBe(fullColorPartnerCardData.mainPartnerDescription); // Comparing with the expected description from JSON
+  47 |
+  48 |   });
+  49 |
+  50 |   test.only('verify shadow effect on hover', async ({ page }) => {
+  51 |
+  52 |     // Create objects to access the page objects
+  53 |     const poManager = new POManager(page);
+  54 |     const basePage = poManager.getBasePage();
+  55 |     const partnersPage = poManager.getPartnersPage();
+  56 |
+  57 |     // Navigate to the partners page
+  58 |     await basePage.partnersLink.click(); // Ensure it's a click method or use navigation if needed
+  59 |   
+  60 |     // Define the class string with special characters
+  61 |     const className = 'a.p-6.flex.flex-col.border-2.bg-white.h-[29.875rem].border-brand-indigo.rounded-xl.shadow-featured-card';
+  62 |
+  63 |     // Manually escape the square brackets (without using CSS.escape)
+  64 |     const escapedClassName = className.replace('[', '\\[').replace(']', '\\]');
+  65 |
+  66 |     // Locate the element using the escaped class name
+  67 |     const element = page.locator(`${escapedClassName}`);
+  68 |   
+  69 |     // Check the initial state (no shadow effect applied when not hovered)
+> 70 |     const initialBoxShadow = await element.evaluate((el) => {
+     |                                            ^ Error: locator.evaluate: Unexpected token ".875rem\]" while parsing css selector "a.p-6.flex.flex-col.border-2.bg-white.h-\[29.875rem\].border-brand-indigo.rounded-xl.shadow-featured-card". Did you mean to CSS.escape it?
+  71 |       return window.getComputedStyle(el).getPropertyValue('box-shadow');
+  72 |     });
+  73 |   
+  74 |     // Assert that the box-shadow is not applied initially
+  75 |     expect(initialBoxShadow).toBe('none'); // Ensure that 'none' is the expected initial state
+  76 |   
+  77 |     // Simulate hover action
+  78 |     await element.hover();
+  79 |   
+  80 |     // Check the box-shadow property after hover
+  81 |     const hoverBoxShadow = await element.evaluate((el) => {
+  82 |       return window.getComputedStyle(el).getPropertyValue('box-shadow');
+  83 |     });
+  84 |   
+  85 |     // Assert that the box-shadow property is applied on hover
+  86 |     expect(hoverBoxShadow).not.toBe('none'); // Ensure that box-shadow is not 'none' after hover
+  87 | });
+  88 |
+  89 | });
+  90 |
+```
