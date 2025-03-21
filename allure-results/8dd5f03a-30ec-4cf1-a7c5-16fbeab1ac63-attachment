@@ -1,0 +1,72 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Standalone Carousel Test Suite >> Standalone Carousel - Content Validation
+- Location: /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/sportsbeach-standaloneCarousel.test.ts:23:7
+
+# Error details
+
+```
+Error: locator.click: Target page, context or browser has been closed
+Call log:
+  - waiting for getByRole('link', { name: 'Schedule', exact: true })
+
+    at /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/sportsbeach-standaloneCarousel.test.ts:32:27
+```
+
+# Test source
+
+```ts
+   1 | import { test, expect } from '@playwright/test';
+   2 | import { POManager } from '../../pageobjects/POManager';
+   3 | import { readFileSync } from 'fs';
+   4 |
+   5 | const testData = JSON.parse(readFileSync('./playwright/testdata/testdataAll.json', 'utf-8'));  // Replace with the correct path to your test data file
+   6 |
+   7 | test.describe('Standalone Carousel Test Suite', () => {
+   8 |
+   9 |   test.beforeEach(async ({ page, baseURL }) => {
+  10 |     if (typeof baseURL === 'string') {
+  11 |       await page.goto(baseURL);
+  12 |       // allure.label('Base URL', baseURL);
+  13 |     } else {
+  14 |       // allure.severity('baseURL is not defined or not a string');
+  15 |       throw new Error('baseURL is not defined or not a string');
+  16 |     }
+  17 |   });
+  18 |
+  19 |   test.afterEach(async ({ page }) => {
+  20 |     await page.close();
+  21 |   });
+  22 |
+  23 |   test('Standalone Carousel - Content Validation', async ({ page }) => {
+  24 |     const standaloneCarouselData = testData.standaloneCarousel[0]; // Extracting the first item in the standaloneCarousel array
+  25 |     
+  26 |     // Create objects to access the page objects
+  27 |     const poManager = new POManager(page);
+  28 |     const basePage = poManager.getBasePage();
+  29 |     const schedulePage = poManager.getSchedulePage();
+  30 |
+  31 |     // Navigate to the schedule page
+> 32 |     basePage.scheduleLink.click();
+     |                           ^ Error: locator.click: Target page, context or browser has been closed
+  33 |
+  34 |     // Use innerText() to extract the text content from the elements
+  35 |     const header = await schedulePage.standaloneHeader.innerText();
+  36 |     const description = await schedulePage.standaloneDescription.innerText();
+  37 |
+  38 |     // Validate the header text
+  39 |     expect(header.trim()).toBe(standaloneCarouselData.Heading); // Comparing with the expected Heading from JSON
+  40 |
+  41 |     // Validate the description text
+  42 |     expect(description.trim()).toBe(standaloneCarouselData.description); // Comparing with the expected description from JSON
+  43 |   });
+  44 |
+  45 | });
+  46 |
+```

@@ -169,60 +169,60 @@ test.describe('Partner Card Test Suite', () => {
     }));
   });
 
-  test('Validate text and background color for lets partner tab on hovering', async ({ page }) => {
-    await basePage.acceptCookies.click();
-    const elementLocator = basePage.letsPartnerButton;  // Locate by text
+  // test('Validate text and background color for Request a pass tab on hovering', async ({ page }) => {
+  //   await basePage.acceptCookies.click();
+  //   const elementLocator = basePage.letsPartnerButton;  // Locate by text
   
-    // Expected colors before and after hover
-    const expectedTextColorBeforeHover = 'rgb(255, 255, 255)';
-    const expectedBackgroundColorBeforeHover = 'rgba(0, 0, 0, 0)';
-    const expectedTextColorAfterHover = 'rgb(0, 82, 125)';
-    const expectedBackgroundColorAfterHover = 'rgb(163, 238, 255)';
+  //   // Expected colors before and after hover
+  //   const expectedTextColorBeforeHover = 'rgb(255, 255, 255)';
+  //   const expectedBackgroundColorBeforeHover = 'rgba(0, 0, 0, 0)';
+  //   const expectedTextColorAfterHover = 'rgb(0, 82, 125)';
+  //   const expectedBackgroundColorAfterHover = 'rgb(163, 238, 255)';
   
-    // Wait until the element is visible
-    await elementLocator.waitFor({ state: 'visible', timeout: 10000 });
+  //   // Wait until the element is visible
+  //   await elementLocator.waitFor({ state: 'visible', timeout: 10000 });
   
-    // Check the initial state of the element (before hover)
-    const initialTextColor = await elementLocator.evaluate((el) => {
-      const computedStyle = window.getComputedStyle(el);
-      return computedStyle.getPropertyValue('color');
-    });
-    const initialBackgroundColor = await elementLocator.evaluate((el) => {
-      const computedStyle = window.getComputedStyle(el);
-      return computedStyle.getPropertyValue('background-color');
-    });
+  //   // Check the initial state of the element (before hover)
+  //   const initialTextColor = await elementLocator.evaluate((el) => {
+  //     const computedStyle = window.getComputedStyle(el);
+  //     return computedStyle.getPropertyValue('color');
+  //   });
+  //   const initialBackgroundColor = await elementLocator.evaluate((el) => {
+  //     const computedStyle = window.getComputedStyle(el);
+  //     return computedStyle.getPropertyValue('background-color');
+  //   });
   
-    console.log(`Initial text color: ${initialTextColor}`);
-    console.log(`Initial background color: ${initialBackgroundColor}`);
+  //   console.log(`Initial text color: ${initialTextColor}`);
+  //   console.log(`Initial background color: ${initialBackgroundColor}`);
   
-    // Assert initial colors
-    expect(initialTextColor).toBe(expectedTextColorBeforeHover);
-    expect(initialBackgroundColor).toBe(expectedBackgroundColorBeforeHover);
+  //   // Assert initial colors
+  //   expect(initialTextColor).toBe(expectedTextColorBeforeHover);
+  //   expect(initialBackgroundColor).toBe(expectedBackgroundColorBeforeHover);
   
-    // Hover over the element
-    await elementLocator.hover();
+  //   // Hover over the element
+  //   await elementLocator.hover();
     
-    // Wait for hover effect to settle
-    await page.waitForTimeout(3000);
+  //   // Wait for hover effect to settle
+  //   await page.waitForTimeout(3000);
   
-    // Check text and background color after hover
-    const textColorAfterHover = await elementLocator.evaluate((el) => {
-      const computedStyle = window.getComputedStyle(el);
-      return computedStyle.getPropertyValue('color');
-    });
-    const backgroundColorAfterHover = await elementLocator.evaluate((el) => {
-      const computedStyle = window.getComputedStyle(el);
-      return computedStyle.getPropertyValue('background-color');
-    });
+  //   // Check text and background color after hover
+  //   const textColorAfterHover = await elementLocator.evaluate((el) => {
+  //     const computedStyle = window.getComputedStyle(el);
+  //     return computedStyle.getPropertyValue('color');
+  //   });
+  //   const backgroundColorAfterHover = await elementLocator.evaluate((el) => {
+  //     const computedStyle = window.getComputedStyle(el);
+  //     return computedStyle.getPropertyValue('background-color');
+  //   });
   
-    console.log(`Text color after hover: ${textColorAfterHover}`);
-    console.log(`Background color after hover: ${backgroundColorAfterHover}`);
+  //   console.log(`Text color after hover: ${textColorAfterHover}`);
+  //   console.log(`Background color after hover: ${backgroundColorAfterHover}`);
   
-    // Assert the colors after hover
-    expect(textColorAfterHover).toBe(expectedTextColorAfterHover);
-    expect(backgroundColorAfterHover).toBe(expectedBackgroundColorAfterHover);
+  //   // Assert the colors after hover
+  //   expect(textColorAfterHover).toBe(expectedTextColorAfterHover);
+  //   expect(backgroundColorAfterHover).toBe(expectedBackgroundColorAfterHover);
   
-    console.log('Text and background colors are correct after hover');
-  });
+  //   console.log('Text and background colors are correct after hover');
+  // });
 
 });

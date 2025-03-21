@@ -1,0 +1,16 @@
+Initial text-decoration for "Privacy Policy": none
+Text-decoration after hover for "Privacy Policy": underline
+Is the "Privacy Policy" link underlined on hover? Yes
+Status code for "Privacy Policy" before click: 200
+URL after clicking "Privacy Policy": https://sportbeach-dev.vercel.app/privacy
+Navigated back to the main page after clicking on "Privacy Policy".
+Initial text-decoration for "Terms and Conditions": none
+Text-decoration after hover for "Terms and Conditions": underline
+Is the "Terms and Conditions" link underlined on hover? Yes
+Status code for "Terms and Conditions" before click: 200
+URL after clicking "Terms and Conditions": https://sportbeach-dev.vercel.app/terms
+Navigated back to the main page after clicking on "Terms and Conditions".
+Initial text-decoration for "Contact Us": none
+Text-decoration after hover for "Contact Us": underline
+Is the "Contact Us" link underlined on hover? Yes
+Status code for "Contact Us" before click: 200

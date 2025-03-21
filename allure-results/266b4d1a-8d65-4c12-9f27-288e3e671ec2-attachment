@@ -1,0 +1,174 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Partner Card Test Suite >> Partner Card - Navigate on Clicking each partner and Check API Endpoint
+- Location: /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/demo.test.ts:54:7
+
+# Error details
+
+```
+Error: locator.click: Target page, context or browser has been closed
+Call log:
+  - waiting for locator('//*[@id="main-content"]/div[2]/div[4]/div/a/span').nth(16)
+    - locator resolved to <span aria-hidden="true" class="desktop-rigid-square-headers-h6 uppercase text-brand-indigo mt-auto flex flex-wrap justify-center items-center text-center w-4/5 mx-auto">ReachTV</span>
+  - attempting click action
+    2 × waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="cookie-consent fixed inset-x-0 z-50 flex flex-col items-baseline justify-between gap-2 bg-brand-blue p-4 text-white md:flex-row">…</div> intercepts pointer events
+    - retrying click action
+    - waiting 20ms
+    - waiting for element to be visible, enabled and stable
+    - element is visible, enabled and stable
+    - scrolling into view if needed
+    - done scrolling
+
+    at /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/demo.test.ts:78:21
+```
+
+# Page snapshot
+
+```yaml
+- navigation:
+  - link "About"
+  - link "Store"
+  - link "Gmail"
+  - link "Search for Images": Images
+  - button "Google apps":
+    - img
+  - link "Sign in"
+- link "Nowruz 2025":
+  - img "Nowruz 2025"
+- button "Share":
+  - img
+- search:
+  - img
+  - combobox "Search"
+  - button "Search by voice":
+    - img
+  - button "Search by image":
+    - img
+  - button "Google Search"
+  - button "I'm Feeling Lucky"
+- text: "Google offered in:"
+- link "हिन्दी"
+- link "বাংলা"
+- link "తెలుగు"
+- link "मराठी"
+- link "தமிழ்"
+- link "ગુજરાતી"
+- link "ಕನ್ನಡ"
+- link "മലയാളം"
+- link "ਪੰਜਾਬੀ"
+- contentinfo:
+  - text: India
+  - link "Advertising"
+  - link "Business"
+  - link "How Search works"
+  - link "Privacy"
+  - link "Terms"
+  - button "Settings"
+```
+
+# Test source
+
+```ts
+   1 | import { test, expect } from '@playwright/test';
+   2 | import { POManager } from '../../pageobjects/POManager';
+   3 | import * as fs from 'fs';
+   4 |
+   5 | test.describe('Partner Card Test Suite', () => {
+   6 |
+   7 |   test.beforeEach(async ({ page, baseURL }) => {
+   8 |     if (typeof baseURL === 'string') {
+   9 |       await page.goto(baseURL);
+  10 |     } else {
+  11 |       throw new Error('baseURL is not defined or not a string');
+  12 |     }
+  13 |   });
+  14 |
+  15 |   test.afterEach(async ({ page }) => {
+  16 |     await page.close();
+  17 |   });
+  18 |
+  19 |   test('Partner Card - Partners List Validation', async ({ page }) => {
+  20 |
+  21 |     // Step 1: Load the data from the testdataall.json file
+  22 |     const data = JSON.parse(fs.readFileSync('./playwright/testdata/partnersList.json', 'utf-8')).data;
+  23 |     const data1 = JSON.parse(fs.readFileSync('./playwright/testdata/partnersList.json', 'utf-8')).expectedPartnersCount;
+  24 |
+  25 |     // Step 2: Create objects to access the page objects
+  26 |     const poManager = new POManager(page);
+  27 |     const basePage = poManager.getBasePage();
+  28 |     const partnersPagePage = poManager.getPartnersPage();
+  29 |
+  30 |     basePage.partnersLink.click();
+  31 |
+  32 |     // Step 2: Define the XPath locator
+  33 |     const elements = partnersPagePage.partnerName;
+  34 |
+  35 |     // Step 3: Wait for the elements to be visible and located
+  36 |     await elements.first().waitFor({ state: 'visible' }); // Wait for at least the first element to be visible
+  37 |
+  38 |     // Step 4: Get the element count (number of matches)
+  39 |     const elementCount = await elements.count();
+  40 |
+  41 |     // Ensure elements were found
+  42 |     expect(elementCount).toEqual(data1); // Assert that elements are present
+  43 |
+  44 |     // Step 5: Loop through each element to get its inner text
+  45 |     for (let i = 0; i < elementCount; i++) {
+  46 |       const text = await elements.nth(i).innerText(); // Get the inner text of each element
+  47 |
+  48 |       // Step 6: Assert if the text is present in the data list
+  49 |       expect(data).toContain(text); // Assert that the inner text is present in the list
+  50 |     }
+  51 |   });
+  52 |
+  53 |   // New Test Case: Verify navigation and API request status
+  54 |   test('Partner Card - Navigate on Clicking each partner and Check API Endpoint', async ({ page, request }) => {
+  55 |
+  56 |     // Step 1: Create objects to access the page objects
+  57 |     const poManager = new POManager(page);
+  58 |     const basePage = poManager.getBasePage();
+  59 |     const partnersPagePage = poManager.getPartnersPage();
+  60 |
+  61 |     basePage.partnersLink.click();
+  62 |
+  63 |     // Step 2: Define the XPath locator for the partner names
+  64 |     const elements = partnersPagePage.partnerName;
+  65 |
+  66 |     // Step 3: Wait for the elements to be visible and located
+  67 |     await elements.first().waitFor({ state: 'visible' }); // Wait for at least the first element to be visible
+  68 |
+  69 |     // Step 4: Get the element count (number of matches)
+  70 |     const elementCount = await elements.count();
+  71 |
+  72 |     // Step 5: Loop through each element to click and navigate
+  73 |     for (let i = 0; i < elementCount; i++) {
+  74 |       const element = elements.nth(i);
+  75 |       const partnerUrl = await element.getAttribute('href'); // Assuming 'href' contains the URL
+  76 |
+  77 |       // Step 6: Click on the locator and ensure it navigates
+> 78 |       await element.click();
+     |                     ^ Error: locator.click: Target page, context or browser has been closed
+  79 |
+  80 |       // Step 7: Capture the current page URL after clicking
+  81 |       const currentUrl = page.url();
+  82 |
+  83 |       // Step 8: Make an API request to the URL using APIRequestContext
+  84 |       const response = await request.get(currentUrl);  // You can also add headers, query parameters, etc., if needed
+  85 |
+  86 |       // Step 9: Assert the response status code (e.g., expect 200 for success)
+  87 |       expect(response.status()).toBe(200);
+  88 |     }
+  89 |   });
+  90 | });
+  91 |
+```

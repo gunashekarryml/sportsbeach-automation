@@ -1,0 +1,566 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: validate captured text against allowed list for multiple texts
+- Location: /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/heropage.test.ts:29:6
+
+# Error details
+
+```
+Error: locator.textContent: Test timeout of 20000ms exceeded.
+Call log:
+  - waiting for locator('div').filter({ hasText: /^CANNES2024CANNES2024CANNES2024CANNES2024$/ }).first()
+
+    at captureAndValidateText (/Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/heropage.test.ts:48:49)
+    at /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/heropage.test.ts:60:11
+```
+
+# Page snapshot
+
+```yaml
+- link "Skip to Main Content"
+- banner:
+  - link "Sport Beach hosted by Stagwell":
+    - img
+    - text: Sport Beach hosted by Stagwell
+    - img
+  - navigation "Primary navigation":
+    - list:
+      - listitem:
+        - link "Roster"
+      - listitem:
+        - link "Partners"
+      - listitem:
+        - link "FAQ"
+      - listitem:
+        - link "Login"
+  - link "REQUEST A PASS"
+- heading "Download the App 🚨" [level=2]
+- button "Close Alert Pop Up":
+  - img
+- paragraph: Dallas win and they will be the NBA 2024 champs!
+- link "CTA label"
+- main:
+  - text: SPORT
+  - img "Helio Castroneves"
+  - img "Mary Earps"
+  - text: BEACH
+  - img "Mary Earps"
+  - img "Diana Flores"
+  - text: SPORT
+  - img "Diana Flores"
+  - img "Olajuwon Ajanaku"
+  - text: BEACH
+  - img "Olajuwon Ajanaku"
+  - img "Akbar Gbajabiamila"
+  - text: SPORT
+  - img "Helio Castroneves"
+  - img "Mary Earps"
+  - text: BEACH
+  - img "Mary Earps"
+  - img "Diana Flores"
+  - text: SPORT
+  - img "Diana Flores"
+  - img "Olajuwon Ajanaku"
+  - text: BEACH
+  - img "Olajuwon Ajanaku"
+  - img "Akbar Gbajabiamila"
+  - img "Akbar Gbajabiamila"
+  - img "Draymond Green"
+  - text: CANNES
+  - img "Draymond Green"
+  - img "Blake Griffin"
+  - text: "2025"
+  - img "Blake Griffin"
+  - img "Alex Honnold"
+  - text: CANNES
+  - img "Alex Honnold"
+  - img "DeAndre Hopkins"
+  - text: "2025"
+  - img "Akbar Gbajabiamila"
+  - img "Draymond Green"
+  - text: CANNES
+  - img "Draymond Green"
+  - img "Blake Griffin"
+  - text: "2025"
+  - img "Blake Griffin"
+  - img "Alex Honnold"
+  - text: CANNES
+  - img "Alex Honnold"
+  - img "DeAndre Hopkins"
+  - text: "2025"
+  - img "DeAndre Hopkins"
+  - img "Justin Jefferson"
+  - text: SPORT
+  - img "Justin Jefferson"
+  - img "Chad Johnson"
+  - text: BEACH
+  - img "Chad Johnson"
+  - img "Flau'Jae Johnson"
+  - text: SPORT
+  - img "Flau'Jae Johnson"
+  - img "Amanda Kassar"
+  - text: BEACH
+  - img "DeAndre Hopkins"
+  - img "Justin Jefferson"
+  - text: SPORT
+  - img "Justin Jefferson"
+  - img "Chad Johnson"
+  - text: BEACH
+  - img "Chad Johnson"
+  - img "Flau'Jae Johnson"
+  - text: SPORT
+  - img "Flau'Jae Johnson"
+  - img "Amanda Kassar"
+  - text: BEACH
+  - heading "SPORT BEACH CANNES 2025" [level=1]
+  - img
+  - text: scroll
+  - img
+  - paragraph: SPORT BEACH returns to Cannes Lions for its 3rd season from June 16th to June 19th, 2025 — bringing together athletes, marketers and global leaders to explore the intersection of sport, creativity and culture.
+  - text: hosted by
+  - img "Stagwell"
+  - link "Request a pass"
+  - heading "The ROSTER" [level=2]
+  - link "VIEW FULL ROSTER"
+  - link "VIEW SCHEDULE"
+  - heading "The Latest" [level=2]
+  - link "The Latest":
+    - img "The Latest"
+  - text: Ad Age
+  - link "Inside Stagwell’s Sport Beach at Cannes and how it helped athletes connect with brands Lorem amet viver ra mi nunc adipiscing Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+  - paragraph: Blandit donec pellentesque vel at amet viver ra mi nunc adipiscing. Ullamcorper nulla nisl aliquam bibendum at felis ipsum volutpat.
+  - group "1 / 7":
+    - text: CNBC
+    - link "Why sports marketing is a growth area according to Stagwell's Mark Penn"
+  - group "2 / 7":
+    - text: Ad Age
+    - link "Inside Stagwell’s Sport Beach at Cannes and how it helped athletes connect with brands Lorem amet viver ra mi nunc adipiscing Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+  - group "3 / 7":
+    - text: Adweek
+    - link "With Stagwell, Mark Penn Is Back in the Arena"
+  - group "4 / 7":
+    - text: Adweek
+    - link "Even Without S4 Capital, Stagwell Has Ambitious Growth Plans"
+  - group "5 / 7":
+    - text: Nike
+    - link "Lorem Ipsum Test News"
+  - group "6 / 7":
+    - text: Stagwell
+    - link "New Athletes Confirmed to Appear at Stagwell’s (STGW) Sport Beach 2024 During Cannes Lions"
+  - group "7 / 7":
+    - text: Adweek
+    - link "Creativity, Pro Athletes and Pickleball Collide at Stagwell Sport Beach"
+  - button "Go to previous slide" [disabled]:
+    - img
+    - text: previous
+  - button "Go to next slide":
+    - img
+    - text: next
+  - heading "2024 Highlights" [level=2]
+  - group "1 / 5":
+    - img "An inevitable headline"
+    - heading "An inevitable headline" [level=3]
+    - paragraph: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna al
+  - group "2 / 5":
+    - link "Sample Headline 212 Sample Headline 212 Sed do eiusmod tempor incididunt ut labore et dolore magna al Lorem ipsum dolor sit amet, consectetur adipiscing elit":
+      - img "Sample Headline 212"
+      - heading "Sample Headline 212" [level=3]
+      - paragraph: Sed do eiusmod tempor incididunt ut labore et dolore magna al Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - group "3 / 5":
+    - link "Promotional Headline Promotional Headline Lorem Ipsum sed do eiusmod tempor incididunt ut labore et dolore magna al":
+      - img "Promotional Headline"
+      - heading "Promotional Headline" [level=3]
+      - paragraph: Lorem Ipsum sed do eiusmod tempor incididunt ut labore et dolore magna al
+  - group "4 / 5":
+    - img "Highlights headline"
+    - heading "Highlights headline" [level=3]
+    - paragraph: Sed do eiusmod tempor incididunt ut labore et dolore magna al Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - group "5 / 5":
+    - link "gifimage gifimage Lorem Ipsum sed do eiusmod tempor incididunt ut labore et dolore magna al":
+      - img "gifimage"
+      - heading "gifimage" [level=3]
+      - paragraph: Lorem Ipsum sed do eiusmod tempor incididunt ut labore et dolore magna al
+  - button "Go to previous slide" [disabled]:
+    - img
+    - text: previous
+  - button "Go to next slide":
+    - img
+    - text: next
+  - img "clubhouse logo"
+  - text: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sed pharetra elit, non bibendum. Vivamus non sem. CES
+  - paragraph: This event has passed. Catch us at CES next year, or at another upcoming event!
+  - text: Jan 6-9, 2025 | Las Vegas, NV
+  - link "DETAILS"
+  - link "RSVP"
+  - text: Davos
+  - paragraph: This event has passed. Catch us at CES next year, or at another upcoming event!
+  - text: Jan 24-29, 2025 | Davos, Switzerland
+  - link "DETAILS"
+  - text: US Open
+  - paragraph: Featuring Maria Sharapova, David Beckham, Mel B., Lando Norris and more.
+  - text: Aug 25 - Sep 9, 2025 | New York City, NY
+  - link "DETAILS"
+  - link "RSVP"
+  - text: Superbowl LIX
+  - paragraph: Featuring Maria Sharapova, David Beckham, Mel B., Lando Norris and more.
+  - text: Feb 9, 2025 | New Orleans, LA
+  - link "DETAILS"
+  - text: Cannes Lions
+  - paragraph: Featuring Maria Sharapova, David Beckham, Mel B., Lando Norris and more.
+  - text: Jun 16-25, 2025 | Cannes, France
+  - link "DETAILS"
+  - link "RSVP"
+  - text: SXSW
+  - paragraph: Celebrate the convergence of the best tech, film, music, education, and culture.
+  - text: Mar 7-15, 2025 | Austin, TX
+  - link "DETAILS"
+  - link "RSVP"
+  - region "Our Partners":
+    - heading "Our Partners" [level=2]
+    - link "View all"
+    - link "72andSunny":
+      - img "72andSunny"
+    - text: Opens in a new window
+    - link "Allison":
+      - img "Allison"
+    - text: Opens in a new window
+    - link "Allison Larger":
+      - img "Allison Larger"
+    - text: Opens in a new window
+    - link "Apollo Jets":
+      - img "Apollo Jets"
+    - text: Opens in a new window
+    - link "Brand Performance":
+      - img "Brand Performance"
+    - text: Opens in a new window
+    - link "CLIO":
+      - img "CLIO"
+    - text: Opens in a new window
+    - link "Code and Theory":
+      - img "Code and Theory"
+    - text: Opens in a new window
+    - link "colle mcvoy":
+      - img "colle mcvoy"
+    - text: Opens in a new window
+    - link "DONER":
+      - img "DONER"
+    - text: Opens in a new window
+    - link "Gatorade":
+      - img "Gatorade"
+    - text: Opens in a new window
+    - link "GENIUS":
+      - img "GENIUS"
+    - text: Opens in a new window
+    - link "72andSunny":
+      - img "72andSunny"
+    - text: Opens in a new window
+    - link "Allison":
+      - img "Allison"
+    - text: Opens in a new window
+    - link "Allison Larger":
+      - img "Allison Larger"
+    - text: Opens in a new window
+    - link "Apollo Jets":
+      - img "Apollo Jets"
+    - text: Opens in a new window
+    - link "Brand Performance":
+      - img "Brand Performance"
+    - text: Opens in a new window
+    - link "CLIO":
+      - img "CLIO"
+    - text: Opens in a new window
+    - link "Code and Theory":
+      - img "Code and Theory"
+    - text: Opens in a new window
+    - link "colle mcvoy":
+      - img "colle mcvoy"
+    - text: Opens in a new window
+    - link "DONER":
+      - img "DONER"
+    - text: Opens in a new window
+    - link "Gatorade":
+      - img "Gatorade"
+    - text: Opens in a new window
+    - link "GENIUS":
+      - img "GENIUS"
+    - text: Opens in a new window
+    - link "72andSunny":
+      - img "72andSunny"
+    - text: Opens in a new window
+    - link "Allison":
+      - img "Allison"
+    - text: Opens in a new window
+    - link "Allison Larger":
+      - img "Allison Larger"
+    - text: Opens in a new window
+    - link "Apollo Jets":
+      - img "Apollo Jets"
+    - text: Opens in a new window
+    - link "Brand Performance":
+      - img "Brand Performance"
+    - text: Opens in a new window
+    - link "CLIO":
+      - img "CLIO"
+    - text: Opens in a new window
+    - link "Code and Theory":
+      - img "Code and Theory"
+    - text: Opens in a new window
+    - link "colle mcvoy":
+      - img "colle mcvoy"
+    - text: Opens in a new window
+    - link "DONER":
+      - img "DONER"
+    - text: Opens in a new window
+    - link "Gatorade":
+      - img "Gatorade"
+    - text: Opens in a new window
+    - link "GENIUS":
+      - img "GENIUS"
+    - text: Opens in a new window
+    - link "72andSunny":
+      - img "72andSunny"
+    - text: Opens in a new window
+    - link "Allison":
+      - img "Allison"
+    - text: Opens in a new window
+    - link "Allison Larger":
+      - img "Allison Larger"
+    - text: Opens in a new window
+    - link "Apollo Jets":
+      - img "Apollo Jets"
+    - text: Opens in a new window
+    - link "Brand Performance":
+      - img "Brand Performance"
+    - text: Opens in a new window
+    - link "CLIO":
+      - img "CLIO"
+    - text: Opens in a new window
+    - link "Code and Theory":
+      - img "Code and Theory"
+    - text: Opens in a new window
+    - link "colle mcvoy":
+      - img "colle mcvoy"
+    - text: Opens in a new window
+    - link "DONER":
+      - img "DONER"
+    - text: Opens in a new window
+    - link "Gatorade":
+      - img "Gatorade"
+    - text: Opens in a new window
+    - link "GENIUS":
+      - img "GENIUS"
+    - text: Opens in a new window
+    - link "VII(N) - white":
+      - img "VII(N) - white"
+    - text: Opens in a new window
+    - link "VII(N)":
+      - img "VII(N)"
+    - text: Opens in a new window
+    - link "The North Face":
+      - img "The North Face"
+    - text: Opens in a new window
+    - link "Siegelman Stable - white":
+      - img "Siegelman Stable - white"
+    - text: Opens in a new window
+    - link "ReachTV":
+      - img "ReachTV"
+    - text: Opens in a new window
+    - link "one of none - white":
+      - img "one of none - white"
+    - text: Opens in a new window
+    - link "On Discourse":
+      - img "On Discourse"
+    - text: Opens in a new window
+    - link "NBC universal":
+      - img "NBC universal"
+    - text: Opens in a new window
+    - link "Logo 1":
+      - img "Logo 1"
+    - text: Opens in a new window
+    - link "Instrument":
+      - img "Instrument"
+    - text: Opens in a new window
+    - link "VII(N) - white":
+      - img "VII(N) - white"
+    - text: Opens in a new window
+    - link "VII(N)":
+      - img "VII(N)"
+    - text: Opens in a new window
+    - link "The North Face":
+      - img "The North Face"
+    - text: Opens in a new window
+    - link "Siegelman Stable - white":
+      - img "Siegelman Stable - white"
+    - text: Opens in a new window
+    - link "ReachTV":
+      - img "ReachTV"
+    - text: Opens in a new window
+    - link "one of none - white":
+      - img "one of none - white"
+    - text: Opens in a new window
+    - link "On Discourse":
+      - img "On Discourse"
+    - text: Opens in a new window
+    - link "NBC universal":
+      - img "NBC universal"
+    - text: Opens in a new window
+    - link "Logo 1":
+      - img "Logo 1"
+    - text: Opens in a new window
+    - link "Instrument":
+      - img "Instrument"
+    - text: Opens in a new window
+    - link "VII(N) - white":
+      - img "VII(N) - white"
+    - text: Opens in a new window
+    - link "VII(N)":
+      - img "VII(N)"
+    - text: Opens in a new window
+    - link "The North Face":
+      - img "The North Face"
+    - text: Opens in a new window
+    - link "Siegelman Stable - white":
+      - img "Siegelman Stable - white"
+    - text: Opens in a new window
+    - link "ReachTV":
+      - img "ReachTV"
+    - text: Opens in a new window
+    - link "one of none - white":
+      - img "one of none - white"
+    - text: Opens in a new window
+    - link "On Discourse":
+      - img "On Discourse"
+    - text: Opens in a new window
+    - link "NBC universal":
+      - img "NBC universal"
+    - text: Opens in a new window
+    - link "Logo 1":
+      - img "Logo 1"
+    - text: Opens in a new window
+    - link "Instrument":
+      - img "Instrument"
+    - text: Opens in a new window
+    - link "VII(N) - white":
+      - img "VII(N) - white"
+    - text: Opens in a new window
+    - link "VII(N)":
+      - img "VII(N)"
+    - text: Opens in a new window
+    - link "The North Face":
+      - img "The North Face"
+    - text: Opens in a new window
+    - link "Siegelman Stable - white":
+      - img "Siegelman Stable - white"
+    - text: Opens in a new window
+    - link "ReachTV":
+      - img "ReachTV"
+    - text: Opens in a new window
+    - link "one of none - white":
+      - img "one of none - white"
+    - text: Opens in a new window
+    - link "On Discourse":
+      - img "On Discourse"
+    - text: Opens in a new window
+    - link "NBC universal":
+      - img "NBC universal"
+    - text: Opens in a new window
+    - link "Logo 1":
+      - img "Logo 1"
+    - text: Opens in a new window
+    - link "Instrument":
+      - img "Instrument"
+    - text: Opens in a new window
+- contentinfo:
+  - link "REQUEST A PASS"
+  - link "Visit Instagram":
+    - img
+  - link "Visit X Profile":
+    - img
+  - link "Visit LinkedIn":
+    - img
+  - navigation:
+    - list:
+      - listitem:
+        - link "Privacy Policy"
+      - listitem:
+        - link "Terms and Conditions"
+      - listitem:
+        - link "Contact Us"
+- text: This website uses cookies to enhance the user experience.
+- button "Accept cookies": I understand
+- alert
+```
+
+# Test source
+
+```ts
+   1 | import { test, expect } from '@playwright/test';
+   2 |
+   3 | test('validate captured text against allowed list', async ({ page }) => {
+   4 |
+   5 |     // Go to the target page
+   6 |     await page.goto('https://sportbeach-dev.vercel.app/');
+   7 |
+   8 |     // Define the allowed list of text
+   9 |     const allowedTextList = ['BEACH', 'SPORT']; // Update with your allowed text
+  10 |
+  11 |     // Define the locator for the div element that matches the specific regex text
+  12 |     const locator = page.locator('div').filter({ hasText: /^SPORTBEACHSPORTBEACHSPORTBEACHSPORTBEACH$/ });
+  13 |
+  14 |     // Use `.first()` to capture the first matching element
+  15 |     const firstElement = locator.first();
+  16 |
+  17 |     // Capture the textContent of the matched element
+  18 |     const capturedText = await firstElement.textContent();
+  19 |     console.log("Captured text===>" + capturedText);
+  20 |
+  21 |     // Check if the captured text is in the allowed list
+  22 |     const isValid = allowedTextList.some(allowedText => capturedText?.includes(allowedText));
+  23 |
+  24 |     // Perform the assertion
+  25 |     expect(isValid).toBe(true); // This will fail if the text is not in the allowed list
+  26 | });
+  27 |
+  28 |
+  29 | test.only('validate captured text against allowed list for multiple texts', async ({ page }) => {
+  30 |
+  31 |     // Go to the target page
+  32 |     await page.goto('https://sportbeach-dev.vercel.app/');
+  33 |
+  34 |     // Define the allowed list of text
+  35 |     const allowedTextList = ['BEACH', 'SPORT', 'CANNES', '2024']; // Update with your allowed text
+  36 |
+  37 |     // Define the locators for each specific text
+  38 |     const locator1 = page.locator('div').filter({ hasText: /^SPORTBEACHSPORTBEACHSPORTBEACHSPORTBEACH$/ });
+  39 |     const locator2 = page.locator('div').filter({ hasText: /^CANNES2024CANNES2024CANNES2024CANNES2024$/ });
+  40 |     const locator3 = page.locator('div').filter({ hasText: /^SPORTBEACHSPORTBEACHSPORTBEACHSPORTBEACH$/ }); // Replace with the actual text for text 3
+  41 |
+  42 |     // Function to capture and validate text for the first element of the locator
+  43 |     const captureAndValidateText = async (locator) => {
+  44 |         // Capture the first element that matches the locator
+  45 |         const firstElement = locator.first();
+  46 |
+  47 |         // Capture the text content of the first element
+> 48 |         const capturedText = await firstElement.textContent();
+     |                                                 ^ Error: locator.textContent: Test timeout of 20000ms exceeded.
+  49 |         console.log("Captured text ===> " + capturedText);
+  50 |
+  51 |         // Check if the captured text is in the allowed list
+  52 |         const isValid = allowedTextList.some(allowedText => capturedText?.includes(allowedText));
+  53 |         
+  54 |         // Perform the assertion
+  55 |         expect(isValid).toBe(true); // This will fail if the text is not in the allowed list
+  56 |     };
+  57 |
+  58 |     // Validate for each of the three locators
+  59 |     await captureAndValidateText(locator1);
+  60 |     await captureAndValidateText(locator2);
+  61 |     await captureAndValidateText(locator3);
+  62 | });
+```

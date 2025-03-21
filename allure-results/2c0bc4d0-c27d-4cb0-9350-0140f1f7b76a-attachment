@@ -1,0 +1,159 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Partner Card Test Suite >> Validate captured links against expected links
+- Location: /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/demo.test.ts:133:7
+
+# Error details
+
+```
+Error: page.goto: net::ERR_CONNECTION_RESET at https://yourwebsite.com/
+Call log:
+  - navigating to "https://yourwebsite.com/", waiting until "load"
+
+    at /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/demo.test.ts:138:16
+```
+
+# Test source
+
+```ts
+   38 |
+   39 |   test('Partner Card - Partners List Validation', async ({ page }) => {
+   40 |     // Load the data from the testdataall.json file
+   41 |     const data = JSON.parse(fs.readFileSync('./playwright/testdata/partnersList.json', 'utf-8')).data;
+   42 |     const data1 = JSON.parse(fs.readFileSync('./playwright/testdata/partnersList.json', 'utf-8')).expectedPartnersCount;
+   43 |
+   44 |     // Create objects to access the page objects
+   45 |     const poManager = new POManager(page);
+   46 |     const basePage = poManager.getBasePage();
+   47 |     const partnersPagePage = poManager.getPartnersPage();
+   48 |
+   49 |     basePage.partnersLink.click();
+   50 |
+   51 |     // Define the XPath locator for the partner names
+   52 |     const elements = partnersPagePage.partnerName;
+   53 |
+   54 |     // Wait for the elements to be visible and located
+   55 |     await elements.first().waitFor({ state: 'visible' });
+   56 |
+   57 |     // Get the element count (number of matches)
+   58 |     const elementCount = await elements.count();
+   59 |
+   60 |     // Ensure elements were found
+   61 |     expect(elementCount).toEqual(data1); // Assert that elements are present
+   62 |
+   63 |     // Loop through each element to get its inner text
+   64 |     for (let i = 0; i < elementCount; i++) {
+   65 |       const text = await elements.nth(i).innerText(); // Get the inner text of each element
+   66 |
+   67 |       // Assert if the text is present in the data list
+   68 |       expect(data).toContain(text); // Assert that the inner text is present in the list
+   69 |     }
+   70 |   });
+   71 |
+   72 |   // New Test Case: Validate Partner Links and Check API Status
+   73 |   test('Partner Card - Validate Partner Links and Check API Status', async ({ page, request }) => {
+   74 |     // Create objects to access the page objects
+   75 |     const poManager = new POManager(page);
+   76 |     const basePage = poManager.getBasePage();
+   77 |     const partnersPagePage = poManager.getPartnersPage();
+   78 |
+   79 |     basePage.partnersLink.click();
+   80 |
+   81 |     // Define the XPath locator for the partner names
+   82 |     const elements = partnersPagePage.partnerName;
+   83 |
+   84 |     // Wait for the elements to be visible and located
+   85 |     await elements.first().waitFor({ state: 'visible' });
+   86 |
+   87 |     // Get the element count (number of matches)
+   88 |     const elementCount = await elements.count();
+   89 |
+   90 |     // Initialize arrays to store valid and invalid links
+   91 |     const validLinks: string[] = [];
+   92 |     const invalidLinks: string[] = [];
+   93 |
+   94 |     // Loop through each element to get the link and check its status
+   95 |     for (let i = 0; i < elementCount; i++) {
+   96 |       const element = elements.nth(i); // Get the partner at index i
+   97 |       const link = await element.getAttribute('href'); // Capture the 'href' attribute (link)
+   98 |
+   99 |       console.log(`Checking link: ${link}`);
+  100 |
+  101 |       if (link) {
+  102 |         // Check the link status using the API request
+  103 |         const isValid = await checkLinkStatus(request, link);
+  104 |
+  105 |         // Store valid or invalid links based on status
+  106 |         if (isValid) {
+  107 |           validLinks.push(link);
+  108 |           console.log(`Link ${link} is valid.`);
+  109 |         } else {
+  110 |           invalidLinks.push(link);
+  111 |           console.error(`Link ${link} is broken or not reachable.`);
+  112 |         }
+  113 |       }
+  114 |     }
+  115 |
+  116 |     // Print the results for valid and invalid links
+  117 |     console.log("\n--- Summary ---");
+  118 |     console.log(`Total Valid Links: ${validLinks.length}`);
+  119 |     validLinks.forEach((link, index) => {
+  120 |       console.log(`Valid Link ${index + 1}: ${link}`);
+  121 |     });
+  122 |
+  123 |     console.log(`\nTotal Invalid Links: ${invalidLinks.length}`);
+  124 |     invalidLinks.forEach((link, index) => {
+  125 |       console.error(`Invalid Link ${index + 1}: ${link}`);
+  126 |     });
+  127 |
+  128 |     // Optionally, assert that no links are invalid (to ensure the page is fully working)
+  129 |     expect(invalidLinks.length).toBe(0); // This will fail the test if there are invalid links
+  130 |   });
+  131 |
+  132 |   // Validate captured links against expected links
+  133 |   test('Validate captured links against expected links', async ({ page }) => {
+  134 |     // Load the expected links from the JSON file
+  135 |     const expectedLinks = loadExpectedLinks();
+  136 |
+  137 |     // Go to the page
+> 138 |     await page.goto('https://yourwebsite.com'); // Replace with your base URL
+      |                ^ Error: page.goto: net::ERR_CONNECTION_RESET at https://yourwebsite.com/
+  139 |
+  140 |     // Select the partner link locators
+  141 |     const partnerstLocators = page.locator('//*[@id="main-content"]/section[1]/div/div[2]/div[*]/div[1]/div/div/div/a[*]');
+  142 |     const partnersCount = await partnerstLocators.count();
+  143 |     console.log("Total partner count: " + partnersCount);
+  144 |
+  145 |     // Capture all the links on the page
+  146 |     const capturedLinks: string[] = [];
+  147 |     for (let i = 0; i < partnersCount; i++) {
+  148 |       const partner = partnerstLocators.nth(i); // Get the partner at index i
+  149 |       const link = await partner.getAttribute('href');
+  150 |       if (link) {
+  151 |         capturedLinks.push(link);
+  152 |       }
+  153 |     }
+  154 |
+  155 |     // Assert that the captured links match the expected links
+  156 |     expect(capturedLinks).toEqual(expectedLinks);
+  157 |
+  158 |     // Print the results
+  159 |     console.log("\nCaptured Links:");
+  160 |     capturedLinks.forEach((link, index) => {
+  161 |       console.log(`Captured Link ${index + 1}: ${link}`);
+  162 |     });
+  163 |
+  164 |     console.log("\nExpected Links:");
+  165 |     expectedLinks.forEach((link, index) => {
+  166 |       console.log(`Expected Link ${index + 1}: ${link}`);
+  167 |     });
+  168 |   });
+  169 | });
+  170 |
+```

@@ -2,7 +2,7 @@ import { Locator, Page } from '@playwright/test';
 
 export class BasePage {
     page: Page;
-    letsPartnerLink: Locator;
+    requestPassLink: Locator;
     scheduleLink: Locator;
     partnersLink: Locator;
     closePopup: Locator;
@@ -17,7 +17,7 @@ export class BasePage {
 
     constructor(page: Page) {
         this.page = page;
-        this.letsPartnerLink = page.locator('//*[@id="__next"]/header/a/span');
+        this.requestPassLink = page.locator('//*[@id="__next"]/header/a/span');
         this.scheduleLink = page.getByRole('link', { name: 'Schedule', exact: true });
         this.partnersLink = page.getByRole('link', { name: 'Partners', exact: true });
         this.closePopup = page.getByRole('button', { name: 'Close Alert Pop Up' });
