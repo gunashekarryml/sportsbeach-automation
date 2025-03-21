@@ -1,1 +1,0 @@
-CSS after hover for "Visit Instagram": border-radius: 9999px, border-color: rgb(255, 255, 255)

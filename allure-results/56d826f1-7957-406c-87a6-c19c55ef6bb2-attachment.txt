@@ -1,5 +1,0 @@
-Initial text color: rgb(0, 82, 125)
-Initial background color: rgb(163, 238, 255)
-Text color after hover: rgb(255, 255, 255)
-Background color after hover: rgb(0, 82, 125)
-Text color and background color changed successfully after hover

@@ -1,2 +1,0 @@
-Initial text-decoration for "Privacy Policy": none solid rgb(255, 255, 255)
-Text-decoration after hover for "Privacy Policy": none solid rgb(255, 255, 255)

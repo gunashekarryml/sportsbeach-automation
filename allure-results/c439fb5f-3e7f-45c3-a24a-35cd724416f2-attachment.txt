@@ -1,7 +1,0 @@
-CSS after hover for icon 1: border-radius: 9999px, border-color: rgb(0, 82, 125)
-Circle appears on hover for icon 1: Border radius is 9999px and border color is rgb(0, 82, 125)
-CSS after hover for icon 2: border-radius: 9999px, border-color: rgb(0, 82, 125)
-Circle appears on hover for icon 2: Border radius is 9999px and border color is rgb(0, 82, 125)
-CSS after hover for icon 3: border-radius: 9999px, border-color: rgb(0, 82, 125)
-Circle appears on hover for icon 3: Border radius is 9999px and border color is rgb(0, 82, 125)
-Execution Status : timedOut

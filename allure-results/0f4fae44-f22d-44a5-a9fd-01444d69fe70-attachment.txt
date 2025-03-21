@@ -1,2 +1,0 @@
-Total Links : 0
-Execution Status : passed
