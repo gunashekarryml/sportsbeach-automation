@@ -15,7 +15,7 @@
       "baseURL": "https://sportbeach.vercel.app/",
       "backendHostingUrl":"https://prod.in"
     },
-    "headless":false,
+    "headless":true,
     "testAllBrowsers":[
       {
         "name": "chromium",

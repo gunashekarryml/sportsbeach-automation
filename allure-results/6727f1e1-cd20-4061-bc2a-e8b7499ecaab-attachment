@@ -1,0 +1,582 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Featured 1 UP Test Suite >> Featured1UP - Validate the animation
+- Location: /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/sportsbeach-featured1UP.test.ts:59:7
+
+# Error details
+
+```
+Error: expect(received).not.toEqual(expected) // deep equality
+
+Expected: not undefined
+
+    at /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/sportsbeach-featured1UP.test.ts:100:35
+```
+
+# Page snapshot
+
+```yaml
+- link "Skip to Main Content"
+- banner:
+  - link "Sport Beach hosted by Stagwell":
+    - img
+    - text: Sport Beach hosted by Stagwell
+    - img
+  - navigation "Primary navigation":
+    - list:
+      - listitem:
+        - link "Roster"
+      - listitem:
+        - link "Partners"
+      - listitem:
+        - link "FAQ"
+      - listitem:
+        - link "Login"
+  - link "REQUEST A PASS"
+- heading "Download the App 🚨" [level=2]
+- button "Close Alert Pop Up":
+  - img
+- paragraph: Dallas win and they will be the NBA 2024 champs!
+- link "CTA label"
+- main:
+  - text: SPORT
+  - img "Olajuwon Ajanaku"
+  - text: BEACH
+  - img "Carmelo Anthony"
+  - text: SPORT
+  - img "Sue Bird"
+  - text: BEACH
+  - img "Joe Burrow"
+  - text: SPORT
+  - img "Olajuwon Ajanaku"
+  - text: BEACH
+  - img "Carmelo Anthony"
+  - text: SPORT
+  - img "Sue Bird"
+  - text: BEACH
+  - img "Joe Burrow"
+  - img "Shannon Sharpe"
+  - text: CANNES
+  - img "Eric Cantona"
+  - text: "2025"
+  - img "Roberto Carlos"
+  - text: CANNES
+  - img "Karen Carney"
+  - text: "2025"
+  - img "Shannon Sharpe"
+  - text: CANNES
+  - img "Eric Cantona"
+  - text: "2025"
+  - img "Roberto Carlos"
+  - text: CANNES
+  - img "Karen Carney"
+  - text: "2025"
+  - img "Helio Castroneves"
+  - text: SPORT
+  - img "Shaun White"
+  - text: BEACH
+  - img "Mary Earps"
+  - text: SPORT
+  - img "Diana Flores"
+  - text: BEACH
+  - img "Helio Castroneves"
+  - text: SPORT
+  - img "Shaun White"
+  - text: BEACH
+  - img "Mary Earps"
+  - text: SPORT
+  - img "Diana Flores"
+  - text: BEACH
+  - heading "SPORT BEACH CANNES 2025" [level=1]
+  - img
+  - text: scroll
+  - img
+  - paragraph: SPORT BEACH returns to Cannes Lions for its 3rd season from June 16th to June 19th, 2025 — bringing together athletes, marketers and global leaders to explore the intersection of sport, creativity and culture.
+  - text: hosted by
+  - img "Stagwell"
+  - link "Request a pass"
+  - heading "The ROSTER" [level=2]
+  - link "VIEW FULL ROSTER"
+  - link "VIEW SCHEDULE"
+  - heading "The Latest" [level=2]
+  - link "The Latest":
+    - img "The Latest"
+  - text: Ad Age
+  - link "Inside Stagwell’s Sport Beach at Cannes and how it helped athletes connect with brands Lorem amet viver ra mi nunc adipiscing Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+  - paragraph: Blandit donec pellentesque vel at amet viver ra mi nunc adipiscing. Ullamcorper nulla nisl aliquam bibendum at felis ipsum volutpat.
+  - group "1 / 7":
+    - text: CNBC
+    - link "Why sports marketing is a growth area according to Stagwell's Mark Penn"
+  - group "2 / 7":
+    - text: Ad Age
+    - link "Inside Stagwell’s Sport Beach at Cannes and how it helped athletes connect with brands Lorem amet viver ra mi nunc adipiscing Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+  - group "3 / 7":
+    - text: Adweek
+    - link "With Stagwell, Mark Penn Is Back in the Arena"
+  - group "4 / 7":
+    - text: Adweek
+    - link "Even Without S4 Capital, Stagwell Has Ambitious Growth Plans"
+  - group "5 / 7":
+    - text: Nike
+    - link "Lorem Ipsum Test News"
+  - group "6 / 7":
+    - text: Stagwell
+    - link "New Athletes Confirmed to Appear at Stagwell’s (STGW) Sport Beach 2024 During Cannes Lions"
+  - group "7 / 7":
+    - text: Adweek
+    - link "Creativity, Pro Athletes and Pickleball Collide at Stagwell Sport Beach"
+  - button "Go to previous slide" [disabled]:
+    - img
+    - text: previous
+  - button "Go to next slide":
+    - img
+    - text: next
+  - heading "2024 Highlights" [level=2]
+  - group "1 / 5":
+    - img "An inevitable headline"
+    - heading "An inevitable headline" [level=3]
+    - paragraph: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna al
+  - group "2 / 5":
+    - link "Sample Headline 212 Sample Headline 212 Sed do eiusmod tempor incididunt ut labore et dolore magna al Lorem ipsum dolor sit amet, consectetur adipiscing elit":
+      - img "Sample Headline 212"
+      - heading "Sample Headline 212" [level=3]
+      - paragraph: Sed do eiusmod tempor incididunt ut labore et dolore magna al Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - group "3 / 5":
+    - link "Promotional Headline Promotional Headline Lorem Ipsum sed do eiusmod tempor incididunt ut labore et dolore magna al":
+      - img "Promotional Headline"
+      - heading "Promotional Headline" [level=3]
+      - paragraph: Lorem Ipsum sed do eiusmod tempor incididunt ut labore et dolore magna al
+  - group "4 / 5":
+    - img "Highlights headline"
+    - heading "Highlights headline" [level=3]
+    - paragraph: Sed do eiusmod tempor incididunt ut labore et dolore magna al Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - group "5 / 5":
+    - link "gifimage gifimage Lorem Ipsum sed do eiusmod tempor incididunt ut labore et dolore magna al":
+      - img "gifimage"
+      - heading "gifimage" [level=3]
+      - paragraph: Lorem Ipsum sed do eiusmod tempor incididunt ut labore et dolore magna al
+  - button "Go to previous slide" [disabled]:
+    - img
+    - text: previous
+  - button "Go to next slide":
+    - img
+    - text: next
+  - img "clubhouse logo"
+  - text: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sed pharetra elit, non bibendum. Vivamus non sem. CES
+  - paragraph: This event has passed. Catch us at CES next year, or at another upcoming event!
+  - text: Jan 6-9, 2025 | Las Vegas, NV
+  - link "DETAILS"
+  - link "RSVP"
+  - text: Davos
+  - paragraph: This event has passed. Catch us at CES next year, or at another upcoming event!
+  - text: Jan 24-29, 2025 | Davos, Switzerland
+  - link "DETAILS"
+  - text: US Open
+  - paragraph: Featuring Maria Sharapova, David Beckham, Mel B., Lando Norris and more.
+  - text: Aug 25 - Sep 9, 2025 | New York City, NY
+  - link "DETAILS"
+  - link "RSVP"
+  - text: Superbowl LIX
+  - paragraph: Featuring Maria Sharapova, David Beckham, Mel B., Lando Norris and more.
+  - text: Feb 9, 2025 | New Orleans, LA
+  - link "DETAILS"
+  - text: Cannes Lions
+  - paragraph: Featuring Maria Sharapova, David Beckham, Mel B., Lando Norris and more.
+  - text: Jun 16-25, 2025 | Cannes, France
+  - link "DETAILS"
+  - link "RSVP"
+  - text: SXSW
+  - paragraph: Celebrate the convergence of the best tech, film, music, education, and culture.
+  - text: Mar 7-15, 2025 | Austin, TX
+  - link "DETAILS"
+  - link "RSVP"
+  - region "Our Partners":
+    - heading "Our Partners" [level=2]
+    - link "View all"
+    - link "72andSunny":
+      - img "72andSunny"
+    - text: Opens in a new window
+    - link "Allison":
+      - img "Allison"
+    - text: Opens in a new window
+    - link "Allison Larger":
+      - img "Allison Larger"
+    - text: Opens in a new window
+    - link "Apollo Jets":
+      - img "Apollo Jets"
+    - text: Opens in a new window
+    - link "Brand Performance":
+      - img "Brand Performance"
+    - text: Opens in a new window
+    - link "CLIO":
+      - img "CLIO"
+    - text: Opens in a new window
+    - link "Code and Theory":
+      - img "Code and Theory"
+    - text: Opens in a new window
+    - link "colle mcvoy":
+      - img "colle mcvoy"
+    - text: Opens in a new window
+    - link "DONER":
+      - img "DONER"
+    - text: Opens in a new window
+    - link "Gatorade":
+      - img "Gatorade"
+    - text: Opens in a new window
+    - link "GENIUS":
+      - img "GENIUS"
+    - text: Opens in a new window
+    - link "72andSunny":
+      - img "72andSunny"
+    - text: Opens in a new window
+    - link "Allison":
+      - img "Allison"
+    - text: Opens in a new window
+    - link "Allison Larger":
+      - img "Allison Larger"
+    - text: Opens in a new window
+    - link "Apollo Jets":
+      - img "Apollo Jets"
+    - text: Opens in a new window
+    - link "Brand Performance":
+      - img "Brand Performance"
+    - text: Opens in a new window
+    - link "CLIO":
+      - img "CLIO"
+    - text: Opens in a new window
+    - link "Code and Theory":
+      - img "Code and Theory"
+    - text: Opens in a new window
+    - link "colle mcvoy":
+      - img "colle mcvoy"
+    - text: Opens in a new window
+    - link "DONER":
+      - img "DONER"
+    - text: Opens in a new window
+    - link "Gatorade":
+      - img "Gatorade"
+    - text: Opens in a new window
+    - link "GENIUS":
+      - img "GENIUS"
+    - text: Opens in a new window
+    - link "72andSunny":
+      - img "72andSunny"
+    - text: Opens in a new window
+    - link "Allison":
+      - img "Allison"
+    - text: Opens in a new window
+    - link "Allison Larger":
+      - img "Allison Larger"
+    - text: Opens in a new window
+    - link "Apollo Jets":
+      - img "Apollo Jets"
+    - text: Opens in a new window
+    - link "Brand Performance":
+      - img "Brand Performance"
+    - text: Opens in a new window
+    - link "CLIO":
+      - img "CLIO"
+    - text: Opens in a new window
+    - link "Code and Theory":
+      - img "Code and Theory"
+    - text: Opens in a new window
+    - link "colle mcvoy":
+      - img "colle mcvoy"
+    - text: Opens in a new window
+    - link "DONER":
+      - img "DONER"
+    - text: Opens in a new window
+    - link "Gatorade":
+      - img "Gatorade"
+    - text: Opens in a new window
+    - link "GENIUS":
+      - img "GENIUS"
+    - text: Opens in a new window
+    - link "72andSunny":
+      - img "72andSunny"
+    - text: Opens in a new window
+    - link "Allison":
+      - img "Allison"
+    - text: Opens in a new window
+    - link "Allison Larger":
+      - img "Allison Larger"
+    - text: Opens in a new window
+    - link "Apollo Jets":
+      - img "Apollo Jets"
+    - text: Opens in a new window
+    - link "Brand Performance":
+      - img "Brand Performance"
+    - text: Opens in a new window
+    - link "CLIO":
+      - img "CLIO"
+    - text: Opens in a new window
+    - link "Code and Theory":
+      - img "Code and Theory"
+    - text: Opens in a new window
+    - link "colle mcvoy":
+      - img "colle mcvoy"
+    - text: Opens in a new window
+    - link "DONER":
+      - img "DONER"
+    - text: Opens in a new window
+    - link "Gatorade":
+      - img "Gatorade"
+    - text: Opens in a new window
+    - link "GENIUS":
+      - img "GENIUS"
+    - text: Opens in a new window
+    - link "VII(N) - white":
+      - img "VII(N) - white"
+    - text: Opens in a new window
+    - link "VII(N)":
+      - img "VII(N)"
+    - text: Opens in a new window
+    - link "The North Face":
+      - img "The North Face"
+    - text: Opens in a new window
+    - link "Siegelman Stable - white":
+      - img "Siegelman Stable - white"
+    - text: Opens in a new window
+    - link "ReachTV":
+      - img "ReachTV"
+    - text: Opens in a new window
+    - link "one of none - white":
+      - img "one of none - white"
+    - text: Opens in a new window
+    - link "On Discourse":
+      - img "On Discourse"
+    - text: Opens in a new window
+    - link "NBC universal":
+      - img "NBC universal"
+    - text: Opens in a new window
+    - link "Logo 1":
+      - img "Logo 1"
+    - text: Opens in a new window
+    - link "Instrument":
+      - img "Instrument"
+    - text: Opens in a new window
+    - link "VII(N) - white":
+      - img "VII(N) - white"
+    - text: Opens in a new window
+    - link "VII(N)":
+      - img "VII(N)"
+    - text: Opens in a new window
+    - link "The North Face":
+      - img "The North Face"
+    - text: Opens in a new window
+    - link "Siegelman Stable - white":
+      - img "Siegelman Stable - white"
+    - text: Opens in a new window
+    - link "ReachTV":
+      - img "ReachTV"
+    - text: Opens in a new window
+    - link "one of none - white":
+      - img "one of none - white"
+    - text: Opens in a new window
+    - link "On Discourse":
+      - img "On Discourse"
+    - text: Opens in a new window
+    - link "NBC universal":
+      - img "NBC universal"
+    - text: Opens in a new window
+    - link "Logo 1":
+      - img "Logo 1"
+    - text: Opens in a new window
+    - link "Instrument":
+      - img "Instrument"
+    - text: Opens in a new window
+    - link "VII(N) - white":
+      - img "VII(N) - white"
+    - text: Opens in a new window
+    - link "VII(N)":
+      - img "VII(N)"
+    - text: Opens in a new window
+    - link "The North Face":
+      - img "The North Face"
+    - text: Opens in a new window
+    - link "Siegelman Stable - white":
+      - img "Siegelman Stable - white"
+    - text: Opens in a new window
+    - link "ReachTV":
+      - img "ReachTV"
+    - text: Opens in a new window
+    - link "one of none - white":
+      - img "one of none - white"
+    - text: Opens in a new window
+    - link "On Discourse":
+      - img "On Discourse"
+    - text: Opens in a new window
+    - link "NBC universal":
+      - img "NBC universal"
+    - text: Opens in a new window
+    - link "Logo 1":
+      - img "Logo 1"
+    - text: Opens in a new window
+    - link "Instrument":
+      - img "Instrument"
+    - text: Opens in a new window
+    - link "VII(N) - white":
+      - img "VII(N) - white"
+    - text: Opens in a new window
+    - link "VII(N)":
+      - img "VII(N)"
+    - text: Opens in a new window
+    - link "The North Face":
+      - img "The North Face"
+    - text: Opens in a new window
+    - link "Siegelman Stable - white":
+      - img "Siegelman Stable - white"
+    - text: Opens in a new window
+    - link "ReachTV":
+      - img "ReachTV"
+    - text: Opens in a new window
+    - link "one of none - white":
+      - img "one of none - white"
+    - text: Opens in a new window
+    - link "On Discourse":
+      - img "On Discourse"
+    - text: Opens in a new window
+    - link "NBC universal":
+      - img "NBC universal"
+    - text: Opens in a new window
+    - link "Logo 1":
+      - img "Logo 1"
+    - text: Opens in a new window
+    - link "Instrument":
+      - img "Instrument"
+    - text: Opens in a new window
+- contentinfo:
+  - link "REQUEST A PASS"
+  - link "Visit Instagram":
+    - img
+  - link "Visit X Profile":
+    - img
+  - link "Visit LinkedIn":
+    - img
+  - navigation:
+    - list:
+      - listitem:
+        - link "Privacy Policy"
+      - listitem:
+        - link "Terms and Conditions"
+      - listitem:
+        - link "Contact Us"
+- text: This website uses cookies to enhance the user experience.
+- button "Accept cookies": I understand
+- alert
+```
+
+# Test source
+
+```ts
+   1 | import { test, expect } from '@playwright/test';
+   2 | import { POManager } from '../../pageobjects/POManager';
+   3 | import { readFileSync } from 'fs';
+   4 |
+   5 | // Helper function to validate main content text
+   6 | async function validateMainContent(page, text) {
+   7 |   await expect(page.locator('#main-content')).toContainText(text);
+   8 | }
+   9 |
+   10 | // Helper function to validate article content
+   11 | async function validateArticleContent(page, title, text1, text2) {
+   12 |   await page.getByText(title).first().click();
+   13 |   await expect(page.locator('#main-content')).toContainText(text1);
+   14 |   await expect(page.locator('#main-content')).toContainText(text2);
+   15 | }
+   16 | test.describe('Featured 1 UP Test Suite', () => {
+   17 |
+   18 |   // allure.suite('Featured 1 UP Feature Testcases');
+   19 |   // This will run before each test to open the base URL
+   20 |   test.beforeEach(async ({ page, baseURL }) => {
+   21 |
+   22 |     if (typeof baseURL === 'string') {
+   23 |       await page.goto(baseURL);
+   24 |       //allure.
+   25 |       //  allure.label('Base URL', baseURL);
+   26 |     } else {
+   27 |       // allure.severity('baseURL is not defined or not a string');
+   28 |       throw new Error('baseURL is not defined or not a string');
+   29 |     }
+   30 |   });
+   31 |
+   32 |   test.afterEach(async ({ page }, testInfo) => {
+   33 |     console.log('Execution Status : ' + testInfo.status);
+   34 |   });
+   35 |
+   36 |   test('Featured1UP - Validate content', async ({ page }) => {
+   37 |     // Load the test data from the JSON file
+   38 |     const testData = JSON.parse(readFileSync('./playwright/testdata/testdataAll.json', 'utf-8'));  // Replace with the correct path to your test data file
+   39 |
+   40 |     // Load the Featured1UP data from the testData
+   41 |     const featured1UPData = testData.featured1UP[0]; // Get the first item from the 'featured1UP' array
+   42 |
+   43 |     const poManager = new POManager(page);
+   44 |     const basePage = poManager.getBasePage();
+   45 |
+   46 |     // Navigate to the URL and close the alert pop-up
+   47 |     await basePage.closePopup.click();
+   48 |
+   49 |     // Validate the main content text from the test data
+   50 |     await validateMainContent(page, featured1UPData.mainContentText);
+   51 |
+   52 |     // Validate the article content
+   53 |     await validateArticleContent(page, featured1UPData.articleTitle, featured1UPData.articleText1, featured1UPData.articleText2);
+   54 |
+   55 |     // Validate that the 'The Latest' link is visible
+   56 |     await expect(page.getByRole('link', { name: featured1UPData.latestLinkName })).toBeVisible();
+   57 |   });
+   58 |
+   59 |   test('Featured1UP - Validate the animation', async ({ page }) => {
+   60 |
+   61 |     const poManager = new POManager(page);
+   62 |     const basePage = poManager.getBasePage();
+   63 |
+   64 |     // Define the locator for the element you want to track the animation on
+   65 |     const locator = basePage.featured1UPAnimation;
+   66 |
+   67 |     // Get the initial CSS transform value (this includes translateX)
+   68 |     const initialTransform = await locator.evaluate((element) => {
+   69 |       return window.getComputedStyle(element).transform;
+   70 |     });
+   71 |
+   72 |     // Log the initial transform value for debugging
+   73 |     console.log('Initial Transform (Before Animation):', initialTransform);
+   74 |
+   75 |     // Scroll to the bottom of the page to trigger the animation
+   76 |     await page.evaluate(() => {
+   77 |       window.scrollTo(0, document.body.scrollHeight);  // Scroll to the bottom
+   78 |     });
+   79 |
+   80 |     // Wait for the animation to complete (adjust time based on your animation speed)
+   81 |     await page.waitForTimeout(500);  // Wait for 500ms or adjust according to your animation's duration
+   82 |
+   83 |     // Get the new CSS transform value after scrolling (this will be after the animation)
+   84 |     const newTransform = await locator.evaluate((element) => {
+   85 |       return window.getComputedStyle(element).transform;
+   86 |     });
+   87 |
+   88 |     // Log the new transform value for debugging
+   89 |     console.log('New Transform (After Animation):', newTransform);
+   90 |
+   91 |     // Extract translateX values from the transform matrix for both initial and new transforms
+   92 |     const initialTranslateX = initialTransform.match(/matrix.*\((.*),\s*(.*),\s*(.*),\s*(.*),\s*(.*),\s*(.*)\)/)?.[5]; // 5th value is translateX
+   93 |     const newTranslateX = newTransform.match(/matrix.*\((.*),\s*(.*),\s*(.*),\s*(.*),\s*(.*),\s*(.*)\)/)?.[5];  // 5th value is translateX
+   94 |
+   95 |     // Log translateX values for debugging
+   96 |     console.log('Initial translateX:', initialTranslateX);
+   97 |     console.log('New translateX:', newTranslateX);
+   98 |
+   99 |     // Assert that translateX has changed after the scroll (indicating animation happened)
+> 100 |     expect(initialTranslateX).not.toEqual(newTranslateX);  // Ensure translateX changed
+      |                                   ^ Error: expect(received).not.toEqual(expected) // deep equality
+  101 |   });
+  102 |
+  103 | });
+```

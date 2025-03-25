@@ -1,0 +1,5 @@
+Initial Transform (Before Animation): none
+New Transform (After Animation): matrix(1, 0, 0, 1, 51.75, 0)
+Initial translateX: undefined
+New translateX: 51.75
+Execution Status : passed

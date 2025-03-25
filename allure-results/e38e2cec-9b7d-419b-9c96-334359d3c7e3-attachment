@@ -1,0 +1,91 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Standalone Carousel Test Suite >> Validate the oversized CTA in Base page
+- Location: /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/demo.test.ts:45:7
+
+# Error details
+
+```
+Error: locator.hover: Error: strict mode violation: getByRole('link', { name: 'Request a pass' }) resolved to 3 elements:
+    1) <a rel="noopener" target="_blank" href="/register" class="text-center font-rigid text-2xl font-bold uppercase leading-[1.2] md:portrait:text-32 dt:text-xl dt:leading-[1.2] flex h-fit items-center justify-center border-white group w-fit ml-auto h-fit dt:w-full bg-brand-rivieraBlue p-2 !text-base !leading-[1.2] text-brand-indigo md:!text-xl md:!leading-[1.2] dt:max-w-[308px] dt:mr-8 my-auto rounded-[8px] md:py-3 md:px-4 hover:bg-brand-indigo hover:text-white">…</a> aka getByRole('banner').getByRole('link', { name: 'REQUEST A PASS' })
+    2) <a href="/register" class="relative flex h-[320px] pb-12 cursor-pointer flex-col gap-[19px] overflow-hidden bg-brand-indigoTint text-center font-rigid text-[100px] font-semibold uppercase text-white dt:pb-[5.625rem] dt:h-[512px] xl:h-[614px] xl:text-[120px] max:h-[800px] max:text-[140px]">…</a> aka getByRole('link', { name: 'Request a pass', exact: true })
+    3) <a rel="noopener" target="_blank" href="/register" class="relative z-10 mx-auto my-[56px] flex h-[260px] w-[260px] cursor-pointer items-center justify-center rounded-full border-solid border-white uppercase border-2 lg:border-0.5 lg:desktop-din-2014-h2 lg:mx-[10vw] lg:my-0 dt:h-[320px] dt:w-[320px] xl:h-[400px] xl:w-[400px] max:h-[440px] max:w-[440px] bg-blueGradientMobile lg:bg-blueGradientDesktop hover:bg-none hover:bg-brand-rivieraBlue hover:text-brand-indigo hover:border-none">REQUEST A PASS</a> aka getByRole('contentinfo').getByRole('link', { name: 'REQUEST A PASS' })
+
+Call log:
+  - waiting for getByRole('link', { name: 'Request a pass' })
+
+    at /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/demo.test.ts:49:62
+```
+
+# Test source
+
+```ts
+   1 | import { test, expect } from '@playwright/test';
+   2 | import { POManager } from '../../pageobjects/POManager';
+   3 | import { readFileSync } from 'fs';
+   4 |
+   5 | const testData = JSON.parse(readFileSync('./playwright/testdata/testdataAll.json', 'utf-8'));  // Replace with the correct path to your test data file
+   6 |
+   7 | test.describe('Standalone Carousel Test Suite', () => {
+   8 |
+   9 |   test.beforeEach(async ({ page, baseURL }) => {
+  10 |     if (typeof baseURL === 'string') {
+  11 |       await page.goto(baseURL);
+  12 |       // allure.label('Base URL', baseURL);
+  13 |     } else {
+  14 |       // allure.severity('baseURL is not defined or not a string');
+  15 |       throw new Error('baseURL is not defined or not a string');
+  16 |     }
+  17 |   });
+  18 |
+  19 |   test.afterEach(async ({ page }) => {
+  20 |     await page.close();
+  21 |   });
+  22 |
+  23 |   test('Standalone Carousel - Content Validation', async ({ page }) => {
+  24 |     const standaloneCarouselData = testData.standaloneCarousel[0]; // Extracting the first item in the standaloneCarousel array
+  25 |     
+  26 |     // Create objects to access the page objects
+  27 |     const poManager = new POManager(page);
+  28 |     const basePage = poManager.getBasePage();
+  29 |     const schedulePage = poManager.getSchedulePage();
+  30 |
+  31 |     // Navigate to the schedule page
+  32 |     basePage.scheduleLink.click();
+  33 |
+  34 |     // Use innerText() to extract the text content from the elements
+  35 |     const header = await schedulePage.standaloneHeader.innerText();
+  36 |     const description = await schedulePage.standaloneDescription.innerText();
+  37 |
+  38 |     // Validate the header text
+  39 |     expect(header.trim()).toBe(standaloneCarouselData.Heading); // Comparing with the expected Heading from JSON
+  40 |
+  41 |     // Validate the description text
+  42 |     expect(description.trim()).toBe(standaloneCarouselData.description); // Comparing with the expected description from JSON
+  43 |   });
+  44 |
+  45 |   test('Validate the oversized CTA in Base page', async ({ page }) => {
+  46 |   
+  47 |     // Request a Pass
+  48 |     await expect(page.locator('#main-content')).toContainText('Request a pass');
+> 49 |     await page.getByRole('link', { name: 'Request a pass' }).hover();
+     |                                                              ^ Error: locator.hover: Error: strict mode violation: getByRole('link', { name: 'Request a pass' }) resolved to 3 elements:
+  50 |     await page.getByRole('link', { name: 'Request a pass Request a pass' }).click();
+  51 |     expect(page.url()).toBe('https://sportbeach-dev.vercel.app/register');
+  52 |     await expect(page.locator('iframe').contentFrame().getByText('Sorry! This page doesn\'t')).toBeVisible();
+  53 |     // Add a page object assertion, currently 404
+  54 |     await page.goBack();
+  55 |     await page.goBack();
+  56 |     expect(page.url()).toBe('https://sportbeach-dev.vercel.app/');
+  57 |   
+  58 |   });
+  59 |
+  60 | });
+  61 |
+```

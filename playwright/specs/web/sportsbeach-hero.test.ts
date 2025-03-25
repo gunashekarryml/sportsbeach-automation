@@ -14,7 +14,7 @@ test('Validate that each captured word from locator matches any of the allowed w
   const elementCount = await locator.count();
 
   // Define the allowed words as a Set for fast lookups
-  const allowedWords = new Set(['BEACH', 'SPORT', 'CANNES', '2024']);
+  const allowedWords = new Set(['BEACH', 'SPORT', 'CANNES', '2025']);
 
   // Loop through each element and validate the text
   for (let i = 0; i < elementCount; i++) {

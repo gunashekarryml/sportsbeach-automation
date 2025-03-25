@@ -1,0 +1,70 @@
+Link https://sportbeach-int.vercel.app/ is broken or not reachable.
+Link https://sportbeach-int.vercel.app/ is broken or not reachable.
+Error checking link: https://example.com/ apiRequestContext.get: Target page, context or browser has been closed
+Call log:
+  - → GET https://example.com/
+    - user-agent: Playwright/1.51.0 (x64; macOS 15.0) node/22.12
+    - accept: */*
+    - accept-encoding: gzip,deflate,br
+
+    at checkLinkStatus (/Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/sportsbeach-logoWall.test.ts:7:36)
+    at /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/sportsbeach-logoWall.test.ts:45:29 {
+  [Symbol(step)]: {
+    stepId: 'pw:api@26',
+    location: {
+      file: '/Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/sportsbeach-logoWall.test.ts',
+      line: 7,
+      column: 36,
+      function: 'checkLinkStatus'
+    },
+    category: 'pw:api',
+    title: 'apiRequestContext.get(https://example.com/)',
+    apiName: 'apiRequestContext.get',
+    params: {
+      url: 'https://example.com/',
+      params: undefined,
+      encodedParams: undefined,
+      method: 'GET',
+      headers: undefined,
+      postData: undefined,
+      jsonData: undefined,
+      formData: undefined,
+      multipartData: undefined,
+      timeout: undefined,
+      failOnStatusCode: undefined,
+      ignoreHTTPSErrors: undefined,
+      maxRedirects: undefined,
+      maxRetries: undefined,
+      __testHookLookup: undefined
+    },
+    boxedStack: undefined,
+    steps: [],
+    attachmentIndices: [],
+    info: TestStepInfoImpl {
+      annotations: [],
+      _testInfo: [TestInfoImpl],
+      _stepId: 'pw:api@26'
+    },
+    complete: [Function: complete],
+    endWallTime: 1742877658764,
+    error: {
+      message: 'Error: apiRequestContext.get: Target page, context or browser has been closed\n' +
+        'Call log:\n' +
+        '\x1B[2m  - → GET https://example.com/\x1B[22m\n' +
+        '\x1B[2m    - user-agent: Playwright/1.51.0 (x64; macOS 15.0) node/22.12\x1B[22m\n' +
+        '\x1B[2m    - accept: */*\x1B[22m\n' +
+        '\x1B[2m    - accept-encoding: gzip,deflate,br\x1B[22m\n',
+      stack: 'Error: apiRequestContext.get: Target page, context or browser has been closed\n' +
+        'Call log:\n' +
+        '\x1B[2m  - → GET https://example.com/\x1B[22m\n' +
+        '\x1B[2m    - user-agent: Playwright/1.51.0 (x64; macOS 15.0) node/22.12\x1B[22m\n' +
+        '\x1B[2m    - accept: */*\x1B[22m\n' +
+        '\x1B[2m    - accept-encoding: gzip,deflate,br\x1B[22m\n' +
+        '\n' +
+        '    at checkLinkStatus (/Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/sportsbeach-logoWall.test.ts:7:36)\n' +
+        '    at /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/sportsbeach-logoWall.test.ts:45:29',
+      cause: undefined
+    }
+  }
+}
+Link https://example.com/ is broken or not reachable.

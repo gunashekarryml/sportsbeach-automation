@@ -23,7 +23,7 @@ test.describe('Speaker Card Test Suite', () => {
 
   test('Speaker Card - Validate social media icon hovering for multiple icons', async ({ page }) => {
     // Navigate to the page where the global footer with social network icons exists
-    await page.goto('https://sportbeach-dev.vercel.app/roster');
+    // await page.goto('https://sportbeach-dev.vercel.app/roster');
     await page.getByRole('button', { name: 'Accept cookies' }).click();
   
     // Locator for the social media links

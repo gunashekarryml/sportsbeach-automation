@@ -3,12 +3,14 @@ import { Locator, Page } from '@playwright/test';
 export class BasePage {
     page: Page;
     requestPassLink: Locator;
+    requestPassAnimator: Locator;
     scheduleLink: Locator;
     partnersLink: Locator;
     closePopup: Locator;
     featured1UPAnimation: Locator;
     acceptCookies: Locator;
     letsPartnerButton: Locator;
+    requestPassAnimatorLink: Locator;
 
     // Social Media Links Locators
     instagramLink: Locator;
@@ -18,6 +20,8 @@ export class BasePage {
     constructor(page: Page) {
         this.page = page;
         this.requestPassLink = page.locator('//*[@id="__next"]/header/a/span');
+        this.requestPassAnimator = page.locator('//*[@id="main-content"]/a/div[3]/div/span');
+        this.requestPassAnimatorLink = page.getByRole('link', { name: 'Request a pass Request a pass' });
         this.scheduleLink = page.getByRole('link', { name: 'Schedule', exact: true });
         this.partnersLink = page.getByRole('link', { name: 'Partners', exact: true });
         this.closePopup = page.getByRole('button', { name: 'Close Alert Pop Up' });
