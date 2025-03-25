@@ -2,6 +2,7 @@ import { Locator, Page } from '@playwright/test';
 
 export class BasePage {
     page: Page;
+    roasterTab: Locator;
     requestPassLink: Locator;
     requestPassAnimator: Locator;
     scheduleLink: Locator;
@@ -19,6 +20,7 @@ export class BasePage {
 
     constructor(page: Page) {
         this.page = page;
+        this.roasterTab = page.locator('//*[@id="__next"]/header/nav/ul/li[2]/a');
         this.requestPassLink = page.locator('//*[@id="__next"]/header/a/span');
         this.requestPassAnimator = page.locator('//*[@id="main-content"]/a/div[3]/div/span');
         this.requestPassAnimatorLink = page.getByRole('link', { name: 'Request a pass Request a pass' });

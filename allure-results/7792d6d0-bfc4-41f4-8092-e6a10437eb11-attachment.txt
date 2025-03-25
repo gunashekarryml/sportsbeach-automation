@@ -1,0 +1,6 @@
+Partners Count : 21
+
+--- Summary ---
+Total Valid Links: 0
+
+Total Invalid Links: 0

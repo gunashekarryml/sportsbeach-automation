@@ -1,0 +1,139 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Speaker Card Test Suite >> Speaker Card - Validate social media icon hovering for multiple icons
+- Location: /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/sportsbeach-speakerCard.test.ts:25:7
+
+# Error details
+
+```
+Error: locator.click: Test ended.
+Call log:
+  - waiting for getByRole('button', { name: 'Accept cookies' })
+    - locator resolved to <button id="rcc-confirm-button" aria-label="Accept cookies" class="rounded-m bg-brand-rivieraBlue px-4 py-3 font-bold uppercase text-brand-indigo">I understand</button>
+  - attempting click action
+    - waiting for element to be visible, enabled and stable
+
+    at /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/sportsbeach-speakerCard.test.ts:30:28
+```
+
+# Test source
+
+```ts
+   1 | import { test, expect } from '@playwright/test';
+   2 | import { POManager } from '../../pageobjects/POManager';
+   3 | import { readFileSync } from 'fs';  // Import Node.js fs module
+   4 |
+   5 | test.describe('Speaker Card Test Suite', () => {
+   6 |
+   7 |   // allure.suite('Sauce Lab Login Feature Testcases');
+   8 |   // This will run before each test to open the base URL
+   9 |   test.beforeEach(async ({ page, baseURL }) => {
+   10 |
+   11 |     if (typeof baseURL === 'string') {
+   12 |       await page.goto(baseURL);
+   13 |       //allure.
+   14 |       //  allure.label('Base URL', baseURL);
+   15 |     } else {
+   16 |       // allure.severity('baseURL is not defined or not a string');
+   17 |       throw new Error('baseURL is not defined or not a string');
+   18 |     }
+   19 |   });
+   20 |
+   21 |   test.afterEach(async ({ page }, testInfo) => {
+   22 |     console.log('Execution Status : ' + testInfo.status);
+   23 |   });
+   24 |
+   25 |   test('Speaker Card - Validate social media icon hovering for multiple icons', async ({ page }) => {
+   26 |     
+   27 |     const poManager = new POManager(page);
+   28 |     const basePage = poManager.getBasePage();
+   29 |
+>  30 |     basePage.acceptCookies.click();
+      |                            ^ Error: locator.click: Test ended.
+   31 |     basePage.roasterTab.click();
+   32 |   
+   33 |     // Locator for the social media links
+   34 |     const socialMediaLinksLocator = page.locator('//*[@id="card-gridsearch-scroll-target"]/div/div[3]/div[*]/div[2]/a');
+   35 |   
+   36 |     // Get the total number of social media links (in this case, it's 300)
+   37 |     const linksCount = await socialMediaLinksLocator.count();
+   38 |
+   39 |     console.log("Total Links : "+linksCount);
+   40 |   
+   41 |     // Create an array to hold the popups
+   42 |     let popups: any[] = [];
+   43 |   
+   44 |     // Listen for the popups (new tabs)
+   45 |     page.on('popup', (popup) => {
+   46 |       console.log(`Popup opened: ${popup.url()}`); // Log popup URL for debugging
+   47 |       popups.push(popup); // Add the new popup to the array
+   48 |     });
+   49 |   
+   50 |     // Iterate over each social media link to perform the hover and validate the circle appearance
+   51 |     for (let i = 0; i < linksCount; i++) {
+   52 |       // Get the social media link element at index 'i'
+   53 |       const iconLocator = socialMediaLinksLocator.nth(i);
+   54 |   
+   55 |       // 1. Hover over the social media icon
+   56 |       await iconLocator.hover();
+   57 |   
+   58 |       // 2. Wait for the hover effect to be fully applied (adjust timeout if needed)
+   59 |     //   await page.waitForTimeout(10000);  // Wait for 1 second to allow animation to finish
+   60 |   
+   61 |       // 3. Check for the CSS changes after hover (border-radius and border)
+   62 |       const borderRadius = await iconLocator.evaluate((el: HTMLElement) => {
+   63 |         return window.getComputedStyle(el).getPropertyValue('border-radius');
+   64 |       });
+   65 |   
+   66 |       const borderColor = await iconLocator.evaluate((el: HTMLElement) => {
+   67 |         return window.getComputedStyle(el).getPropertyValue('border-color');
+   68 |       });
+   69 |   
+   70 |     //   console.log(`CSS after hover for icon ${i + 1}: border-radius: ${borderRadius}, border-color: ${borderColor}`);
+   71 |   
+   72 |       // 4. Assert that the border-radius is a large value (i.e., circular shape) and the border is visible (not transparent)
+   73 |       expect(borderRadius).toBe('9999px'); // Checking for large value that indicates a circular shape
+   74 |       expect(borderColor).not.toBe('transparent'); // Ensure the border has changed to something visible
+   75 |   
+   76 |       // 5. Log success message
+   77 |     //   console.log(`Circle appears on hover for icon ${i + 1}: Border radius is ${borderRadius} and border color is ${borderColor}`);
+   78 |     }
+   79 |   
+   80 |     // // Now, click the social media links to open the new tabs
+   81 |     // for (let i = 0; i < linksCount; i++) {
+   82 |     //   const iconLocator = socialMediaLinksLocator.nth(i);
+   83 |     //   await iconLocator.click();
+   84 |     // }
+   85 |   
+   86 |     // // Wait a bit to ensure the popups open (you can increase the timeout if necessary)
+   87 |     // await page.waitForTimeout(5000); // Wait for 5 seconds to ensure popups have time to open
+   88 |   
+   89 |     // // Ensure the popups have been captured by checking the number of popups in the array
+   90 |     // expect(popups.length).toBe(linksCount); // Ensure the number of popups matches the number of social media links
+   91 |   
+   92 |     // // Optionally, you can log the URLs of the popups to debug
+   93 |     // console.log('Captured popups:', popups.map(popup => popup.url()));
+   94 |   
+   95 |     // // Optionally, you can check the URLs of the popups to ensure they are correct
+   96 |     // for (let i = 0; i < popups.length; i++) {
+   97 |     //   console.log(`Popup URL at index ${i}: ${popups[i].url()}`);
+   98 |     //   // Adjust the validation logic as needed, for example, based on the social media platform
+   99 |     //   // Note: You may need a more sophisticated way of verifying URLs here depending on your actual case
+  100 |     //   await expect(popups[i]).toHaveURL(/(instagram|x\.com|linkedin\.com)/); // Match social media URLs
+  101 |     // }
+  102 |   
+  103 |     // // Optionally, you can also check if the popups have finished loading
+  104 |     // await Promise.all(popups.map(popup => popup.waitForLoadState('load')));
+  105 |   });
+  106 |   
+  107 |
+  108 |   
+  109 |
+  110 | });
+```

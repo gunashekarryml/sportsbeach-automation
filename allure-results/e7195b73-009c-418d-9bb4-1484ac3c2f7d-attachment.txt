@@ -1,0 +1,115 @@
+Link https://sportbeach-int.vercel.app/ is broken or not reachable.
+Link https://sportbeach-int.vercel.app/ is broken or not reachable.
+Error checking link: https://www.codeandtheory.com/ apiRequestContext.get: Target page, context or browser has been closed
+Call log:
+  - → GET https://www.codeandtheory.com/
+    - user-agent: Playwright/1.51.0 (x64; macOS 15.0) node/22.12
+    - accept: */*
+    - accept-encoding: gzip,deflate,br
+  - ← 200 OK
+    - content-type: text/html; charset=utf-8
+    - transfer-encoding: chunked
+    - connection: keep-alive
+    - date: Tue, 25 Mar 2025 05:40:05 GMT
+    - x-content-type-options: nosniff
+    - x-xss-protection: 1; mode=block
+    - x-powered-by: Express
+    - content-encoding: gzip
+    - strict-transport-security: max-age=15724800; includeSubDomains, max-age=31536000; includeSubDomains
+    - vary: Accept-Encoding
+    - x-cache: Miss from cloudfront
+    - via: 1.1 c28e4f033230dcfc686f3d237701499c.cloudfront.net (CloudFront)
+    - x-amz-cf-pop: BLR50-P1
+    - x-amz-cf-id: 6OynivMzb-dJKJGwcmlDJv-3YtKE7RHVE9VyickxKDU35aYGxuaCoA==
+
+    at checkLinkStatus (/Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/sportsbeach-PartnerCard.test.ts:8:36)
+    at /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/sportsbeach-PartnerCard.test.ts:104:31 {
+  [Symbol(step)]: {
+    stepId: 'pw:api@27',
+    location: {
+      file: '/Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/sportsbeach-PartnerCard.test.ts',
+      line: 8,
+      column: 36,
+      function: 'checkLinkStatus'
+    },
+    category: 'pw:api',
+    title: 'apiRequestContext.get(https://www.codeandtheory.com/)',
+    apiName: 'apiRequestContext.get',
+    params: {
+      url: 'https://www.codeandtheory.com/',
+      params: undefined,
+      encodedParams: undefined,
+      method: 'GET',
+      headers: undefined,
+      postData: undefined,
+      jsonData: undefined,
+      formData: undefined,
+      multipartData: undefined,
+      timeout: undefined,
+      failOnStatusCode: undefined,
+      ignoreHTTPSErrors: undefined,
+      maxRedirects: undefined,
+      maxRetries: undefined,
+      __testHookLookup: undefined
+    },
+    boxedStack: undefined,
+    steps: [],
+    attachmentIndices: [],
+    info: TestStepInfoImpl {
+      annotations: [],
+      _testInfo: [TestInfoImpl],
+      _stepId: 'pw:api@27'
+    },
+    complete: [Function: complete],
+    endWallTime: 1742881206311,
+    error: {
+      message: 'Error: apiRequestContext.get: Target page, context or browser has been closed\n' +
+        'Call log:\n' +
+        '\x1B[2m  - → GET https://www.codeandtheory.com/\x1B[22m\n' +
+        '\x1B[2m    - user-agent: Playwright/1.51.0 (x64; macOS 15.0) node/22.12\x1B[22m\n' +
+        '\x1B[2m    - accept: */*\x1B[22m\n' +
+        '\x1B[2m    - accept-encoding: gzip,deflate,br\x1B[22m\n' +
+        '\x1B[2m  - ← 200 OK\x1B[22m\n' +
+        '\x1B[2m    - content-type: text/html; charset=utf-8\x1B[22m\n' +
+        '\x1B[2m    - transfer-encoding: chunked\x1B[22m\n' +
+        '\x1B[2m    - connection: keep-alive\x1B[22m\n' +
+        '\x1B[2m    - date: Tue, 25 Mar 2025 05:40:05 GMT\x1B[22m\n' +
+        '\x1B[2m    - x-content-type-options: nosniff\x1B[22m\n' +
+        '\x1B[2m    - x-xss-protection: 1; mode=block\x1B[22m\n' +
+        '\x1B[2m    - x-powered-by: Express\x1B[22m\n' +
+        '\x1B[2m    - content-encoding: gzip\x1B[22m\n' +
+        '\x1B[2m    - strict-transport-security: max-age=15724800; includeSubDomains, max-age=31536000; includeSubDomains\x1B[22m\n' +
+        '\x1B[2m    - vary: Accept-Encoding\x1B[22m\n' +
+        '\x1B[2m    - x-cache: Miss from cloudfront\x1B[22m\n' +
+        '\x1B[2m    - via: 1.1 c28e4f033230dcfc686f3d237701499c.cloudfront.net (CloudFront)\x1B[22m\n' +
+        '\x1B[2m    - x-amz-cf-pop: BLR50-P1\x1B[22m\n' +
+        '\x1B[2m    - x-amz-cf-id: 6OynivMzb-dJKJGwcmlDJv-3YtKE7RHVE9VyickxKDU35aYGxuaCoA==\x1B[22m\n',
+      stack: 'Error: apiRequestContext.get: Target page, context or browser has been closed\n' +
+        'Call log:\n' +
+        '\x1B[2m  - → GET https://www.codeandtheory.com/\x1B[22m\n' +
+        '\x1B[2m    - user-agent: Playwright/1.51.0 (x64; macOS 15.0) node/22.12\x1B[22m\n' +
+        '\x1B[2m    - accept: */*\x1B[22m\n' +
+        '\x1B[2m    - accept-encoding: gzip,deflate,br\x1B[22m\n' +
+        '\x1B[2m  - ← 200 OK\x1B[22m\n' +
+        '\x1B[2m    - content-type: text/html; charset=utf-8\x1B[22m\n' +
+        '\x1B[2m    - transfer-encoding: chunked\x1B[22m\n' +
+        '\x1B[2m    - connection: keep-alive\x1B[22m\n' +
+        '\x1B[2m    - date: Tue, 25 Mar 2025 05:40:05 GMT\x1B[22m\n' +
+        '\x1B[2m    - x-content-type-options: nosniff\x1B[22m\n' +
+        '\x1B[2m    - x-xss-protection: 1; mode=block\x1B[22m\n' +
+        '\x1B[2m    - x-powered-by: Express\x1B[22m\n' +
+        '\x1B[2m    - content-encoding: gzip\x1B[22m\n' +
+        '\x1B[2m    - strict-transport-security: max-age=15724800; includeSubDomains, max-age=31536000; includeSubDomains\x1B[22m\n' +
+        '\x1B[2m    - vary: Accept-Encoding\x1B[22m\n' +
+        '\x1B[2m    - x-cache: Miss from cloudfront\x1B[22m\n' +
+        '\x1B[2m    - via: 1.1 c28e4f033230dcfc686f3d237701499c.cloudfront.net (CloudFront)\x1B[22m\n' +
+        '\x1B[2m    - x-amz-cf-pop: BLR50-P1\x1B[22m\n' +
+        '\x1B[2m    - x-amz-cf-id: 6OynivMzb-dJKJGwcmlDJv-3YtKE7RHVE9VyickxKDU35aYGxuaCoA==\x1B[22m\n' +
+        '\n' +
+        '    at checkLinkStatus (/Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/sportsbeach-PartnerCard.test.ts:8:36)\n' +
+        '    at /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/sportsbeach-PartnerCard.test.ts:104:31',
+      cause: undefined
+    }
+  }
+}
+Link https://www.codeandtheory.com/ is broken or not reachable.

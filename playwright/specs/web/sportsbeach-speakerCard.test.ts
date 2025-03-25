@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { POManager } from '../../pageobjects/POManager';
 import { readFileSync } from 'fs';  // Import Node.js fs module
 
 test.describe('Speaker Card Test Suite', () => {
@@ -22,12 +23,15 @@ test.describe('Speaker Card Test Suite', () => {
   });
 
   test('Speaker Card - Validate social media icon hovering for multiple icons', async ({ page }) => {
-    // Navigate to the page where the global footer with social network icons exists
-    // await page.goto('https://sportbeach-dev.vercel.app/roster');
-    await page.getByRole('button', { name: 'Accept cookies' }).click();
+    
+    const poManager = new POManager(page);
+    const basePage = poManager.getBasePage();
+
+    // basePage.acceptCookies.click();
+    basePage.roasterTab.click();
   
     // Locator for the social media links
-    const socialMediaLinksLocator = page.locator('//body/div/main/div/div/div/div[*]/div[2]/a[*]');
+    const socialMediaLinksLocator = page.locator('//*[@id="card-gridsearch-scroll-target"]/div/div[3]/div[*]/div[2]/a');
   
     // Get the total number of social media links (in this case, it's 300)
     const linksCount = await socialMediaLinksLocator.count();
