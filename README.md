@@ -16,6 +16,11 @@
     Generate - allure generate allure-results --clean --output ./allure-report
     open -  allure open ./allure-report   
 
+  # For Demo purpose, run the below commands ( Which will run 5 user stories test cases )
+    execution - npm run playwright:test-web:dev:chrome
+    Generate - allure generate allure-results --clean --output ./allure-report
+    open -  allure open ./allure-report     
+
 
 
 
