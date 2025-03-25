@@ -1,0 +1,150 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Standalone Carousel Test Suite >> Validate the logo wall
+- Location: /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/sportsbeach-logoWall.test.ts:40:7
+
+# Error details
+
+```
+Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: 0
+Received: 5
+    at /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/sportsbeach-logoWall.test.ts:86:33
+```
+
+# Test source
+
+```ts
+   1 | import { test, expect, Page, APIRequestContext } from '@playwright/test';
+   2 | import * as fs from 'fs';
+   3 |
+   4 | async function checkLinkStatus(request: APIRequestContext, url: string): Promise<boolean> {
+   5 |   try {
+   6 |     // Send a GET request to check if the link is valid (status 200)
+   7 |     const response = await request.get(url);
+   8 |
+   9 |     // If the status is 200, the link is valid
+   10 |     return response.status() === 200;
+   11 |   } catch (error) {
+   12 |     // If there is an error with the request (e.g., network issue), return false
+   13 |     console.error(`Error checking link: ${url}`, error);
+   14 |     return false;
+   15 |   }
+   16 | }
+   17 |
+   18 | // Load the expected links from the JSON file
+   19 | function loadExpectedLinks(): string[] {
+   20 |   const data = fs.readFileSync('./playwright/testdata/expectedLinks.json', 'utf-8');
+   21 |   return JSON.parse(data);
+   22 | }
+   23 |
+   24 | test.describe('Standalone Carousel Test Suite', () => {
+   25 |
+   26 |   test.beforeEach(async ({ page, baseURL }) => {
+   27 |     if (typeof baseURL === 'string') {
+   28 |       await page.goto(baseURL);
+   29 |       // allure.label('Base URL', baseURL);
+   30 |     } else {
+   31 |       // allure.severity('baseURL is not defined or not a string');
+   32 |       throw new Error('baseURL is not defined or not a string');
+   33 |     }
+   34 |   });
+   35 |
+   36 |   test.afterEach(async ({ page }) => {
+   37 |     await page.close();
+   38 |   });
+   39 |
+   40 |   test('Validate the logo wall', async ({ page, request }) => {
+   41 |
+   42 |     const partnerstLocators = page.locator('//*[@id="main-content"]/section[1]/div/div[2]/div[*]/div[1]/div/div/div/a[*]');
+   43 |     const partnersCount = await partnerstLocators.count();
+   44 |     console.log("Total partner count: " + partnersCount);
+   45 |
+   46 |     // Initialize arrays to store valid and invalid links
+   47 |     const validLinks: string[] = [];
+   48 |     const invalidLinks: string[] = [];
+   49 |
+   50 |     // Loop through all links and check if they are valid
+   51 |     for (let i = 0; i < partnersCount; i++) {
+   52 |       const partner = partnerstLocators.nth(i); // Get the partner at index i
+   53 |
+   54 |       // Capture the 'href' attribute (link) of the partner
+   55 |       const link = await partner.getAttribute('href');
+   56 |       console.log(`Checking link: ${link}`);
+   57 |
+   58 |       if (link) {
+   59 |         // If the href is not null or undefined, check the link status using the API request
+   60 |         const isValid = await checkLinkStatus(request, link);
+   61 |
+   62 |         // Store valid or invalid links based on status
+   63 |         if (isValid) {
+   64 |           validLinks.push(link);
+   65 |           console.log(`Link ${link} is valid.`);
+   66 |         } else {
+   67 |           invalidLinks.push(link);
+   68 |           console.error(`Link ${link} is broken or not reachable.`);
+   69 |         }
+   70 |       }
+   71 |     }
+   72 |
+   73 |     // Print the results for valid and invalid links
+   74 |     console.log("\n--- Summary ---");
+   75 |     console.log(`Total Valid Links: ${validLinks.length}`);
+   76 |     validLinks.forEach((link, index) => {
+   77 |       console.log(`Valid Link ${index + 1}: ${link}`);
+   78 |     });
+   79 |
+   80 |     console.log(`\nTotal Invalid Links: ${invalidLinks.length}`);
+   81 |     invalidLinks.forEach((link, index) => {
+   82 |       console.error(`Invalid Link ${index + 1}: ${link}`);
+   83 |     });
+   84 |
+   85 |     // Optionally, assert that no links are invalid (to ensure the page is fully working)
+>  86 |     expect(invalidLinks.length).toBe(0);  // This will fail the test if there are invalid links
+      |                                 ^ Error: expect(received).toBe(expected) // Object.is equality
+   87 |   });
+   88 |
+   89 |
+   90 |   test('Validate captured links against expected links', async ({ page }) => {
+   91 |     // Load the expected links from the JSON file
+   92 |     const expectedLinks = loadExpectedLinks();
+   93 |
+   94 |     // Capture all the links on the page
+   95 |     const partnerstLocators = page.locator('//*[@id="main-content"]/section[1]/div/div[2]/div[*]/div[1]/div/div/div/a[*]');
+   96 |     const partnersCount = await partnerstLocators.count();
+   97 |     console.log("Total partner count: " + partnersCount);
+   98 |
+   99 |     // Capture all the links as an array of strings
+  100 |     const capturedLinks: string[] = [];
+  101 |     for (let i = 0; i < partnersCount; i++) {
+  102 |       const partner = partnerstLocators.nth(i); // Get the partner at index i
+  103 |       const link = await partner.getAttribute('href');
+  104 |       if (link) {
+  105 |         capturedLinks.push(link);
+  106 |       }
+  107 |     }
+  108 |
+  109 |     // Assert that the captured links match the expected links
+  110 |     expect(capturedLinks).toEqual(expectedLinks);
+  111 |
+  112 |     // Print the results
+  113 |     console.log("\nCaptured Links:");
+  114 |     capturedLinks.forEach((link, index) => {
+  115 |       console.log(`Captured Link ${index + 1}: ${link}`);
+  116 |     });
+  117 |
+  118 |     console.log("\nExpected Links:");
+  119 |     expectedLinks.forEach((link, index) => {
+  120 |       console.log(`Expected Link ${index + 1}: ${link}`);
+  121 |     });
+  122 |   });
+  123 | });
+  124 |
+```

@@ -1,0 +1,59 @@
+Total partner count: 21
+Checking link: https://www.72andsunny.com/
+Link https://www.72andsunny.com/ is valid.
+Checking link: https://www.allisonworldwide.com/
+Link https://www.allisonworldwide.com/ is valid.
+Checking link: https://google.com
+Link https://google.com is valid.
+Checking link: https://apollojets.com/
+Link https://apollojets.com/ is valid.
+Checking link: https://sportbeach-int.vercel.app/
+Checking link: https://sportbeach-int.vercel.app/
+Checking link: https://www.codeandtheory.com/
+Link https://www.codeandtheory.com/ is valid.
+Checking link: https://example.com/
+Link https://example.com/ is valid.
+Checking link: https://sportbeach-int.vercel.app/
+Checking link: https://www.gatorade.com
+Link https://www.gatorade.com is valid.
+Checking link: https://example.com/
+Link https://example.com/ is valid.
+Checking link: https://google.com
+Link https://google.com is valid.
+Checking link: https://example.com/
+Link https://example.com/ is valid.
+Checking link: https://example.com/
+Link https://example.com/ is valid.
+Checking link: https://google.com
+Link https://google.com is valid.
+Checking link: https://camp.reachtv.com/
+Link https://camp.reachtv.com/ is valid.
+Checking link: https://google.com
+Link https://google.com is valid.
+Checking link: https://sportbeach-int.vercel.app/
+Checking link: https://sportbeach-int.vercel.app/
+Checking link: https://example.com/
+Link https://example.com/ is valid.
+Checking link: https://example.com/
+Link https://example.com/ is valid.
+
+--- Summary ---
+Total Valid Links: 16
+Valid Link 1: https://www.72andsunny.com/
+Valid Link 2: https://www.allisonworldwide.com/
+Valid Link 3: https://google.com
+Valid Link 4: https://apollojets.com/
+Valid Link 5: https://www.codeandtheory.com/
+Valid Link 6: https://example.com/
+Valid Link 7: https://www.gatorade.com
+Valid Link 8: https://example.com/
+Valid Link 9: https://google.com
+Valid Link 10: https://example.com/
+Valid Link 11: https://example.com/
+Valid Link 12: https://google.com
+Valid Link 13: https://camp.reachtv.com/
+Valid Link 14: https://google.com
+Valid Link 15: https://example.com/
+Valid Link 16: https://example.com/
+
+Total Invalid Links: 5
