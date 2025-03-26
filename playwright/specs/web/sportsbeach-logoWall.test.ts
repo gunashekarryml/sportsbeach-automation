@@ -21,7 +21,7 @@ function loadExpectedLinks(): string[] {
   return JSON.parse(data);
 }
 
-test.describe('Standalone Carousel Test Suite', () => {
+test.describe('Logo Wall Test Suite', () => {
 
   test.beforeEach(async ({ page, baseURL }) => {
     if (typeof baseURL === 'string') {

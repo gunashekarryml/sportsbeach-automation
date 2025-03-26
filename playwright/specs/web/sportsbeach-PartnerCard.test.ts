@@ -64,7 +64,7 @@ test.describe('Partner Card Test Suite', () => {
   });
 
   // New test case to validate partner links and check API status
-  test.only('Partner Card - Validate Partner Links and Check API Status', async ({ page, request }) => {
+  test('Partner Card - Validate Partner Links and Check API Status', async ({ page, request }) => {
     // Create page object instances
     const poManager = new POManager(page);
     const basePage = poManager.getBasePage();

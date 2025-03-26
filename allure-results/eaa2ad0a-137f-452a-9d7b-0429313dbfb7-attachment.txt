@@ -1,0 +1,119 @@
+Error checking link: https://ads.microsoft.com/ apiRequestContext.get: Target page, context or browser has been closed
+Call log:
+  - → GET https://ads.microsoft.com/
+    - user-agent: Playwright/1.51.0 (x64; macOS 15.0) node/22.12
+    - accept: */*
+    - accept-encoding: gzip,deflate,br
+  - ← 200 OK
+    - cache-control: private, no-store
+    - content-type: text/html; charset=utf-8
+    - content-encoding: gzip
+    - vary: Accept-Encoding
+    - server: Microsoft-IIS/10.0
+    - p3p: CP="ALL IND DSP COR ADM CONo CUR CUSo IVAo IVDo PSA PSD TAI TELo OUR SAMo CNT COM INT NAV ONL PHY PRE PUR UNI"
+    - set-cookie: JFX_SessionId=c4b9f20a-2e98-4943-b1ff-b2ac0060de50; domain=ads.microsoft.com; path=/; secure; HttpOnly; SameSite=None,btrk=bid=c4b9f20a-2e98-4943-b1ff-b2ac0060de50&start=638785651612245607&btrr=638785651612402359; domain=ads.microsoft.com; expires=Thu, 26-Mar-2026 05:52:41 GMT; path=/; secure; HttpOnly; SameSite=None,LCIDCookie=1033; domain=ads.microsoft.com; expires=Thu, 26-Mar-2026 00:00:00 GMT; path=/; secure; SameSite=None,MarketIDCookie=1033; domain=ads.microsoft.com; expires=Thu, 26-Mar-2026 00:00:00 GMT; path=/; secure; SameSite=None,JFX_SessionId=c4b9f20a-2e98-4943-b1ff-b2ac0060de50; domain=ads.microsoft.com; path=/; secure; HttpOnly; SameSite=None,btrk=bid=c4b9f20a-2e98-4943-b1ff-b2ac0060de50&start=638785651612245607&btrr=638785651612402359; domain=ads.microsoft.com; expires=Thu, 26-Mar-2026 05:52:41 GMT; path=/; secure; HttpOnly; SameSite=None,LCIDCookie=1033; domain=ads.microsoft.com; expires=Thu, 26-Mar-2026 00:00:00 GMT; path=/; secure; SameSite=None,MarketIDCookie=1033; domain=ads.microsoft.com; expires=Thu, 26-Mar-2026 00:00:00 GMT; path=/; secure; SameSite=None,vid=id=67eb874b-6a8e-4ee9-a593-0998c5ed96d4&crdt=3/26/2025 5:52:41 AM; domain=ads.microsoft.com; expires=Thu, 26-Mar-2026 05:52:41 GMT; path=/; secure; SameSite=None,ClientDetectedMarketInfo=UserIso=in&UserMkt=en-us&UserTz=5.5; domain=ads.microsoft.com; path=/; secure; HttpOnly; SameSite=None,__RequestVerificationToken_Lw__=VNF5VUbDRXMCBRMtTC2OQo0+ysOsnSYCdRAmszComGY5Tr4l42/p0Q6MJaggPUuazS8ASrp9w19FvB+EBYSAmBT9Kgb1J/n+9A3zVDsHs7Ah3y91NRvSFc83ro0mscRdIeeEqg==; path=/; secure; HttpOnly; SameSite=None
+    - x-aspnetmvc-version: 3.0
+    - x-frame-options: DENY
+    - x-aspnet-version: 4.0.30319
+    - requestid: 5f82adf6-0431-4e80-b3cf-dc4f688468da-8e91d
+    - x-powered-by: ASP.NET, ARR/3.0, ASP.NET
+    - strict-transport-security: max-age=31536000
+    - timing-allow-origin: *
+    - date: Wed, 26 Mar 2025 05:52:40 GMT
+    - content-length: 81240
+
+    at checkLinkStatus (/Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/sportsbeach-PartnerCard.test.ts:8:36)
+    at /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/sportsbeach-PartnerCard.test.ts:99:33 {
+  [Symbol(step)]: {
+    stepId: 'pw:api@30',
+    location: {
+      file: '/Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/sportsbeach-PartnerCard.test.ts',
+      line: 8,
+      column: 36,
+      function: 'checkLinkStatus'
+    },
+    category: 'pw:api',
+    title: 'apiRequestContext.get(https://ads.microsoft.com/)',
+    apiName: 'apiRequestContext.get',
+    params: {
+      url: 'https://ads.microsoft.com/',
+      params: undefined,
+      encodedParams: undefined,
+      method: 'GET',
+      headers: undefined,
+      postData: undefined,
+      jsonData: undefined,
+      formData: undefined,
+      multipartData: undefined,
+      timeout: undefined,
+      failOnStatusCode: undefined,
+      ignoreHTTPSErrors: undefined,
+      maxRedirects: undefined,
+      maxRetries: undefined,
+      __testHookLookup: undefined
+    },
+    boxedStack: undefined,
+    steps: [],
+    attachmentIndices: [],
+    info: TestStepInfoImpl {
+      annotations: [],
+      _testInfo: [TestInfoImpl],
+      _stepId: 'pw:api@30'
+    },
+    complete: [Function: complete],
+    endWallTime: 1742968361229,
+    error: {
+      message: 'Error: apiRequestContext.get: Target page, context or browser has been closed\n' +
+        'Call log:\n' +
+        '\x1B[2m  - → GET https://ads.microsoft.com/\x1B[22m\n' +
+        '\x1B[2m    - user-agent: Playwright/1.51.0 (x64; macOS 15.0) node/22.12\x1B[22m\n' +
+        '\x1B[2m    - accept: */*\x1B[22m\n' +
+        '\x1B[2m    - accept-encoding: gzip,deflate,br\x1B[22m\n' +
+        '\x1B[2m  - ← 200 OK\x1B[22m\n' +
+        '\x1B[2m    - cache-control: private, no-store\x1B[22m\n' +
+        '\x1B[2m    - content-type: text/html; charset=utf-8\x1B[22m\n' +
+        '\x1B[2m    - content-encoding: gzip\x1B[22m\n' +
+        '\x1B[2m    - vary: Accept-Encoding\x1B[22m\n' +
+        '\x1B[2m    - server: Microsoft-IIS/10.0\x1B[22m\n' +
+        '\x1B[2m    - p3p: CP="ALL IND DSP COR ADM CONo CUR CUSo IVAo IVDo PSA PSD TAI TELo OUR SAMo CNT COM INT NAV ONL PHY PRE PUR UNI"\x1B[22m\n' +
+        '\x1B[2m    - set-cookie: JFX_SessionId=c4b9f20a-2e98-4943-b1ff-b2ac0060de50; domain=ads.microsoft.com; path=/; secure; HttpOnly; SameSite=None,btrk=bid=c4b9f20a-2e98-4943-b1ff-b2ac0060de50&start=638785651612245607&btrr=638785651612402359; domain=ads.microsoft.com; expires=Thu, 26-Mar-2026 05:52:41 GMT; path=/; secure; HttpOnly; SameSite=None,LCIDCookie=1033; domain=ads.microsoft.com; expires=Thu, 26-Mar-2026 00:00:00 GMT; path=/; secure; SameSite=None,MarketIDCookie=1033; domain=ads.microsoft.com; expires=Thu, 26-Mar-2026 00:00:00 GMT; path=/; secure; SameSite=None,JFX_SessionId=c4b9f20a-2e98-4943-b1ff-b2ac0060de50; domain=ads.microsoft.com; path=/; secure; HttpOnly; SameSite=None,btrk=bid=c4b9f20a-2e98-4943-b1ff-b2ac0060de50&start=638785651612245607&btrr=638785651612402359; domain=ads.microsoft.com; expires=Thu, 26-Mar-2026 05:52:41 GMT; path=/; secure; HttpOnly; SameSite=None,LCIDCookie=1033; domain=ads.microsoft.com; expires=Thu, 26-Mar-2026 00:00:00 GMT; path=/; secure; SameSite=None,MarketIDCookie=1033; domain=ads.microsoft.com; expires=Thu, 26-Mar-2026 00:00:00 GMT; path=/; secure; SameSite=None,vid=id=67eb874b-6a8e-4ee9-a593-0998c5ed96d4&crdt=3/26/2025 5:52:41 AM; domain=ads.microsoft.com; expires=Thu, 26-Mar-2026 05:52:41 GMT; path=/; secure; SameSite=None,ClientDetectedMarketInfo=UserIso=in&UserMkt=en-us&UserTz=5.5; domain=ads.microsoft.com; path=/; secure; HttpOnly; SameSite=None,__RequestVerificationToken_Lw__=VNF5VUbDRXMCBRMtTC2OQo0+ysOsnSYCdRAmszComGY5Tr4l42/p0Q6MJaggPUuazS8ASrp9w19FvB+EBYSAmBT9Kgb1J/n+9A3zVDsHs7Ah3y91NRvSFc83ro0mscRdIeeEqg==; path=/; secure; HttpOnly; SameSite=None\x1B[22m\n' +
+        '\x1B[2m    - x-aspnetmvc-version: 3.0\x1B[22m\n' +
+        '\x1B[2m    - x-frame-options: DENY\x1B[22m\n' +
+        '\x1B[2m    - x-aspnet-version: 4.0.30319\x1B[22m\n' +
+        '\x1B[2m    - requestid: 5f82adf6-0431-4e80-b3cf-dc4f688468da-8e91d\x1B[22m\n' +
+        '\x1B[2m    - x-powered-by: ASP.NET, ARR/3.0, ASP.NET\x1B[22m\n' +
+        '\x1B[2m    - strict-transport-security: max-age=31536000\x1B[22m\n' +
+        '\x1B[2m    - timing-allow-origin: *\x1B[22m\n' +
+        '\x1B[2m    - date: Wed, 26 Mar 2025 05:52:40 GMT\x1B[22m\n' +
+        '\x1B[2m    - content-length: 81240\x1B[22m\n',
+      stack: 'Error: apiRequestContext.get: Target page, context or browser has been closed\n' +
+        'Call log:\n' +
+        '\x1B[2m  - → GET https://ads.microsoft.com/\x1B[22m\n' +
+        '\x1B[2m    - user-agent: Playwright/1.51.0 (x64; macOS 15.0) node/22.12\x1B[22m\n' +
+        '\x1B[2m    - accept: */*\x1B[22m\n' +
+        '\x1B[2m    - accept-encoding: gzip,deflate,br\x1B[22m\n' +
+        '\x1B[2m  - ← 200 OK\x1B[22m\n' +
+        '\x1B[2m    - cache-control: private, no-store\x1B[22m\n' +
+        '\x1B[2m    - content-type: text/html; charset=utf-8\x1B[22m\n' +
+        '\x1B[2m    - content-encoding: gzip\x1B[22m\n' +
+        '\x1B[2m    - vary: Accept-Encoding\x1B[22m\n' +
+        '\x1B[2m    - server: Microsoft-IIS/10.0\x1B[22m\n' +
+        '\x1B[2m    - p3p: CP="ALL IND DSP COR ADM CONo CUR CUSo IVAo IVDo PSA PSD TAI TELo OUR SAMo CNT COM INT NAV ONL PHY PRE PUR UNI"\x1B[22m\n' +
+        '\x1B[2m    - set-cookie: JFX_SessionId=c4b9f20a-2e98-4943-b1ff-b2ac0060de50; domain=ads.microsoft.com; path=/; secure; HttpOnly; SameSite=None,btrk=bid=c4b9f20a-2e98-4943-b1ff-b2ac0060de50&start=638785651612245607&btrr=638785651612402359; domain=ads.microsoft.com; expires=Thu, 26-Mar-2026 05:52:41 GMT; path=/; secure; HttpOnly; SameSite=None,LCIDCookie=1033; domain=ads.microsoft.com; expires=Thu, 26-Mar-2026 00:00:00 GMT; path=/; secure; SameSite=None,MarketIDCookie=1033; domain=ads.microsoft.com; expires=Thu, 26-Mar-2026 00:00:00 GMT; path=/; secure; SameSite=None,JFX_SessionId=c4b9f20a-2e98-4943-b1ff-b2ac0060de50; domain=ads.microsoft.com; path=/; secure; HttpOnly; SameSite=None,btrk=bid=c4b9f20a-2e98-4943-b1ff-b2ac0060de50&start=638785651612245607&btrr=638785651612402359; domain=ads.microsoft.com; expires=Thu, 26-Mar-2026 05:52:41 GMT; path=/; secure; HttpOnly; SameSite=None,LCIDCookie=1033; domain=ads.microsoft.com; expires=Thu, 26-Mar-2026 00:00:00 GMT; path=/; secure; SameSite=None,MarketIDCookie=1033; domain=ads.microsoft.com; expires=Thu, 26-Mar-2026 00:00:00 GMT; path=/; secure; SameSite=None,vid=id=67eb874b-6a8e-4ee9-a593-0998c5ed96d4&crdt=3/26/2025 5:52:41 AM; domain=ads.microsoft.com; expires=Thu, 26-Mar-2026 05:52:41 GMT; path=/; secure; SameSite=None,ClientDetectedMarketInfo=UserIso=in&UserMkt=en-us&UserTz=5.5; domain=ads.microsoft.com; path=/; secure; HttpOnly; SameSite=None,__RequestVerificationToken_Lw__=VNF5VUbDRXMCBRMtTC2OQo0+ysOsnSYCdRAmszComGY5Tr4l42/p0Q6MJaggPUuazS8ASrp9w19FvB+EBYSAmBT9Kgb1J/n+9A3zVDsHs7Ah3y91NRvSFc83ro0mscRdIeeEqg==; path=/; secure; HttpOnly; SameSite=None\x1B[22m\n' +
+        '\x1B[2m    - x-aspnetmvc-version: 3.0\x1B[22m\n' +
+        '\x1B[2m    - x-frame-options: DENY\x1B[22m\n' +
+        '\x1B[2m    - x-aspnet-version: 4.0.30319\x1B[22m\n' +
+        '\x1B[2m    - requestid: 5f82adf6-0431-4e80-b3cf-dc4f688468da-8e91d\x1B[22m\n' +
+        '\x1B[2m    - x-powered-by: ASP.NET, ARR/3.0, ASP.NET\x1B[22m\n' +
+        '\x1B[2m    - strict-transport-security: max-age=31536000\x1B[22m\n' +
+        '\x1B[2m    - timing-allow-origin: *\x1B[22m\n' +
+        '\x1B[2m    - date: Wed, 26 Mar 2025 05:52:40 GMT\x1B[22m\n' +
+        '\x1B[2m    - content-length: 81240\x1B[22m\n' +
+        '\n' +
+        '    at checkLinkStatus (/Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/sportsbeach-PartnerCard.test.ts:8:36)\n' +
+        '    at /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/sportsbeach-PartnerCard.test.ts:99:33',
+      cause: undefined
+    }
+  }
+}
+Link https://ads.microsoft.com/ is broken or not reachable.

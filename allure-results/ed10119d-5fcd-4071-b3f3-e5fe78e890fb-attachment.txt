@@ -1,0 +1,68 @@
+Error checking link: https://about.meta.com/ apiRequestContext.get: Target page, context or browser has been closed
+Call log:
+  - → GET https://about.meta.com/
+    - user-agent: Playwright/1.51.0 (x64; macOS 15.0) node/22.12
+    - accept: */*
+    - accept-encoding: gzip,deflate,br
+
+    at checkLinkStatus (/Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/sportsbeach-PartnerCard.test.ts:8:36)
+    at /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/sportsbeach-PartnerCard.test.ts:99:33 {
+  [Symbol(step)]: {
+    stepId: 'pw:api@27',
+    location: {
+      file: '/Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/sportsbeach-PartnerCard.test.ts',
+      line: 8,
+      column: 36,
+      function: 'checkLinkStatus'
+    },
+    category: 'pw:api',
+    title: 'apiRequestContext.get(https://about.meta.com/)',
+    apiName: 'apiRequestContext.get',
+    params: {
+      url: 'https://about.meta.com/',
+      params: undefined,
+      encodedParams: undefined,
+      method: 'GET',
+      headers: undefined,
+      postData: undefined,
+      jsonData: undefined,
+      formData: undefined,
+      multipartData: undefined,
+      timeout: undefined,
+      failOnStatusCode: undefined,
+      ignoreHTTPSErrors: undefined,
+      maxRedirects: undefined,
+      maxRetries: undefined,
+      __testHookLookup: undefined
+    },
+    boxedStack: undefined,
+    steps: [],
+    attachmentIndices: [],
+    info: TestStepInfoImpl {
+      annotations: [],
+      _testInfo: [TestInfoImpl],
+      _stepId: 'pw:api@27'
+    },
+    complete: [Function: complete],
+    endWallTime: 1742968164713,
+    error: {
+      message: 'Error: apiRequestContext.get: Target page, context or browser has been closed\n' +
+        'Call log:\n' +
+        '\x1B[2m  - → GET https://about.meta.com/\x1B[22m\n' +
+        '\x1B[2m    - user-agent: Playwright/1.51.0 (x64; macOS 15.0) node/22.12\x1B[22m\n' +
+        '\x1B[2m    - accept: */*\x1B[22m\n' +
+        '\x1B[2m    - accept-encoding: gzip,deflate,br\x1B[22m\n',
+      stack: 'Error: apiRequestContext.get: Target page, context or browser has been closed\n' +
+        'Call log:\n' +
+        '\x1B[2m  - → GET https://about.meta.com/\x1B[22m\n' +
+        '\x1B[2m    - user-agent: Playwright/1.51.0 (x64; macOS 15.0) node/22.12\x1B[22m\n' +
+        '\x1B[2m    - accept: */*\x1B[22m\n' +
+        '\x1B[2m    - accept-encoding: gzip,deflate,br\x1B[22m\n' +
+        '\n' +
+        '    at checkLinkStatus (/Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/sportsbeach-PartnerCard.test.ts:8:36)\n' +
+        '    at /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/sportsbeach-PartnerCard.test.ts:99:33',
+      cause: undefined
+    }
+  }
+}
+Link https://about.meta.com/ is broken or not reachable.

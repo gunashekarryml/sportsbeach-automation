@@ -50,7 +50,9 @@
           "**/sportsbeach-fullColorPartnerCard.test.ts",
           "**/sportsbeach-globalFooter.test.ts",
           "**/sportsbeach-globalNavigation.test.ts",
-          "**/sportsbeach-PartnerCard.test.ts"
+          "**/sportsbeach-PartnerCard.test.ts",
+          "**/sportsbeach-logoWall.test.ts",
+          "**/sportsbeach-oversizedCTA.test.ts"
         ],
         "testIgnore": "**/api.test.ts"
       }
