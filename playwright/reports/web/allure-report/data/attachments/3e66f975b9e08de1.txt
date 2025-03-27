@@ -1,0 +1,30 @@
+Partners Count: 13
+Checking link: https://www.adresultsmedia.com/
+Link https://www.adresultsmedia.com/ is valid.
+Checking link: https://www.channelfactory.com/
+Link https://www.channelfactory.com/ is valid.
+Checking link: https://www.nba.com/bulls
+Link https://www.nba.com/bulls is valid.
+Checking link: https://clios.com/sports/
+Link https://clios.com/sports/ is valid.
+Checking link: https://www.epidemicsound.com/
+Link https://www.epidemicsound.com/ is valid.
+Checking link: https://www.fanatics.com/
+Link https://www.fanatics.com/ is valid.
+Checking link: https://about.meta.com/
+Link https://about.meta.com/ is valid.
+Checking link: https://ads.microsoft.com/
+Link https://ads.microsoft.com/ is valid.
+
+--- Summary ---
+Total Valid Links: 8
+Valid Link 1: https://www.adresultsmedia.com/
+Valid Link 2: https://www.channelfactory.com/
+Valid Link 3: https://www.nba.com/bulls
+Valid Link 4: https://clios.com/sports/
+Valid Link 5: https://www.epidemicsound.com/
+Valid Link 6: https://www.fanatics.com/
+Valid Link 7: https://about.meta.com/
+Valid Link 8: https://ads.microsoft.com/
+
+Total Invalid Links: 0

@@ -14,7 +14,7 @@ const projectConfig = process.env.PROJECT;
 // Retrieve environment-specific configurations from the JSON file
 const config = configs[env];
 // Default test directory (for web tests)
-var testDir = './playwright/specs/web';
+var testDir = '../playwright/specs/web';
 
 // Default directory for Allure reports (for web tests)
 var reportOutputDir = './playwright/reports/web/allure-results';
@@ -72,7 +72,7 @@ const reportTitle="Automation Report for "+platform;
 
 // Function to determine the correct Allure results folder dynamically
 const getAllureResultsFolder = () => {
-  return projectConfig === 'api' ? './reports/api/allure-results' : './reports/web/allure-results';
+  return projectConfig === 'api' ? './playwright/reports/api/allure-results' : './playwright/reports/web/allure-results';
 };
 
 // API configuration (for API testing scenarios)
@@ -154,7 +154,7 @@ export default defineConfig({
   },
 
   // Global teardown file (executed after all tests complete)
-  globalTeardown: './configs/allure-teardown.ts',
+  globalTeardown: '../configs/allure-teardown.ts',
 
   // Uncomment and use if a global setup script is needed before test execution
   // globalSetup: './playwright/utilities/global-setup',

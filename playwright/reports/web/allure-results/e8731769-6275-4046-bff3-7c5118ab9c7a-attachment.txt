@@ -1,0 +1,5 @@
+Initial Transform (Before Animation): none
+New Transform (After Animation): none
+Initial translateX: undefined
+New translateX: undefined
+Execution Status : failed

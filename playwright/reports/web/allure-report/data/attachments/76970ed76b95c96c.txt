@@ -1,0 +1,6 @@
+Navigated to: https://sportbeach-dev.vercel.app/roster
+Verified the URL for "Roster" link: https://sportbeach-dev.vercel.app/roster matches the expected URL: https://sportbeach-dev.vercel.app/roster
+Navigated to: https://sportbeach-dev.vercel.app/partners
+Verified the URL for "Partners" link: https://sportbeach-dev.vercel.app/partners matches the expected URL: https://sportbeach-dev.vercel.app/partners
+Navigated to: https://sportbeach-dev.vercel.app/faq
+Verified the URL for "FAQ" link: https://sportbeach-dev.vercel.app/faq matches the expected URL: https://sportbeach-dev.vercel.app/faq

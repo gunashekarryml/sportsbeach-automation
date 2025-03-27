@@ -48,7 +48,7 @@ jobs:
 
     - name: List files in the Allure directory
       if: always()
-      run: ls -al /home/runner/work/common-automation-framework-wdio/common-automation-framework-wdio/reports/web/allure-report/   
+      run: ls -al /home/runner/work/sportsbeach-automation/sportsbeach-automation/reports/web/allure-report/   
     
     # Step 7: Upload Allure report as an artifact
     - name: Upload Allure report
