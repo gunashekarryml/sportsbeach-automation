@@ -32,11 +32,11 @@ test.only('validate captured text against allowed list for multiple texts', asyn
     await page.goto('https://sportbeach-dev.vercel.app/');
 
     // Define the allowed list of text
-    const allowedTextList = ['BEACH', 'SPORT', 'CANNES', '2024']; // Update with your allowed text
+    const allowedTextList = ['BEACH', 'SPORT', 'CANNES', '2021']; // Update with your allowed text
 
     // Define the locators for each specific text
     const locator1 = page.locator('div').filter({ hasText: /^SPORTBEACHSPORTBEACHSPORTBEACHSPORTBEACH$/ });
-    const locator2 = page.locator('div').filter({ hasText: /^CANNES2024CANNES2024CANNES2024CANNES2024$/ });
+    const locator2 = page.locator('div').filter({ hasText: /^CANNES2025CANNES2025CANNES2025CANNES2025$/ });
     const locator3 = page.locator('div').filter({ hasText: /^SPORTBEACHSPORTBEACHSPORTBEACHSPORTBEACH$/ }); // Replace with the actual text for text 3
 
     // Function to capture and validate text for the first element of the locator
