@@ -1,0 +1,11 @@
+/node_modules/
+/logs/
+/allure-results/
+/allure-report/
+/tsconfig.json/
+/package-lock.json/
+/test-results/
+*.log
+*.junit
+/.DS_Store/
+/reports/
