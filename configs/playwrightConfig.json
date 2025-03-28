@@ -1,6 +1,6 @@
 {
     "dev": {
-      "baseURL": "https://sportbeach-dev.vercel.app/",
+      "baseURL": "https://sportbeach.vercel.app/",
       "apiKey": "dev-api-key",
       "timeout": 20000,
       "backendHostingUrl":"https://dev.in"

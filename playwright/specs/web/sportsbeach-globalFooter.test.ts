@@ -31,8 +31,8 @@ test.describe('Partner Card Test Suite', () => {
 
     // List of links to test by their visible text and expected URL parts
     const links = [
-      { name: 'Privacy Policy', expectedUrl: 'https://sportbeach-dev.vercel.app/privacy' },
-      { name: 'Terms and Conditions', expectedUrl: 'https://sportbeach-dev.vercel.app/terms' },
+      { name: 'Privacy Policy', expectedUrl: 'https://sportbeach.vercel.app/privacy' },
+      { name: 'Terms and Conditions', expectedUrl: 'https://sportbeach.vercel.app/terms' },
       { name: 'Contact Us', expectedUrl: 'https://www.cnbc.com/video/2023/10/06/why-sports-marketing-is-a-growth-area-a-stagwellas-ceo-mark-penn.html' },
     ];
 

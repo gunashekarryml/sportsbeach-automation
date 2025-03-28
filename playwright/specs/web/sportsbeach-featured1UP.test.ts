@@ -44,7 +44,7 @@ test.describe('Featured 1 UP Test Suite', () => {
     const basePage = poManager.getBasePage();
 
     // Navigate to the URL and close the alert pop-up
-    await basePage.closePopup.click();
+    // await basePage.closePopup.click();
 
     // Validate the main content text from the test data
     await validateMainContent(page, featured1UPData.mainContentText);

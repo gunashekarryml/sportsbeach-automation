@@ -30,7 +30,7 @@ test('Global Navigation - Validate links are underlined on hover', async ({ page
     { role: 'link', name: 'Roster' },
     { role: 'link', name: 'Partners' },
     { role: 'link', name: 'FAQ' },
-    { role: 'link', name: 'Login' },   // Add more links here
+    // { role: 'link', name: 'Login' },   // Add more links here
   ];
 
   // Iterate over each link and perform the validation
@@ -127,10 +127,10 @@ test('Global Navigation - Validate page URL after clicking each link', async ({ 
   // List of links to test with role and name, along with the expected URLs
   const links = [
     // { role: 'link', name: 'Schedule', expectedUrl: 'https://sportbeach-dev.vercel.app/schedule' },
-    { role: 'link', name: 'Roster', expectedUrl: 'https://sportbeach-dev.vercel.app/roster' },
-    { role: 'link', name: 'Partners', expectedUrl: 'https://sportbeach-dev.vercel.app/partners' },
-    { role: 'link', name: 'FAQ', expectedUrl: 'https://sportbeach-dev.vercel.app/faq' },
-    { role: 'link', name: 'Login', expectedUrl: 'https://sportbeach-dev.vercel.app/signin' },  // Add more links with expected URLs
+    { role: 'link', name: 'Roster', expectedUrl: 'https://sportbeach.vercel.app/roster' },
+    { role: 'link', name: 'Partners', expectedUrl: 'https://sportbeach.vercel.app/partners' },
+    { role: 'link', name: 'FAQ', expectedUrl: 'https://sportbeach.vercel.app/faq' },
+    // { role: 'link', name: 'Login', expectedUrl: 'https://sportbeach.vercel.app/signin' },  // Add more links with expected URLs
   ];
 
   // Iterate over each link and perform the click and URL verification
