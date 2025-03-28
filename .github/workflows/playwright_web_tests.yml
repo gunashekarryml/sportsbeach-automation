@@ -48,7 +48,7 @@ jobs:
 
     - name: List files in the Allure directory
       if: always()
-      run: ls -al /home/runner/work/sportsbeach-automation/sportsbeach-automation/reports/web/allure-report/   
+      run: ls -al /home/runner/work/sportsbeach-automation/sportsbeach-automation/playwright/reports/web/allure-report/   
     
     # Step 7: Upload Allure report as an artifact
     - name: Upload Allure report
@@ -80,7 +80,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: allure-report
-          path: ./reports
+          path: ./playwright/reports
 
       
       # Step 2: Deploy Allure report using GitHub Pages
@@ -88,7 +88,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./reports
+          publish_dir: ./playwright/reports
           publish_branch: gh-pages
           destination_dir: web
           keep_files: true
@@ -116,7 +116,7 @@ jobs:
       - name: Set Email Subject with Date
         id: set-email-subject
         run: |
-                echo "email_subject=Web Automation via Playwright Allure Report - $(date '+%d-%b-%Y')" >> $GITHUB_ENV
+                echo "email_subject=Web Automation via Playwright for Sports-Beach - $(date '+%d-%b-%Y')" >> $GITHUB_ENV
                     
       # Step 3: Send email with report link
       - name: Send email with report URL
@@ -127,6 +127,6 @@ jobs:
           username: ${{secrets.EMAIL_USERNAME}}
           password: ${{secrets.EMAIL_PASSWORD}}
           subject: "${{ env.email_subject }}"
-          to: "deepak.tiwari@codeandtheory.com"
+          to: ${{secrets.EMAIL_RECEPIENTS}}
           from: ${{secrets.EMAIL_USERNAME }}
           body: ${{env.email_body}}

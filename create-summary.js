@@ -108,7 +108,7 @@ const sendSlackMessage = async (message) => {
 const emailBody = `
 Hello,
 
-The automation test run is complete. Here's the summary:
+The automation test run for Sports-Beach is complete. Here's the summary:
 - Platform: ${argv.platform}
 - Total Tests: ${totalTests}
 - ✅ Passed: ${passedTests}
@@ -121,8 +121,8 @@ The automation test run is complete. Here's the summary:
 - Stop Time: ${stopTimeParsed}
 - Duration: ${duration}  
 
-Full  Allure report of this run is also available. You can view it at:
-https://codeandtheory.github.io/common-automation-framework-wdio/${argv.platform}
+Full execution report of this run is also available. You can view it at:
+https://github.com/gunashekarryml/sportsbeach-automation/${argv.platform}
 
 You can debug this run using the following workflow link:
 ${workflowUrl}
