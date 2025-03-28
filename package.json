@@ -8,7 +8,7 @@
   "scripts": {
     "test:api:pw": "ENV=dev PROJECT=api npx playwright test --config=playwright/playwright.config.ts",
     "test:playwright": "npx playwright test",
-    "test-web-demo:dev": "ENV=dev PROJECT=chrome npx playwright test ./playwright/specs/web/demo.test.ts --config=playwright/playwright.config.ts",
+    "test-web-demo:dev": "ENV=dev PROJECT=chrome npx playwright test ./playwright/specs/web/demo.test.ts --config=playwright/playwright.config1.ts",
     "playwright:test-web:qa": "ENV=qa npx playwright test --config=playwright/playwright.config.ts",
     "playwright:test-web:dev": "ENV=dev npx playwright test --config=playwright/playwright.config.ts",
     "playwright:test-web:dev:webkit": "ENV=dev project=webkit npx playwright test --config=playwright/playwright.config1.ts",

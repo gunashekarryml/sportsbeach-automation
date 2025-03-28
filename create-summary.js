@@ -8,7 +8,7 @@ const argv = yargs(process.argv.slice(2)).argv;
 const SLACK_TOKEN = process.env.SLACK_TOKEN; // Add your Slack token here or via .env file
 const CHANNEL_ID = process.env.SLACK_CHANNEL; // Add your Slack channel ID
 console.log(`Generating summary for platform: ${argv.platform}`);
-const reportDir = path.resolve(__dirname, 'reports', 'widgets');
+const reportDir = path.resolve(__dirname, './playwright/reports', 'widgets');
 console.log('reportDir:',reportDir);
 const suitesFile = path.join(reportDir, 'suites.json');
 const categoriesFile = path.join(reportDir, 'categories.json');
