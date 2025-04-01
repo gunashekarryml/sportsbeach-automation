@@ -1,0 +1,68 @@
+Error checking link: https://www.adresultsmedia.com/ apiRequestContext.get: Target page, context or browser has been closed
+Call log:
+  - → GET https://www.adresultsmedia.com/
+    - user-agent: Playwright/1.51.0 (x64; ubuntu 24.04) node/18.20 CI/1
+    - accept: */*
+    - accept-encoding: gzip,deflate,br
+
+    at checkLinkStatus (/home/runner/work/sportsbeach-automation/sportsbeach-automation/playwright/specs/web/sportsbeach-PartnerCard.test.ts:8:36)
+    at /home/runner/work/sportsbeach-automation/sportsbeach-automation/playwright/specs/web/sportsbeach-PartnerCard.test.ts:99:33 {
+  [Symbol(step)]: {
+    stepId: 'pw:api@18',
+    location: {
+      file: '/home/runner/work/sportsbeach-automation/sportsbeach-automation/playwright/specs/web/sportsbeach-PartnerCard.test.ts',
+      line: 8,
+      column: 36,
+      function: 'checkLinkStatus'
+    },
+    category: 'pw:api',
+    title: 'apiRequestContext.get(https://www.adresultsmedia.com/)',
+    apiName: 'apiRequestContext.get',
+    params: {
+      url: 'https://www.adresultsmedia.com/',
+      params: undefined,
+      encodedParams: undefined,
+      method: 'GET',
+      headers: undefined,
+      postData: undefined,
+      jsonData: undefined,
+      formData: undefined,
+      multipartData: undefined,
+      timeout: undefined,
+      failOnStatusCode: undefined,
+      ignoreHTTPSErrors: undefined,
+      maxRedirects: undefined,
+      maxRetries: undefined,
+      __testHookLookup: undefined
+    },
+    boxedStack: undefined,
+    steps: [],
+    attachmentIndices: [],
+    info: TestStepInfoImpl {
+      annotations: [],
+      _testInfo: [TestInfoImpl],
+      _stepId: 'pw:api@18'
+    },
+    complete: [Function: complete],
+    endWallTime: 1743489020954,
+    error: {
+      message: 'Error: apiRequestContext.get: Target page, context or browser has been closed\n' +
+        'Call log:\n' +
+        '\x1B[2m  - → GET https://www.adresultsmedia.com/\x1B[22m\n' +
+        '\x1B[2m    - user-agent: Playwright/1.51.0 (x64; ubuntu 24.04) node/18.20 CI/1\x1B[22m\n' +
+        '\x1B[2m    - accept: */*\x1B[22m\n' +
+        '\x1B[2m    - accept-encoding: gzip,deflate,br\x1B[22m\n',
+      stack: 'Error: apiRequestContext.get: Target page, context or browser has been closed\n' +
+        'Call log:\n' +
+        '\x1B[2m  - → GET https://www.adresultsmedia.com/\x1B[22m\n' +
+        '\x1B[2m    - user-agent: Playwright/1.51.0 (x64; ubuntu 24.04) node/18.20 CI/1\x1B[22m\n' +
+        '\x1B[2m    - accept: */*\x1B[22m\n' +
+        '\x1B[2m    - accept-encoding: gzip,deflate,br\x1B[22m\n' +
+        '\n' +
+        '    at checkLinkStatus (/home/runner/work/sportsbeach-automation/sportsbeach-automation/playwright/specs/web/sportsbeach-PartnerCard.test.ts:8:36)\n' +
+        '    at /home/runner/work/sportsbeach-automation/sportsbeach-automation/playwright/specs/web/sportsbeach-PartnerCard.test.ts:99:33',
+      cause: undefined
+    }
+  }
+}
+Link https://www.adresultsmedia.com/ is broken or not reachable.
