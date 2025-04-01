@@ -122,7 +122,7 @@ The automation test run for Sports-Beach is complete. Here's the summary:
 - Duration: ${duration}  
 
 Full execution report of this run is also available. You can view it at:
-https://github.com/gunashekarryml/sportsbeach-automation/${argv.platform}
+https://gunashekarryml.github.io/sportsbeach-automation/${argv.platform}
 
 You can debug this run using the following workflow link:
 ${workflowUrl}
