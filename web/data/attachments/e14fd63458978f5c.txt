@@ -1,0 +1,4 @@
+Initial text-decoration for "Roster": none solid rgb(0, 82, 125)
+text-decoration after hover for "Roster": underline solid rgb(0, 82, 125)
+Is the "Roster" link underlined on hover? Yes
+Initial text-decoration for "Partners": none solid rgb(0, 82, 125)

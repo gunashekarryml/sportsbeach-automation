@@ -1,0 +1,26 @@
+CSS after hover for "Instagram": border-radius: 9999px, border-color: rgb(229, 231, 235)
+Circle appears on hover for "Instagram": Border radius is 9999px and border color is rgb(229, 231, 235)
+CSS after hover for "XProfile": border-radius: 9999px, border-color: rgb(229, 231, 235)
+Circle appears on hover for "XProfile": Border radius is 9999px and border color is rgb(229, 231, 235)
+CSS after hover for "LinkedIn": border-radius: 9999px, border-color: rgb(229, 231, 235)
+Circle appears on hover for "LinkedIn": Border radius is 9999px and border color is rgb(229, 231, 235)
+Clicking the Instagram link to open popup.
+Clicking the XProfile link to open popup.
+Clicking the LinkedIn link to open popup.
+Popup opened: https://www.instagram.com/stagwellglobal/?hl=en
+Popup opened: https://x.com/stagwell
+Popup opened: https://www.linkedin.com/company/stagwell/
+Captured popups: [
+  'https://www.instagram.com/stagwellglobal/?hl=en',
+  'https://x.com/stagwell',
+  'https://www.linkedin.com/company/stagwell/'
+]
+Popup URL at index 0: https://www.instagram.com/stagwellglobal/?hl=en
+Popup URL at index 1: https://x.com/stagwell
+Popup URL at index 2: https://www.linkedin.com/company/stagwell/
+Waiting for popup URL at index 0: https://www.instagram.com/stagwellglobal/?hl=en
+Waiting for popup URL at index 1: https://x.com/stagwell
+Waiting for popup URL at index 2: https://www.linkedin.com/company/stagwell/
+Popup loaded: https://www.instagram.com/stagwellglobal/?hl=en
+Popup loaded: https://x.com/stagwell
+Popup loaded: https://www.linkedin.com/company/stagwell/

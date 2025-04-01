@@ -1,0 +1,210 @@
+Error checking link at index 7: locator.getAttribute: Target page, context or browser has been closed
+    at /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/demo.test.ts:93:36 {
+  [Symbol(step)]: {
+    stepId: 'pw:api@37',
+    location: {
+      file: '/Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/demo.test.ts',
+      line: 93,
+      column: 36
+    },
+    category: 'pw:api',
+    title: 'locator.getAttribute(//*[@id="main-content"]/div[2]/div[4]/div/a[*] >> nth=7)',
+    apiName: 'locator.getAttribute',
+    params: {
+      selector: '//*[@id="main-content"]/div[2]/div[4]/div/a[*] >> nth=7',
+      name: 'href',
+      strict: true
+    },
+    boxedStack: undefined,
+    steps: [],
+    attachmentIndices: [],
+    info: TestStepInfoImpl {
+      annotations: [],
+      _testInfo: [TestInfoImpl],
+      _stepId: 'pw:api@37'
+    },
+    complete: [Function: complete],
+    endWallTime: 1743058829635,
+    error: {
+      message: 'Error: locator.getAttribute: Target page, context or browser has been closed',
+      stack: 'Error: locator.getAttribute: Target page, context or browser has been closed\n' +
+        '    at /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/demo.test.ts:93:36',
+      cause: undefined
+    }
+  }
+}
+Error checking link at index 8: locator.getAttribute: Target page, context or browser has been closed
+    at /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/demo.test.ts:93:36 {
+  [Symbol(step)]: {
+    stepId: 'pw:api@38',
+    location: {
+      file: '/Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/demo.test.ts',
+      line: 93,
+      column: 36
+    },
+    category: 'pw:api',
+    title: 'locator.getAttribute(//*[@id="main-content"]/div[2]/div[4]/div/a[*] >> nth=8)',
+    apiName: 'locator.getAttribute',
+    params: {
+      selector: '//*[@id="main-content"]/div[2]/div[4]/div/a[*] >> nth=8',
+      name: 'href',
+      strict: true
+    },
+    boxedStack: undefined,
+    steps: [],
+    attachmentIndices: [],
+    info: TestStepInfoImpl {
+      annotations: [],
+      _testInfo: [TestInfoImpl],
+      _stepId: 'pw:api@38'
+    },
+    complete: [Function: complete],
+    endWallTime: 1743058829638,
+    error: {
+      message: 'Error: locator.getAttribute: Target page, context or browser has been closed',
+      stack: 'Error: locator.getAttribute: Target page, context or browser has been closed\n' +
+        '    at /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/demo.test.ts:93:36',
+      cause: undefined
+    }
+  }
+}
+Error checking link at index 9: locator.getAttribute: Target page, context or browser has been closed
+    at /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/demo.test.ts:93:36 {
+  [Symbol(step)]: {
+    stepId: 'pw:api@39',
+    location: {
+      file: '/Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/demo.test.ts',
+      line: 93,
+      column: 36
+    },
+    category: 'pw:api',
+    title: 'locator.getAttribute(//*[@id="main-content"]/div[2]/div[4]/div/a[*] >> nth=9)',
+    apiName: 'locator.getAttribute',
+    params: {
+      selector: '//*[@id="main-content"]/div[2]/div[4]/div/a[*] >> nth=9',
+      name: 'href',
+      strict: true
+    },
+    boxedStack: undefined,
+    steps: [],
+    attachmentIndices: [],
+    info: TestStepInfoImpl {
+      annotations: [],
+      _testInfo: [TestInfoImpl],
+      _stepId: 'pw:api@39'
+    },
+    complete: [Function: complete],
+    endWallTime: 1743058829639,
+    error: {
+      message: 'Error: locator.getAttribute: Target page, context or browser has been closed',
+      stack: 'Error: locator.getAttribute: Target page, context or browser has been closed\n' +
+        '    at /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/demo.test.ts:93:36',
+      cause: undefined
+    }
+  }
+}
+Error checking link at index 10: locator.getAttribute: Target page, context or browser has been closed
+    at /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/demo.test.ts:93:36 {
+  [Symbol(step)]: {
+    stepId: 'pw:api@40',
+    location: {
+      file: '/Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/demo.test.ts',
+      line: 93,
+      column: 36
+    },
+    category: 'pw:api',
+    title: 'locator.getAttribute(//*[@id="main-content"]/div[2]/div[4]/div/a[*] >> nth=10)',
+    apiName: 'locator.getAttribute',
+    params: {
+      selector: '//*[@id="main-content"]/div[2]/div[4]/div/a[*] >> nth=10',
+      name: 'href',
+      strict: true
+    },
+    boxedStack: undefined,
+    steps: [],
+    attachmentIndices: [],
+    info: TestStepInfoImpl {
+      annotations: [],
+      _testInfo: [TestInfoImpl],
+      _stepId: 'pw:api@40'
+    },
+    complete: [Function: complete],
+    endWallTime: 1743058829641,
+    error: {
+      message: 'Error: locator.getAttribute: Target page, context or browser has been closed',
+      stack: 'Error: locator.getAttribute: Target page, context or browser has been closed\n' +
+        '    at /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/demo.test.ts:93:36',
+      cause: undefined
+    }
+  }
+}
+Error checking link at index 11: locator.getAttribute: Target page, context or browser has been closed
+    at /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/demo.test.ts:93:36 {
+  [Symbol(step)]: {
+    stepId: 'pw:api@41',
+    location: {
+      file: '/Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/demo.test.ts',
+      line: 93,
+      column: 36
+    },
+    category: 'pw:api',
+    title: 'locator.getAttribute(//*[@id="main-content"]/div[2]/div[4]/div/a[*] >> nth=11)',
+    apiName: 'locator.getAttribute',
+    params: {
+      selector: '//*[@id="main-content"]/div[2]/div[4]/div/a[*] >> nth=11',
+      name: 'href',
+      strict: true
+    },
+    boxedStack: undefined,
+    steps: [],
+    attachmentIndices: [],
+    info: TestStepInfoImpl {
+      annotations: [],
+      _testInfo: [TestInfoImpl],
+      _stepId: 'pw:api@41'
+    },
+    complete: [Function: complete],
+    endWallTime: 1743058829643,
+    error: {
+      message: 'Error: locator.getAttribute: Target page, context or browser has been closed',
+      stack: 'Error: locator.getAttribute: Target page, context or browser has been closed\n' +
+        '    at /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/demo.test.ts:93:36',
+      cause: undefined
+    }
+  }
+}
+Error checking link at index 12: locator.getAttribute: Target page, context or browser has been closed
+    at /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/demo.test.ts:93:36 {
+  [Symbol(step)]: {
+    stepId: 'pw:api@42',
+    location: {
+      file: '/Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/demo.test.ts',
+      line: 93,
+      column: 36
+    },
+    category: 'pw:api',
+    title: 'locator.getAttribute(//*[@id="main-content"]/div[2]/div[4]/div/a[*] >> nth=12)',
+    apiName: 'locator.getAttribute',
+    params: {
+      selector: '//*[@id="main-content"]/div[2]/div[4]/div/a[*] >> nth=12',
+      name: 'href',
+      strict: true
+    },
+    boxedStack: undefined,
+    steps: [],
+    attachmentIndices: [],
+    info: TestStepInfoImpl {
+      annotations: [],
+      _testInfo: [TestInfoImpl],
+      _stepId: 'pw:api@42'
+    },
+    complete: [Function: complete],
+    endWallTime: 1743058829644,
+    error: {
+      message: 'Error: locator.getAttribute: Target page, context or browser has been closed',
+      stack: 'Error: locator.getAttribute: Target page, context or browser has been closed\n' +
+        '    at /Users/gunashekar/Automation/SportsBeach/sportsbeachautomation/playwright/specs/web/demo.test.ts:93:36',
+      cause: undefined
+    }
+  }
+}

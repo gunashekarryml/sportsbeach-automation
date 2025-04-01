@@ -1,0 +1,20 @@
+{
+  "reportName": "Web Automation Report",
+  "testRuns": [],
+  "statistic": {
+    "failed": 4,
+    "broken": 6,
+    "skipped": 0,
+    "passed": 4,
+    "unknown": 0,
+    "total": 14
+  },
+  "time": {
+    "start": 1743058955851,
+    "stop": 1743060111810,
+    "duration": 1155959,
+    "minDuration": 3223,
+    "maxDuration": 21008,
+    "sumDuration": 192532
+  }
+}
